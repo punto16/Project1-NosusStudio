@@ -20,7 +20,7 @@ Project 1: Tetris Game
 
 ## Credits
 
-
+sus, tuntuntun tuntutun turururu
 
 
 ## Licence
