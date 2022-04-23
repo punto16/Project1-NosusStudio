@@ -81,9 +81,11 @@ Update_Status SceneLevel1::PostUpdate()
 bool SceneLevel1::CleanUp()
 {
 	App->player->Disable();
-	//App->enemies->Disable();
+	// TODO 5: Remove all memory leaks
 
-	// TODO 5 (old): Remove All Memory Leaks - no solution here guys ;)
+	LOG("Deleting background assets");
+
+	App->textures->Unload(bgTexture);
 
 	return true;
 }
