@@ -27,9 +27,9 @@ Application::Application()
 	modules[5] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
 	modules[6] =	player =		new ModulePlayer(false);	//Player starts disabled
 
-	modules[10] =	fade =			new ModuleFadeToBlack(true);
-	modules[11] =	fonts =			new ModuleFonts(true);
-	modules[12] =	render =		new ModuleRender(true);
+	modules[7] =	fade =			new ModuleFadeToBlack(true);
+	modules[8] =	fonts =			new ModuleFonts(true);
+	modules[9] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()
