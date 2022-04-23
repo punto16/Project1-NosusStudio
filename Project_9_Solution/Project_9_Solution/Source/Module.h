@@ -29,9 +29,6 @@ public:
 	//Called at the end of the application
 	virtual bool CleanUp();
 
-	//Called when two colliders are intersecting
-	//and the module is registered as the listener
-	virtual void OnCollision(Collider* c1, Collider* c2);
 
 	// Switches isEnabled and calls Start() method
 	void Enable();
