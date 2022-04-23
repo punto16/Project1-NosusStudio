@@ -23,6 +23,9 @@ bool SceneLevel1::Start()
 
 	bool ret = true;
 
+	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
+	//App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
@@ -41,7 +44,7 @@ Update_Status SceneLevel1::Update()
 Update_Status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	//App->render->Blit(bgTexture, 0, 0, NULL);
+	App->render->Blit(bgTexture, 0, 0, NULL);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
