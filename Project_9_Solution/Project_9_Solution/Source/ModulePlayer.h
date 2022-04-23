@@ -3,7 +3,6 @@
 
 #include "Module.h"
 #include "Animation.h"
-#include "p2Point.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -29,12 +28,8 @@ public:
 	// Performs the render call of the player sprite
 	Update_Status PostUpdate() override;
 
-	// Collision callback, called when the player intersects with another collider
-	void OnCollision(Collider* c1, Collider* c2) override;
 
 public:
-	// Position of the player in the map
-	iPoint position;
 
 	// The speed in which we move the player (pixels per frame)
 	int speed = 1;
