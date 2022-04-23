@@ -35,10 +35,7 @@ bool Module::CleanUp()
 	return true;
 }
 
-void Module::OnCollision(Collider* c1, Collider* c2)
-{
 
-}
 
 void Module::Enable()
 {
