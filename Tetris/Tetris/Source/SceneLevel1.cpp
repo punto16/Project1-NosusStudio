@@ -58,7 +58,6 @@ Update_Status SceneLevel1::PostUpdate()
 bool SceneLevel1::CleanUp()
 {
 	App->player->Disable();
-	// TODO 5: Remove all memory leaks
 
 	LOG("Deleting background assets");
 

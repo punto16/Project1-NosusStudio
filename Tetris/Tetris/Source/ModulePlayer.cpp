@@ -28,11 +28,6 @@ bool ModulePlayer::Start()
 
 	destroyed = false;
 
-	// TODO 0: Notice how a font is loaded and the meaning of all its arguments 
-	//char lookupTable[] = { "!  ,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz" };
-	//scoreFont = App->fonts->Load("Assets/Fonts/rtype_font.png", "! @,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz", 1);
-
-	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
 	char lookupTable[] = { "abcdefghijklmnopqrstuvwxyz 0123456789.,;:$#'! /?%&()@ " };
 	Tetris_font_black = App->fonts->Load("Assets/Fonts/Tetris_font_black.png", lookupTable, 6);
 
@@ -55,11 +50,10 @@ Update_Status ModulePlayer::PostUpdate()
 	// Draw UI (score) --------------------------------------
 	sprintf_s(scoreText, 10, "%7d", score);
 
-	// TODO 3: Blit the text of the score in at the bottom of the screen
+	App->fonts->BlitText(23, 216, Tetris_font_black, "score");
 	//App->fonts->BlitText(58, 228, scoreFont, scoreText);
-
-	App->fonts->BlitText(26, 218, Tetris_font_black, "score");
-	App->fonts->BlitText(26, 227, Tetris_font_black, "lines");
+	App->fonts->BlitText(23, 224, Tetris_font_black, "lines");
+	//App->fonts->BlitText(58, 228, scoreFont, LevelText);
 
 	return Update_Status::UPDATE_CONTINUE;
 }

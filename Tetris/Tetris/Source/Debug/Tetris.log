@@ -1,11 +1,10 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: El directorio intermedio (Debug\) contiene archivos compartidos de otro proyecto (Project_9_Solution.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
-  ModulePlayGround.cpp
+  ModuleFonts.cpp
+  ModulePlayer.cpp
 C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-  SceneIntro.cpp
+  SceneLevel1.cpp
 C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-  Module.cpp
   Generando código...
-  LINK : no se encontró C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Debug\Tetris.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
   Tetris.vcxproj -> C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Debug\Tetris.exe
