@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-ModulePlayGround::ModulePlayGround(bool startEnabled)
+ModulePlayGround::ModulePlayGround(bool startEnabled) : Module(startEnabled)
 {
 }
 
