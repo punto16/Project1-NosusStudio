@@ -53,7 +53,7 @@ public:
 	SceneIntro* sceneIntro = nullptr;
 	SceneLevel1* sceneLevel_1 = nullptr;
 
-	ModulePlayGround playground = nullptr;
+	ModulePlayGround* playground = nullptr;
 
 	ModuleFadeToBlack* fade = nullptr;
 	ModuleFonts* fonts = nullptr;

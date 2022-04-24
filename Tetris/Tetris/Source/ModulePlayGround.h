@@ -27,6 +27,7 @@ public:
 
 public:
 
+	char map[10][20];
 
 
 };
