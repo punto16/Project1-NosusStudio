@@ -5,7 +5,6 @@
 #include "Animation.h"
 
 struct SDL_Texture;
-struct Collider;
 
 class ModulePlayer : public Module
 {
