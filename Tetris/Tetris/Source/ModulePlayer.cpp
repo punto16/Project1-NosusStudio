@@ -58,7 +58,8 @@ Update_Status ModulePlayer::PostUpdate()
 	// TODO 3: Blit the text of the score in at the bottom of the screen
 	//App->fonts->BlitText(58, 228, scoreFont, scoreText);
 
-	App->fonts->BlitText(0, 228, Tetris_font_black, "this is just a font test");
+	App->fonts->BlitText(26, 218, Tetris_font_black, "score");
+	App->fonts->BlitText(26, 227, Tetris_font_black, "lines");
 
 	return Update_Status::UPDATE_CONTINUE;
 }
