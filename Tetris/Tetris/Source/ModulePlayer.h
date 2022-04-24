@@ -33,10 +33,18 @@ public:
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
 
-	// Font score index
-	uint score = 000;
+	// Fonts
 	int Tetris_font_black = -1;
+
+	//UI elements
+	uint score = 000;
 	char scoreText[10] = { "\0" };
+
+	uint lines = 000;
+	char linesText[10] = { "\0" };
+
+	uint level = 001;
+	char levelText[10] = { "\0" };
 
 };
 
