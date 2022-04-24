@@ -35,6 +35,11 @@ bool Module::CleanUp()
 	return true;
 }
 
+char Module::PlayGroundGetter(int i, int j)
+{
+	return ' ';
+}
+
 
 
 void Module::Enable()

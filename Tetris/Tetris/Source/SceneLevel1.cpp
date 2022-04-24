@@ -7,6 +7,7 @@
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
+#include "ModulePlayGround.h"
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
@@ -32,6 +33,7 @@ bool SceneLevel1::Start()
 	App->render->camera.y = 0;
 
 	App->player->Enable();
+	App->playground->Enable();
 
 	return ret;
 }
@@ -57,11 +59,16 @@ Update_Status SceneLevel1::PostUpdate()
 
 bool SceneLevel1::CleanUp()
 {
-	App->player->Disable();
+	App->playground->Disable();
 
 	LOG("Deleting background assets");
 
 	App->textures->Unload(bgTexture);
 
 	return true;
+}
+
+char SceneLevel1::PlayGroundGetter(int i, int j)
+{
+	return playground[i][j];
 }

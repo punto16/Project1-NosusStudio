@@ -30,6 +30,10 @@ public:
 	virtual bool CleanUp();
 
 
+	//ONLY FOR LEVELS
+	virtual char PlayGroundGetter(int i, int j);
+
+
 	// Switches isEnabled and calls Start() method
 	void Enable();
 

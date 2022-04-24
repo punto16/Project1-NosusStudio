@@ -30,6 +30,9 @@ public:
 	// Disables the player and the enemies
 	bool CleanUp();
 
+	//playground getter
+	char PlayGroundGetter(int i, int j) override;
+
 public:
 	
 	// The scene sprite sheet loaded into an SDL_Texture

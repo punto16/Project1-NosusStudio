@@ -15,6 +15,9 @@ public:
 	// Destructor
 	~ModulePlayGround();
 
+
+	bool Start() override;
+
 	// Reads the matrix of the playgraund depending on the current level
 	Update_Status PreUpdate() override;
 
@@ -24,6 +27,8 @@ public:
 	// Modifies the matrix depending on the current level
 	Update_Status PostUpdate() override;
 
+	// Disables the player and the enemies
+	bool CleanUp();
 
 public:
 

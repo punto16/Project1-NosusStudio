@@ -4,6 +4,7 @@
 #include "Globals.h"
 
 #define NUM_MODULES 11
+#define NUM_LEVELS 1
 
 class Module;
 class ModuleWindow;
