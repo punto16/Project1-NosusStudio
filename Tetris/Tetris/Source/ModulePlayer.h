@@ -36,7 +36,7 @@ public:
 
 	// Font score index
 	uint score = 000;
-	int scoreFont = -1;
+	int Tetris_font_black = -1;
 	char scoreText[10] = { "\0" };
 
 };
