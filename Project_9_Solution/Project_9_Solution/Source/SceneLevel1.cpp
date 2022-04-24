@@ -4,7 +4,9 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
+#include "ModuleInput.h"
 #include "ModulePlayer.h"
+#include "ModuleFadeToBlack.h"
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
@@ -36,6 +38,10 @@ bool SceneLevel1::Start()
 
 Update_Status SceneLevel1::Update()
 {
+	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }
