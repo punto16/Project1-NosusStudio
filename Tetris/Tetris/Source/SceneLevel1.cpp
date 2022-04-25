@@ -59,6 +59,7 @@ Update_Status SceneLevel1::PostUpdate()
 
 bool SceneLevel1::CleanUp()
 {
+	App->player->Disable();
 	App->playground->Disable();
 
 	LOG("Deleting background assets");

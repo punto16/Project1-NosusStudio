@@ -24,7 +24,7 @@ bool SceneIntro::Start()
 
 	bool ret = true;
 
-	//bgTexture = App->textures->Load("Assets/Sprites/startScreen.png");
+	bgTexture = App->textures->Load("Assets/Sprites/sprite_title.png");
 	//App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
 
 	App->render->camera.x = 0;
@@ -56,4 +56,13 @@ Update_Status SceneIntro::PostUpdate()
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
 	return Update_Status::UPDATE_CONTINUE;
+}
+
+bool SceneIntro::CleanUp()
+{
+	LOG("Deleting background assets");
+
+	App->textures->Unload(bgTexture);
+
+	return true;
 }
