@@ -34,7 +34,14 @@ public:
 	bool destroyed = false;
 
 	// Fonts
-	int Tetris_font_black = -1;
+	int Tetris_font_black		= -1;
+	int Tetris_font_blue		= -1;
+	int Tetris_font_brown		= -1;
+	int Tetris_font_darkblue	= -1;
+	int	Tetris_font_lightblue	= -1;
+	int	Tetris_font_purpura		= -1;
+	int	Tetris_font_red			= -1;
+	int	Tetris_font_white		= -1;
 
 	//UI elements
 	uint score = 000;
