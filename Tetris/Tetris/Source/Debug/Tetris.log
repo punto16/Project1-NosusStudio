@@ -2,7 +2,13 @@
   Application.cpp
 C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-  SceneIntro.cpp
+  ModulePlayGround.cpp
+C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  ModulePlayer.cpp
+C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  SceneLevel1.cpp
 C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\kikof\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
   Generando código...

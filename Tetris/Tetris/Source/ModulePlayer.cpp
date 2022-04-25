@@ -27,6 +27,9 @@ bool ModulePlayer::Start()
 	bool ret = true;
 
 	destroyed = false;
+	score = 000;
+	lines = 000;
+	round = 000;
 
 	char lookupTable[] = { "abcdefghijklmnopqrstuvwxyz 0123456789.,;:$#'! /?%&()@ " };
 	Tetris_font_black = App->fonts->Load("Assets/Fonts/sprite_font_black.png", lookupTable, 6);
@@ -68,3 +71,20 @@ Update_Status ModulePlayer::PostUpdate()
 	return Update_Status::UPDATE_CONTINUE;
 }
 
+
+bool ModulePlayer::CleanUp()
+{
+
+	LOG("Deleting background assets");
+
+	App->fonts->UnLoad(Tetris_font_black);
+	App->fonts->UnLoad(Tetris_font_blue);
+	App->fonts->UnLoad(Tetris_font_brown);
+	App->fonts->UnLoad(Tetris_font_darkblue);
+	App->fonts->UnLoad(Tetris_font_lightblue);
+	App->fonts->UnLoad(Tetris_font_purpura);
+	App->fonts->UnLoad(Tetris_font_red);
+	App->fonts->UnLoad(Tetris_font_white);
+
+	return true;
+}

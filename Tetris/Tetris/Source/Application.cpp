@@ -24,11 +24,11 @@ Application::Application()
 	modules[2] =	textures =		new ModuleTextures(true);
 	modules[3] =	audio =			new ModuleAudio(true);
 
+	modules[7] = playground = new ModulePlayGround(false);
+
 	modules[4] =	sceneIntro =	new SceneIntro(true);
 	modules[5] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
 	modules[6] =	player =		new ModulePlayer(false);	//Player starts disabled
-
-	modules[7] =	playground =	new ModulePlayGround(false);
 
 	modules[8] =	fade =			new ModuleFadeToBlack(true);
 	modules[9] =	fonts =			new ModuleFonts(true);

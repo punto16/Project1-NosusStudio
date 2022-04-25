@@ -27,6 +27,8 @@ public:
 	// Performs the render call of the player sprite
 	Update_Status PostUpdate() override;
 
+	bool ModulePlayer::CleanUp() override;
+
 
 public:
 
@@ -44,14 +46,14 @@ public:
 	int	Tetris_font_white		= -1;
 
 	//UI elements
-	uint score = 000;
+	uint score;
 	char scoreText[10] = { "\0" };
 
-	uint lines = 000;
+	uint lines;
 	char linesText[10] = { "\0" };
 
-	uint level = 001;
-	char levelText[10] = { "\0" };
+	uint round;
+	char roundText[10] = { "\0" };
 
 };
 
