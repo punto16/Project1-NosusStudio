@@ -30,7 +30,7 @@ bool ModulePlayGround::Start()
 		{
 			for (size_t i = 0; i < 10; i++)
 			{
-				for (size_t j = 0; j < 20; j++)
+				for (size_t j = 0; j < 22; j++)
 				{
 					map[i][j] = App->modules[o]->PlayGroundGetter(i,j);
 				}
@@ -69,6 +69,27 @@ Update_Status ModulePlayGround::Update()
 
 Update_Status ModulePlayGround::PostUpdate()
 {
+	//line condition
+
+	for (size_t j = 0; j < 22; j++)
+	{
+		for (size_t i = 0; i < 10 && map[i][j] != ' '; i++)
+		{
+			if (i == 9)
+			{
+				//We add a line to the counter, delete the line, and see id the round finished
+
+				++App->player->lines;
+
+				for (size_t k = 0; k < 10; k++)
+				{
+					map[k][j] = ' ';
+				}
+			}
+		}
+	}
+
+
 	return Update_Status::UPDATE_CONTINUE;
 }
 

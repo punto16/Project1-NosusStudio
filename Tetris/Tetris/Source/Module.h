@@ -32,6 +32,7 @@ public:
 
 	//ONLY FOR LEVELS
 	virtual char PlayGroundGetter(int i, int j);
+	virtual int linesofLevelGetter();
 
 
 	// Switches isEnabled and calls Start() method
