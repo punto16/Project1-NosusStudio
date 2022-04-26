@@ -102,7 +102,7 @@ Update_Status ModulePlayGround::PostUpdate()
 	//victory condition
 	if (App->player->lines == App->modules[currentModule]->linesofLevelGetter())
 	{
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		//App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
 
 

@@ -55,6 +55,11 @@ public:
 	uint round;
 	char roundText[10] = { "\0" };
 
+	uint credits = 0;
+	char creditsText[10] = { "\0" };
+
+	char high_scoreText[10] = { "\0" };
+
 };
 
 #endif //!__MODULE_PLAYER_H__
