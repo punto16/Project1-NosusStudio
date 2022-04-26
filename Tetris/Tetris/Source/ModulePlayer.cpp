@@ -61,12 +61,12 @@ Update_Status ModulePlayer::PostUpdate()
 
 	// Draw UI (score) --------------------------------------
 	sprintf_s(scoreText, 10, "%7d", score);
-	App->fonts->BlitText(23, 216, Tetris_font_red, "score");
-	App->fonts->BlitText(50, 216, Tetris_font_red, scoreText);
+	App->fonts->BlitText(25, 216, Tetris_font_red, "score");
+	App->fonts->BlitText(65, 216, Tetris_font_red, scoreText);
 
 	sprintf_s(linesText, 10, "%7d", lines);
-	App->fonts->BlitText(23, 224, Tetris_font_red, "lines");
-	App->fonts->BlitText(50, 224, Tetris_font_red, linesText);
+	App->fonts->BlitText(25, 224, Tetris_font_red, "lines");
+	App->fonts->BlitText(65, 224, Tetris_font_red, linesText);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
