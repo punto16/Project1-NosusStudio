@@ -27,7 +27,7 @@ bool SceneLevel1::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
-	//App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
