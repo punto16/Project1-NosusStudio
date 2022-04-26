@@ -32,6 +32,8 @@ public:
 
 public:
 
+	int currentmodule;
+
 	char map[10][22];
 
 

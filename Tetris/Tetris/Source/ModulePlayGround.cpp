@@ -28,6 +28,7 @@ bool ModulePlayGround::Start()
 	{
 		if (App->modules[o]->IsEnabled())
 		{
+			currentmodule = o;
 			for (size_t i = 0; i < 10; i++)
 			{
 				for (size_t j = 0; j < 22; j++)
@@ -88,6 +89,13 @@ Update_Status ModulePlayGround::PostUpdate()
 			}
 		}
 	}
+
+	//victory condition
+	if (App->player->lines == App->modules[currentmodule]->linesofLevelGetter())
+	{
+
+	}
+
 
 
 	return Update_Status::UPDATE_CONTINUE;
