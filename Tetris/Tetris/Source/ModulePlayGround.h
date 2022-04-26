@@ -32,7 +32,7 @@ public:
 
 public:
 
-	char map[10][20];
+	char map[10][22];
 
 
 };
