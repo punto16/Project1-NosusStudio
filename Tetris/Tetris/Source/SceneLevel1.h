@@ -33,10 +33,8 @@ public:
 	//playground getter
 	char PlayGroundGetter(int i, int j) override;
 
-	int linesofLevelGetter() override
-	{
-		return lines;
-	}
+	int linesofLevelGetter() override;
+
 
 public:
 	
