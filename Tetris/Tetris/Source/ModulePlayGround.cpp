@@ -24,6 +24,8 @@ ModulePlayGround::~ModulePlayGround()
 
 bool ModulePlayGround::Start()
 {
+	srand(time(NULL));
+
 	for (int o = 5; o < 5 + NUM_LEVELS; ++o)
 	{
 		if (App->modules[o]->IsEnabled())
@@ -39,7 +41,6 @@ bool ModulePlayGround::Start()
 		}
 	}
 
-
 	return true;
 }
 
@@ -52,6 +53,8 @@ Update_Status ModulePlayGround::PreUpdate()
 
 Update_Status ModulePlayGround::Update()
 {
+	int rand = NextPiece();
+
 	//INPUT
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
 	{
@@ -86,7 +89,7 @@ Update_Status ModulePlayGround::PostUpdate()
 			{
 				//We add a line to the counter, delete the line, and see id the round finished
 
-				++App->player->lines;
+				//++App->player->lines;
 
 				for (size_t k = 0; k < 10; k++)
 				{

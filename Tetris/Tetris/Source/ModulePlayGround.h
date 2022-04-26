@@ -1,6 +1,7 @@
 #ifndef __MODULE_PLAYGROUND_H__
 #define __MODULE_PLAYGROUND_H__
 
+#include <time.h>
 #include "Module.h"
 #include "Animation.h"
 
@@ -15,7 +16,6 @@ public:
 	// Destructor
 	~ModulePlayGround();
 
-
 	bool Start() override;
 
 	// Reads the matrix of the playgraund depending on the current level
@@ -29,6 +29,14 @@ public:
 
 	// Disables the player and the enemies
 	bool CleanUp();
+
+
+    int NextPiece()
+    {
+        return rand() % 7;
+    }
+
+
 
 public:
 
