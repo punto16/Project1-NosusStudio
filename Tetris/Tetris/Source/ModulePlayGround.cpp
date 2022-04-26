@@ -28,7 +28,7 @@ bool ModulePlayGround::Start()
 	{
 		if (App->modules[o]->IsEnabled())
 		{
-			currentmodule = o;
+			currentModule = o;
 			for (size_t i = 0; i < 10; i++)
 			{
 				for (size_t j = 0; j < 22; j++)
@@ -52,7 +52,7 @@ Update_Status ModulePlayGround::PreUpdate()
 
 Update_Status ModulePlayGround::Update()
 {
-
+	//INPUT
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
 	{
 		
@@ -66,6 +66,12 @@ Update_Status ModulePlayGround::Update()
 
 	}
 	return Update_Status::UPDATE_CONTINUE;
+
+	//HIT walls and flor
+	//if hit == true
+	//check for line
+
+
 }
 
 Update_Status ModulePlayGround::PostUpdate()
@@ -91,7 +97,7 @@ Update_Status ModulePlayGround::PostUpdate()
 	}
 
 	//victory condition
-	if (App->player->lines == App->modules[currentmodule]->linesofLevelGetter())
+	if (App->player->lines == App->modules[currentModule]->linesofLevelGetter())
 	{
 
 	}
