@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayGround.h"
+#include "ModuleFonts.h"
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
@@ -27,6 +28,11 @@ bool SceneLevel1::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
+
+	char Blocks[] = { "ab  cdefghijklmnop  qr  s   " };
+	Alive_Tetromino = App->fonts->Load("Assets/Sprites/tetromino_alive.png", Blocks, 7);
+
+
 	/*
 	App->audio->LoadFx("Assets/audio/block_appear.wav");
 	App->audio->LoadFx("Assets/audio/bonus_point_bars.wav");
@@ -39,6 +45,7 @@ bool SceneLevel1::Start()
 	App->audio->LoadFx("Assets/audio/round_completed.wav");
 	App->audio->LoadFx("Assets/audio/select_diff.wav");
 	*/
+
 	App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
 
 	App->render->camera.x = 0;
@@ -65,6 +72,19 @@ Update_Status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
+
+	//Draw dead blocks
+
+	//Draw alive block
+	if (App->playground->block.id != 255) {
+		blockText = App->playground->block.id + App->playground->block.rotation;
+
+		blockText_text[0] = Dictionary[blockText];
+		int x = (App->playground->block.x * 8) + 32;
+		int y = (App->playground->block.y * 8) + 24;
+
+		App->fonts->BlitText(x, y, Alive_Tetromino, blockText_text);
+	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }

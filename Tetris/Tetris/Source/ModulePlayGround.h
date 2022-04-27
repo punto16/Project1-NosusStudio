@@ -41,6 +41,8 @@ public:
 
     void RotateBlock();
 
+    void NextBlock();
+
 
 public:
 	int currentModule;
@@ -49,12 +51,15 @@ public:
 
 	struct Block
 	{
-		int id;
+        int id = 255;
+        int rotation;
 		unsigned char tiles[4][4];
 		int x, y;
 	};
 
     Block block;
+
+    bool charge_blog = false;
 
     unsigned char blockList[7][4][4][4] = //color, rotation, x, y
     {

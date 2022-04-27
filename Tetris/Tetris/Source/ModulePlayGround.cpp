@@ -61,8 +61,11 @@ Update_Status ModulePlayGround::Update()
 
 	}
 
-	block.id = RandomBlock();
-	LoadBlockMatrix();
+	if (charge_blog==false) {
+		NextBlock();
+		LoadBlockMatrix();
+		charge_blog = true;
+	}
 	
 	//block fall
 	if (!IsColliding(block.x, block.y + 1))
@@ -164,6 +167,7 @@ void ModulePlayGround::LoadBlockMatrix()
 			block.tiles[i][j] = blockList[block.id][0][i][j];
 		}
 	}
+	block.rotation = 0;
 }
 
 bool ModulePlayGround::IsColliding(int x2, int y2)
@@ -190,4 +194,11 @@ void ModulePlayGround::MoveBlock(int x2, int y2)
 void ModulePlayGround::RotateBlock()
 {
 
+}
+
+void ModulePlayGround::NextBlock()
+{
+	block.id = RandomBlock();
+	block.x = 5;
+	block.y = 0;
 }

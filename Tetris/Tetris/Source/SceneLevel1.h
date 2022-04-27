@@ -43,6 +43,13 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 
+	int Alive_Tetromino = -1;
+
+	uint blockText;
+	char blockText_text[10] = { "\0" };
+
+	char Dictionary[20] = { "abcdefghijklmnopqrs" };
+
 	unsigned char playground[10][22] =
 	{
 		0,0,0,0,0,0,0,0,0,0,
