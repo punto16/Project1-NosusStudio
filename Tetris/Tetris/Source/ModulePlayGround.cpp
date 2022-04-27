@@ -29,20 +29,6 @@ bool ModulePlayGround::Start()
 {
 	srand(time(NULL));
 
-	for (int o = 5; o < 5 + NUM_LEVELS; ++o)
-	{
-		if (App->modules[o]->IsEnabled())
-		{
-			currentModule = o;
-			for (size_t i = 0; i < 10; i++)
-			{
-				for (size_t j = 0; j < 22; j++)
-				{
-					map[i][j] = App->modules[o]->PlayGroundGetter(i,j);
-				}
-			}
-		}
-	}
 	return true;
 }
 
@@ -55,55 +41,58 @@ Update_Status ModulePlayGround::PreUpdate()
 
 Update_Status ModulePlayGround::Update()
 {
-	bool state = (SDL_GetTicks() / 100) % 2;
+	SaveInput();
 
-	if (state == 0) {
-
-	}
-
-	if (charge_blog==false) {
+	if (charge_blog == false)
+	{
 		NextBlock();
 		LoadBlockMatrix();
 		charge_blog = true;
 	}
-	
-	//block fall
-	if (!IsColliding(block.x, block.y + 1))
+
+	fCountY++;
+	if (fCountY == 40/block.inputY)
 	{
-		MoveBlock(block.x, block.y + 1);
+		if (block.inputY != 0)
+		{
+			if (!IsColliding(block.x, block.y + 1))
+				MoveBlock(block.x, block.y + 1);
+		}		
+		else if (!IsColliding(block.x, block.y + 1)) //block fall
+			MoveBlock(block.x, block.y + 1);
+
+		fCountY = 0;
+		block.inputY = 1;
 	}
 
-	//input -> check collision -> move/rotate
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
+	fCountX++;
+	if (fCountX == 20)
 	{
-		if (!IsColliding(block.x - 1, block.y))
-			MoveBlock(block.x - 1, block.y);
+		if (block.inputX != 0)
+		{
+			if (!IsColliding(block.x - 1, block.y))
+				MoveBlock(block.x + block.inputX, block.y);
+		}
+		else if (block.rotate == true)
+		{
+			RotateBlock();
+			block.rotate = false;
+		}
+
+		fCountX = 0;
+		block.inputX = 0;
 	}
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_DOWN)
-	{
-		if (!IsColliding(block.x, block.y + 1))
-			MoveBlock(block.x, block.y + 1);
-	}
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN)
-	{
-		if (!IsColliding(block.x + 1, block.y))
-			MoveBlock(block.x + 1, block.y);
-	}
-	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
-	{
-		RotateBlock();
-	}
+	
 
 	//HIT walls and flor
 	//if hit == true
-	
+
 
 	//check for line
 
 
 	return Update_Status::UPDATE_CONTINUE;
 }
-
 	
 
 Update_Status ModulePlayGround::PostUpdate()
@@ -152,6 +141,33 @@ bool ModulePlayGround::CleanUp()
 }
 
 
+void ModulePlayGround::SaveInput()
+{
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
+	{
+		block.inputX = -1;
+	}
+	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_DOWN)
+	{
+		block.inputY = 1;
+	}
+	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN)
+	{
+		block.inputX = 2;
+	}
+	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
+	{
+		block.rotate = true;
+	}
+}
+
+void ModulePlayGround::NextBlock()
+{
+	block.id = RandomBlock();
+	block.x = 4;
+	block.y = 0;
+}
+
 int ModulePlayGround::RandomBlock()
 {
 	return rand() % 7;
@@ -163,7 +179,7 @@ void ModulePlayGround::LoadBlockMatrix()
 	{
 		for (size_t j = 0; j < 4; j++)
 		{
-			block.tiles[i][j] = 0;
+			//block.tiles[i][j] = 0;
 			block.tiles[i][j] = blockList[block.id][0][i][j];
 		}
 	}
@@ -176,7 +192,7 @@ bool ModulePlayGround::IsColliding(int x2, int y2)
 	{
 		for (size_t j = 0; j < 4; j++)
 		{
-			if (block.tiles[i][j] && map[y2 + i][x2 + j] != 0)
+			if (block.tiles[i][j] && App->sceneLevel_1->playground[y2 + i][x2 + j] != 0)
 			{
 				return true;
 			}
@@ -194,11 +210,4 @@ void ModulePlayGround::MoveBlock(int x2, int y2)
 void ModulePlayGround::RotateBlock()
 {
 
-}
-
-void ModulePlayGround::NextBlock()
-{
-	block.id = RandomBlock();
-	block.x = 5;
-	block.y = 0;
 }

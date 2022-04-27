@@ -16,7 +16,6 @@ public:
 	~SceneIntro();
 
 	// Called when the module is activated
-	// Loads the necessary textures for the map background
 	bool Start() override;
 
 	// Called at the middle of the application loop

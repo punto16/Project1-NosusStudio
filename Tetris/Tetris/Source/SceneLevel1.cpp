@@ -100,13 +100,3 @@ bool SceneLevel1::CleanUp()
 
 	return true;
 }
-
-char SceneLevel1::PlayGroundGetter(int i, int j)
-{
-	return playground[i][j];
-}
-
-int SceneLevel1:: linesofLevelGetter()
-{
-	return lines;
-}

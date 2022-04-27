@@ -35,16 +35,6 @@ bool Module::CleanUp()
 	return true;
 }
 
-char Module::PlayGroundGetter(int i, int j)
-{
-	return ' ';
-}
-
-int Module::linesofLevelGetter()
-{
-	return 0;
-}
-
 
 
 void Module::Enable()

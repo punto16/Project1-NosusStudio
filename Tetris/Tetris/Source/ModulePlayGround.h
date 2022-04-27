@@ -30,6 +30,9 @@ public:
 	// Disables the player and the enemies
 	bool CleanUp();
 
+    void SaveInput();
+
+    void NextBlock();
 
     int RandomBlock();
 
@@ -41,27 +44,31 @@ public:
 
     void RotateBlock();
 
-    void NextBlock();
 
 
 public:
 	int currentModule;
 
-	unsigned char map[10][22];
+    int fCountY = 0;
+    int fCountX = 0;
+
+    uint map[10][22];
 
 	struct Block
 	{
         int id = 255;
         int rotation;
-		unsigned char tiles[4][4];
+        uint tiles[4][4];
 		int x, y;
+        int inputX = 0, inputY = 1;
+        bool rotate;
 	};
 
     Block block;
 
     bool charge_blog = false;
 
-    unsigned char blockList[7][4][4][4] = //color, rotation, x, y
+    uint blockList[7][4][4][4] = //color, rotation, x, y
     {
         //red
         {
@@ -191,10 +198,12 @@ public:
         },
         //blue
         {
-            { 1, 1, 0, 0 },
-            { 1, 1, 0, 0 },
-            { 0, 0, 0, 0 },
-            { 0, 0, 0, 0 }
+            {
+                { 1, 1, 0, 0 },
+                { 1, 1, 0, 0 },
+                { 0, 0, 0, 0 },
+                { 0, 0, 0, 0 }
+            }
         }
     };
 };

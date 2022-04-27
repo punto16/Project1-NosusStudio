@@ -30,12 +30,6 @@ public:
 	// Disables the player and the enemies
 	bool CleanUp();
 
-	//playground getter
-	char PlayGroundGetter(int i, int j) override;
-
-	int linesofLevelGetter() override;
-
-
 public:
 	
 	int lines = 5;
@@ -50,7 +44,7 @@ public:
 
 	char Dictionary[20] = { "abcdefghijklmnopqrs" };
 
-	unsigned char playground[10][22] =
+	uint playground[22][10] =
 	{
 		0,0,0,0,0,0,0,0,0,0,
 		0,0,0,0,0,0,0,0,0,0,

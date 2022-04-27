@@ -29,12 +29,6 @@ public:
 	//Called at the end of the application
 	virtual bool CleanUp();
 
-
-	//ONLY FOR LEVELS
-	virtual char PlayGroundGetter(int i, int j);
-	virtual int linesofLevelGetter();
-
-
 	// Switches isEnabled and calls Start() method
 	void Enable();
 
