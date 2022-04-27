@@ -27,6 +27,7 @@ bool SceneLevel1::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
+	/*
 	App->audio->LoadFx("Assets/audio/block_appear.wav");
 	App->audio->LoadFx("Assets/audio/bonus_point_bars.wav");
 	App->audio->LoadFx("Assets/audio/game_over.wav");
@@ -37,6 +38,7 @@ bool SceneLevel1::Start()
 	App->audio->LoadFx("Assets/audio/new_level.wav");
 	App->audio->LoadFx("Assets/audio/round_completed.wav");
 	App->audio->LoadFx("Assets/audio/select_diff.wav");
+	*/
 	App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
 
 	App->render->camera.x = 0;
