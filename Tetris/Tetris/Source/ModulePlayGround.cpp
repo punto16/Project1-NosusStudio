@@ -123,8 +123,6 @@ Update_Status ModulePlayGround::PostUpdate()
 		//App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 90);
 	}
 
-
-
 	return Update_Status::UPDATE_CONTINUE;
 }
 

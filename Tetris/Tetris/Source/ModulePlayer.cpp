@@ -7,6 +7,7 @@
 #include "ModuleAudio.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
+#include "ModuleData.h"
 
 #include <stdio.h>
 
@@ -59,14 +60,34 @@ Update_Status ModulePlayer::PostUpdate()
 
 	score += 1;
 
+	if (score > App->data->high_score) {
+		App->data->high_score = score;
+	}
+
 	// Draw UI (score) --------------------------------------
 	sprintf_s(scoreText, 10, "%7d", score);
-	App->fonts->BlitText(25, 216, Tetris_font_red, "score");
-	App->fonts->BlitText(65, 216, Tetris_font_red, scoreText);
+	App->fonts->BlitText(25, 217, Tetris_font_red, "score");
+	App->fonts->BlitText(65, 217, Tetris_font_red, scoreText);
 
 	sprintf_s(linesText, 10, "%7d", lines);
-	App->fonts->BlitText(25, 224, Tetris_font_red, "lines");
-	App->fonts->BlitText(65, 224, Tetris_font_red, linesText);
+	App->fonts->BlitText(25, 225, Tetris_font_red, "lines");
+	App->fonts->BlitText(65, 225, Tetris_font_red, linesText);
+
+	sprintf_s(roundText, 10, "%7d", lines);
+	App->fonts->BlitText(130, 210, Tetris_font_darkblue, "lines");
+	App->fonts->BlitText(153, 210, Tetris_font_darkblue, linesText);
+
+	sprintf_s(high_scoreText, 10, "%7d", App->data->high_score);
+	App->fonts->BlitText(130, 185, Tetris_font_darkblue, "high score");
+	App->fonts->BlitText(153, 195, Tetris_font_darkblue, high_scoreText);
+
+	sprintf_s(creditsText, 10, "%7d", credits);
+	App->fonts->BlitText(130, 226, Tetris_font_darkblue, "credits");
+	App->fonts->BlitText(153, 226, Tetris_font_darkblue, creditsText);
+
+	//Text
+	App->fonts->BlitText(240, 60, Tetris_font_white, "stats");
+	App->fonts->BlitText(8, 8, Tetris_font_red, "next");
 
 	return Update_Status::UPDATE_CONTINUE;
 }
