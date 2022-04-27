@@ -32,6 +32,20 @@ bool SceneLevel1::Start()
 	char Blocks[] = { "ab  cdefghijklmnop  qr  s   " };
 	Alive_Tetromino = App->fonts->Load("Assets/Sprites/tetromino_alive.png", Blocks, 7);
 
+
+	/*
+	App->audio->LoadFx("Assets/audio/block_appear.wav");
+	App->audio->LoadFx("Assets/audio/bonus_point_bars.wav");
+	App->audio->LoadFx("Assets/audio/game_over.wav");
+	App->audio->LoadFx("Assets/audio/great_score.wav");
+	App->audio->LoadFx("Assets/audio/hit.wav");
+	App->audio->LoadFx("Assets/audio/insert_coin.wav");
+	App->audio->LoadFx("Assets/audio/line.wav");
+	App->audio->LoadFx("Assets/audio/new_level.wav");
+	App->audio->LoadFx("Assets/audio/round_completed.wav");
+	App->audio->LoadFx("Assets/audio/select_diff.wav");
+	*/
+
 	App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
 
 	App->render->camera.x = 0;
