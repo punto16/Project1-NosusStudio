@@ -9,8 +9,6 @@
 
 struct SDL_Texture;
 
-typedef unsigned char uchar;
-
 struct Tetrominos
 {
 	// Lookup table. All characters displayed in the same order as the texture

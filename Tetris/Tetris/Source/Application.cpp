@@ -13,6 +13,7 @@
 #include "ModuleRender.h"
 #include "ModulePlayGround.h"
 #include "ModuleData.h"
+#include "ModuleTiles.h"
 
 Application::Application()
 {
@@ -34,7 +35,8 @@ Application::Application()
 
 	modules[9] =	fade =			new ModuleFadeToBlack(true);
 	modules[10] =	fonts =			new ModuleFonts(true);
-	modules[11] =	render =		new ModuleRender(true);
+	modules[11] =	tiles =			new ModuleTiles(true);
+	modules[12] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()
