@@ -12,6 +12,8 @@
 
 #include <stdio.h>
 
+#include "SDL/include/SDL.h"
+
 ModulePlayGround::ModulePlayGround(bool startEnabled) : Module(startEnabled)
 {
 	
@@ -53,6 +55,12 @@ Update_Status ModulePlayGround::PreUpdate()
 
 Update_Status ModulePlayGround::Update()
 {
+	bool state = (SDL_GetTicks() / 100) % 2;
+
+	if (state == 0) {
+
+	}
+
 	block.id = RandomBlock();
 	LoadBlockMatrix();
 	
