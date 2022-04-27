@@ -1,10 +1,13 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: El directorio intermedio (Debug\) contiene archivos compartidos de otro proyecto (Project_9_Solution.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
+﻿F:\Visual Studio\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Project_9_Solution.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Application.cpp
-C:\Users\hekba\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\hekba\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\hekba\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\ModulePlayGround.h(36,19): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-  SceneIntro.cpp
-C:\Users\hekba\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\hekba\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-  Generando código...
-  Tetris.vcxproj -> C:\Users\hekba\source\repos\Project1-NosusStudio\Tetris\Debug\Tetris.exe
+F:\Tetris\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+F:\Tetris\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  ModulePlayGround.cpp
+F:\Tetris\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+F:\Tetris\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+F:\Tetris\Tetris\Tetris\Source\ModulePlayGround.cpp(30,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  SceneLevel1.cpp
+F:\Tetris\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+F:\Tetris\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  Tetris.vcxproj -> F:\Tetris\Tetris\Debug\Tetris.exe
