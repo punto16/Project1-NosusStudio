@@ -14,7 +14,6 @@ struct Block
     uint tiles[4][4];
     int x, y;
     int inputX = 0, inputY = 1;
-    bool rotate;
     bool on_playground = false;
 };
 
@@ -47,9 +46,9 @@ public:
 
     int RandomBlock();
 
-    void LoadBlockMatrix();
+    void LoadBlockMatrix(Block& block);
 
-    bool IsColliding(int x2, int y2);
+    bool IsColliding(int x2, int y2, Block& block);
 
     void MoveBlock(int x2, int y2);
 
@@ -62,18 +61,16 @@ public:
     bool GameoverCheck();
 
 
-
 public:
 	int currentModule;
 
     int fCountY = 0;
     int fCountX = 0;
 
-    uint map[10][22];
-
-    Block block, nextBlock;
+    Block block, nextBlock, blockCheck;
 
     bool isAlive = true;
+    bool rotate = false;
     bool gameOver = false;
 
     uint blockList[7][4][4][4] = //color, rotation, x, y
