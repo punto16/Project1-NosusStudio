@@ -179,10 +179,7 @@ void ModulePlayGround::LoadBlockMatrix()
 	for (size_t i = 0; i < 4; i++)
 	{
 		for (size_t j = 0; j < 4; j++)
-		{
-			//block.tiles[i][j] = 0;
 			block.tiles[i][j] = blockList[block.id][0][i][j];
-		}
 	}
 	block.rotation = 0;
 }
@@ -210,5 +207,9 @@ void ModulePlayGround::MoveBlock(int x2, int y2)
 
 void ModulePlayGround::RotateBlock()
 {
-
+	for (size_t i = 0; i < 4; i++)
+	{
+		for (size_t j = 0; j < 4; j++)
+			block.tiles[i][j] = blockList[block.id][block.rotation++][i][j];
+	}
 }
