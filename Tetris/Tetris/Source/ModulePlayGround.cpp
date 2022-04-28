@@ -208,9 +208,11 @@ void ModulePlayGround::MoveBlock(int x2, int y2)
 
 void ModulePlayGround::RotateBlock()
 {
+	block.rotation++;
+	if (block.rotation == 4) { block.rotation = 0; }
 	for (size_t i = 0; i < 4; i++)
 	{
 		for (size_t j = 0; j < 4; j++)
-			block.tiles[i][j] = blockList[block.id][block.rotation++][i][j];
+			block.tiles[i][j] = blockList[block.id][block.rotation][i][j];
 	}
 }
