@@ -68,6 +68,19 @@ public:
 	};
 	int x_TileMap = 24;
 	int y_TileMap = 24;
+
+	//LOADERS OF FX
+
+	uint newLevelFx;
+	uint blockAppearFx;
+	uint bonusPointBarsFx;
+	uint gameOverFx;
+	uint greatScoreFx;
+	uint hitFx;
+	uint insertCoinFx;
+	uint lineFx;
+	uint roundCompletedFx;
+	uint selectDiffFx;
 };
 
 #endif

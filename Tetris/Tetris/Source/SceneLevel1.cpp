@@ -37,18 +37,16 @@ bool SceneLevel1::Start()
 	Alive_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_alive.png", Blocks_2, 7);
 
 
-	/*
-	App->audio->LoadFx("Assets/audio/block_appear.wav");
-	App->audio->LoadFx("Assets/audio/bonus_point_bars.wav");
-	App->audio->LoadFx("Assets/audio/game_over.wav");
-	App->audio->LoadFx("Assets/audio/great_score.wav");
-	App->audio->LoadFx("Assets/audio/hit.wav");
-	App->audio->LoadFx("Assets/audio/insert_coin.wav");
-	App->audio->LoadFx("Assets/audio/line.wav");
-	App->audio->LoadFx("Assets/audio/new_level.wav");
-	App->audio->LoadFx("Assets/audio/round_completed.wav");
-	App->audio->LoadFx("Assets/audio/select_diff.wav");
-	*/
+	newLevelFx = App->audio->LoadFx("Assets/audio/new_level.wav");
+	blockAppearFx = App->audio->LoadFx("Assets/audio/block_appear.wav");
+	bonusPointBarsFx = App->audio->LoadFx("Assets/audio/bonus_point_bars.wav");
+	gameOverFx = App->audio->LoadFx("Assets/audio/game_over.wav");
+	greatScoreFx = App->audio->LoadFx("Assets/audio/great_score.wav");
+	hitFx = App->audio->LoadFx("Assets/audio/hit.wav");
+	insertCoinFx = App->audio->LoadFx("Assets/audio/insert_coin.wav");
+	lineFx = App->audio->LoadFx("Assets/audio/line.wav");
+	roundCompletedFx = App->audio->LoadFx("Assets/audio/round_completed.wav");
+	selectDiffFx = App->audio->LoadFx("Assets/audio/select_diff.wav");
 
 	App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
 
@@ -85,6 +83,7 @@ Update_Status SceneLevel1::PostUpdate()
 			if (playground[i][j] != 0 && playground[i][j] != 255)
 			{
 				App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
+
 			}
 		}
 	}
@@ -110,6 +109,8 @@ bool SceneLevel1::CleanUp()
 	App->playground->Disable();
 
 	LOG("Deleting background assets");
+
+	App->audio->UnloadFx();
 
 	App->textures->Unload(bgTexture);
 

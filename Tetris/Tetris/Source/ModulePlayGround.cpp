@@ -258,6 +258,7 @@ void ModulePlayGround::DeathSequence() {
 			}
 		}
 	}
+	App->audio->PlayFx(App->sceneLevel_1->hitFx);
 }
 
 bool ModulePlayGround::GameoverCheck() {

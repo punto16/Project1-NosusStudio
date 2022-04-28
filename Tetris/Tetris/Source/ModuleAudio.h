@@ -39,6 +39,9 @@ public:
 	// The index will be used to handle the effect (see PlayFx)
 	uint LoadFx(const char* path);
 
+
+	bool UnloadFx();
+
 	// Plays a previously loaded WAV
 	// Receives an index from the sound fx array
 	bool PlayFx(uint index, int repeat = 0);

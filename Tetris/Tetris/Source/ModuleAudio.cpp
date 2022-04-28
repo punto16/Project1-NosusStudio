@@ -146,6 +146,16 @@ uint ModuleAudio::LoadFx(const char* path)
 	return ret;
 }
 
+bool ModuleAudio::UnloadFx()
+{
+	for (uint i = 0; i < MAX_FX; ++i)
+	{
+		if (soundFx[i] != nullptr)
+			Mix_FreeChunk(soundFx[i]);
+	}
+	return true;
+}
+
 bool ModuleAudio::PlayFx(uint index, int repeat)
 {
 	bool ret = false;
