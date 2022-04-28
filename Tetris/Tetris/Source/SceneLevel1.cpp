@@ -78,7 +78,9 @@ Update_Status SceneLevel1::PostUpdate()
 
 	//Draw alive block
 	if (App->playground->block.id != 255) {
+
 		App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, true);
+
 	}
 
 	return Update_Status::UPDATE_CONTINUE;

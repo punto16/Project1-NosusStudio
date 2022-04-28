@@ -28,7 +28,8 @@ ModulePlayGround::~ModulePlayGround()
 bool ModulePlayGround::Start()
 {
 	srand(time(NULL));
-
+	nextBlock.id = RandomBlock();
+	NextBlock();
 	return true;
 }
 
@@ -43,13 +44,10 @@ Update_Status ModulePlayGround::Update()
 {
 	SaveInput();
 
-	if (charge_blog == false)
-	{
+	if (isAlive == false)
 		NextBlock();
-		LoadBlockMatrix();
-		charge_blog = true;
-	}
 
+	//Y movement
 	fCountY++;
 	if (fCountY == 40 / block.inputY)
 	{
@@ -57,6 +55,8 @@ Update_Status ModulePlayGround::Update()
 		{
 			if (!IsColliding(block.x, block.y + 1))
 				MoveBlock(block.x, block.y + 1);
+			else
+				isAlive = false;
 		}
 		else if (!IsColliding(block.x, block.y + 1)) //block fall
 			MoveBlock(block.x, block.y + 1);
@@ -64,13 +64,16 @@ Update_Status ModulePlayGround::Update()
 		fCountY = 0;
 		block.inputY = 1;
 	}
+	else if (fCountY > 40 / block.inputY)
+		fCountY = 0;
 
+	//X movement
 	fCountX++;
 	if (fCountX == 20)
 	{
 		if (block.inputX != 0)
 		{
-			if (!IsColliding(block.x - 1, block.y))
+			if (!IsColliding(block.x + block.inputX, block.y))
 				MoveBlock(block.x + block.inputX, block.y);
 		}
 		else if (block.rotate == true)
@@ -84,16 +87,10 @@ Update_Status ModulePlayGround::Update()
 	}
 
 
-	//HIT walls and flor
-	//if hit == true
-
-
-	//check for line
 
 
 	return Update_Status::UPDATE_CONTINUE;
 }
-
 
 Update_Status ModulePlayGround::PostUpdate()
 {
@@ -141,6 +138,7 @@ bool ModulePlayGround::CleanUp()
 }
 
 
+// LOGIC ===========================================================
 void ModulePlayGround::SaveInput()
 {
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
@@ -149,7 +147,7 @@ void ModulePlayGround::SaveInput()
 	}
 	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
 	{
-		block.inputY = 2;
+		block.inputY = 20;
 	}
 	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
 	{
@@ -163,9 +161,12 @@ void ModulePlayGround::SaveInput()
 
 void ModulePlayGround::NextBlock()
 {
-	block.id = RandomBlock();
+	block.id = nextBlock.id;
+	nextBlock.id = RandomBlock();
 	block.x = 5;
 	block.y = 0;
+	LoadBlockMatrix();
+	isAlive = true;
 }
 
 int ModulePlayGround::RandomBlock()
