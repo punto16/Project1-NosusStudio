@@ -37,6 +37,7 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 
+	int Dead_Tetromino = -1;
 	int Alive_Tetromino = -1;
 
 	uint playground[23][12] =
