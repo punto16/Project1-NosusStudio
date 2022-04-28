@@ -9,6 +9,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayGround.h"
 #include "ModuleFonts.h"
+#include "ModuleTiles.h"
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
@@ -31,6 +32,9 @@ bool SceneLevel1::Start()
 
 	char Blocks[] = { "ab  cdefghijklmnop  qr  s   " };
 	Alive_Tetromino = App->fonts->Load("Assets/Sprites/tetromino_alive.png", Blocks, 7);
+
+	uchar Blocks_u[] = { 1,2,0,0,3,4,5,6,7,8,9,10,11,12,13,14,15,16,0,0,17,18,0,0,19,0,0,0 };
+	Alive_Tetromino_u = App->tiles->Load("Assets/Sprites/tetromino_alive.png", Blocks_u, 7);
 
 
 	/*
@@ -84,6 +88,10 @@ Update_Status SceneLevel1::PostUpdate()
 		int y = (App->playground->block.y * 8) + 24;
 
 		App->fonts->BlitText(x, y, Alive_Tetromino, blockText_text);
+
+		pito[0] = (App->playground->block.id + App->playground->block.rotation);
+
+		App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, pito);
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
