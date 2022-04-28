@@ -164,7 +164,7 @@ void ModulePlayGround::NextBlock()
 	block.id = nextBlock.id;
 	block.on_playground = true;
 	nextBlock.id = RandomBlock();
-	nextBlock.rotation = 0;
+	block.rotation = 0;
 	block.x = 5;
 	block.y = 0;
 	LoadBlockMatrix();
