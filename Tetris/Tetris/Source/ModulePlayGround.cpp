@@ -16,7 +16,7 @@
 
 ModulePlayGround::ModulePlayGround(bool startEnabled) : Module(startEnabled)
 {
-	
+
 }
 
 ModulePlayGround::~ModulePlayGround()
@@ -51,13 +51,13 @@ Update_Status ModulePlayGround::Update()
 	}
 
 	fCountY++;
-	if (fCountY == 40/block.inputY)
+	if (fCountY == 40 / block.inputY)
 	{
 		if (block.inputY != 0)
 		{
 			if (!IsColliding(block.x, block.y + 1))
 				MoveBlock(block.x, block.y + 1);
-		}		
+		}
 		else if (!IsColliding(block.x, block.y + 1)) //block fall
 			MoveBlock(block.x, block.y + 1);
 
@@ -82,7 +82,7 @@ Update_Status ModulePlayGround::Update()
 		fCountX = 0;
 		block.inputX = 0;
 	}
-	
+
 
 	//HIT walls and flor
 	//if hit == true
@@ -93,7 +93,7 @@ Update_Status ModulePlayGround::Update()
 
 	return Update_Status::UPDATE_CONTINUE;
 }
-	
+
 
 Update_Status ModulePlayGround::PostUpdate()
 {
@@ -132,7 +132,7 @@ Update_Status ModulePlayGround::PostUpdate()
 
 
 	return Update_Status::UPDATE_CONTINUE;
-	
+
 }
 
 bool ModulePlayGround::CleanUp()
@@ -143,17 +143,17 @@ bool ModulePlayGround::CleanUp()
 
 void ModulePlayGround::SaveInput()
 {
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
 	{
 		block.inputX = -1;
 	}
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
 	{
-		block.inputY = 1;
+		block.inputY = 2;
 	}
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
 	{
-		block.inputX = 2;
+		block.inputX = 1;
 	}
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
@@ -164,7 +164,7 @@ void ModulePlayGround::SaveInput()
 void ModulePlayGround::NextBlock()
 {
 	block.id = RandomBlock();
-	block.x = 4;
+	block.x = 5;
 	block.y = 0;
 }
 

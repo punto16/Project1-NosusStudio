@@ -34,7 +34,7 @@ bool SceneLevel1::Start()
 	Alive_Tetromino = App->fonts->Load("Assets/Sprites/tetromino_alive.png", Blocks, 7);
 
 	uchar Blocks_u[] = { 1,2,0,0,3,4,5,6,7,8,9,10,11,12,13,14,15,16,0,0,17,18,0,0,19,0,0,0 };
-	Alive_Tetromino_u = App->tiles->Load("Assets/Sprites/tetromino_alive.png", Blocks_u, 7);
+	//Alive_Tetromino_u = App->tiles->Load("Assets/Sprites/tetromino_alive.png", Blocks_u, 7);
 
 
 	/*
@@ -91,7 +91,7 @@ Update_Status SceneLevel1::PostUpdate()
 
 		pito[0] = (App->playground->block.id + App->playground->block.rotation);
 
-		App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, pito);
+		//App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, pito);
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
