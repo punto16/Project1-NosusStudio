@@ -3,9 +3,4 @@
 F:\Tetris\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
 F:\Tetris\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 F:\Tetris\Tetris\Tetris\Source\ModulePlayGround.cpp(30,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  SceneLevel1.cpp
-F:\Tetris\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-F:\Tetris\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-F:\Tetris\Tetris\Tetris\Source\SceneLevel1.cpp(33,22): warning C4129: '^': unrecognized character escape sequence
-  Generating Code...
   Tetris.vcxproj -> F:\Tetris\Tetris\Debug\Tetris.exe

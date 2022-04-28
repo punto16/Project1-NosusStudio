@@ -255,10 +255,11 @@ void ModulePlayGround::DeathSequence() {
 			if (block.tiles[i][j] != 0)
 			{
 				App->sceneLevel_1->playground[block.y + i][block.x + j] = block.tiles[i][j];
+				App->audio->PlayFx(App->sceneLevel_1->hitFx);
 			}
 		}
 	}
-	App->audio->PlayFx(App->sceneLevel_1->hitFx);
+	
 }
 
 bool ModulePlayGround::GameoverCheck() {
