@@ -4,6 +4,7 @@
 #include "ModuleRender.h"
 #include "ModuleTiles.h"
 #include "SceneLevel1.h"
+#include "ModulePlayGround.h"
 
 #include<string.h>
 
@@ -18,8 +19,9 @@ ModuleTiles::~ModuleTiles()
 }
 
 // Load new texture from file path
-int ModuleTiles::Load(const char* texture_path, const uchar* tiles, uint rows)
+int ModuleTiles::Load(const char* texture_path, const char* tiles, uint rows)
 {
+	int len = strlen(tiles);
 	int id = -1;
 
 	if (texture_path == nullptr || tiles == nullptr || rows == 0)
@@ -30,7 +32,7 @@ int ModuleTiles::Load(const char* texture_path, const uchar* tiles, uint rows)
 
 	SDL_Texture* tex = App->textures->Load(texture_path);
 
-	if (tex == nullptr || strlen(reinterpret_cast<const char*>(tiles)) >= MAX_TETROMINO_BLOCKS)
+	if (tex == nullptr || len >= MAX_TETROMINO_BLOCKS)
 	{
 		LOG("Could not load font at %s with characters '%s'", texture_path, tiles);
 		return id;
@@ -52,11 +54,19 @@ int ModuleTiles::Load(const char* texture_path, const uchar* tiles, uint rows)
 	tetromino.texture = tex;
 	tetromino.rows = rows;
 
-	for (size_t i = 0; i < strlen(reinterpret_cast<const char*>(tiles)); i++)
+	for (size_t i = 0; i < len; i++)
 	{
 		tetromino.table[i] = tiles[i];
 	}
-	tetromino.totalLength = strlen(reinterpret_cast<const char*>(tiles));
+	int count = 0;
+	for (size_t i = 0; i < len; i++)
+	{
+		if (tiles[i]!=' ') {
+			tetromino.dictionary[count] = tiles[i];
+			count++;
+		}
+	}
+	tetromino.totalLength = len;
 	tetromino.columns = tetrominos[id].totalLength / rows;
 
 	uint tex_w, tex_h;
@@ -79,17 +89,57 @@ void ModuleTiles::UnLoad(int font_id)
 	}
 }
 
-void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tex) const
+void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tile, bool block)
 {
-	if (tex == nullptr || font_id < 0 || font_id >= MAX_TETROMINOS || tetrominos[font_id].texture == nullptr)
+	if (font_id < 0 || font_id >= MAX_TETROMINOS || tetrominos[font_id].texture == nullptr)
 	{
 		LOG("Unable to render text with bmp font id %d", font_id);
 		return;
 	}
 
 	const Tetrominos* tetromino = &tetrominos[font_id];
+
+	if (block) {
+		blockText = App->playground->block.id;
+
+		switch (App->playground->block.id)
+		{
+		case 0:
+			break;
+		case 1:
+			blockText += 2;
+			break;
+		case 2:
+			blockText += 6;
+			break;
+		case 3:
+			blockText += 10;
+			break;
+		case 4:
+			blockText += 14;
+			break;
+		case 5:
+			blockText += 16;
+			break;
+		case 6:
+			blockText += 18;
+			break;
+		default:
+			break;
+		}
+
+		blockText_text[0] = tetromino->dictionary[blockText];
+	}
+	else if (tile != nullptr) {
+		blockText_text[0] = tetromino->dictionary[(int)tile];
+	}
+	else {
+		LOG("Unable to render text with bmp font id %d", font_id);
+		return;
+	}
+
 	SDL_Rect spriteRect;
-	uint len = strlen(reinterpret_cast<const char*>(tex));
+	uint len = 1;
 
 	spriteRect.w = tetromino->block_w;
 	spriteRect.h = tetromino->block_h;
@@ -103,7 +153,7 @@ void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tex) const
 		// Find the location of the current character in the lookup table
 		for (uint j = 0; j < tetromino->totalLength; ++j)
 		{
-			if (tetromino->table[j] == tex[i])
+			if (tetromino->table[j] == blockText_text[i])
 			{
 				charIndex = j;
 				break;

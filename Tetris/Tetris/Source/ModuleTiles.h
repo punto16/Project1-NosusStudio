@@ -12,7 +12,8 @@ struct SDL_Texture;
 struct Tetrominos
 {
 	// Lookup table. All characters displayed in the same order as the texture
-	uchar table[MAX_TETROMINO_BLOCKS];
+	char table[MAX_TETROMINO_BLOCKS];
+	char dictionary[MAX_TETROMINO_BLOCKS];
 
 	// The font texture
 	SDL_Texture* texture = nullptr;
@@ -27,6 +28,9 @@ class ModuleTiles : public Module
 {
 public:
 
+	uint blockText;
+	char blockText_text[10] = { "\0" };
+
 	// Constructor
 	ModuleTiles(bool isEnabled);
 
@@ -38,14 +42,14 @@ public:
 	// Param texturePath	- The path to the texture file
 	// Param characters		- The lookup table. All characters displayed in the same order as the texture
 	// Param rows			- The amount of character rows in the texture
-	int Load(const char* texturePath, const uchar* characters, uint rows = 1);
+	int Load(const char* texturePath, const char* tiles, uint rows = 1);
 
 	// Removes a font by its index
 	// Unloads the texture and removes it from the fonts array
 	void UnLoad(int fontIndex);
 
 	// Create a surface from text
-	void BlitText(int x, int y, int fontIndex, const uchar* text) const;
+	void BlitText(int x, int y, int fontIndex, const uchar* text, bool block = false);
 
 private:
 	// An array to keep track and store all loaded fonts
