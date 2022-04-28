@@ -7,6 +7,17 @@
 
 struct SDL_Texture;
 
+struct Block
+{
+    int id = 255;
+    int rotation = 0;
+    uint tiles[4][4];
+    int x, y;
+    int inputX = 0, inputY = 1;
+    bool rotate;
+    bool on_playground = false;
+};
+
 class ModulePlayGround : public Module
 {
 public:
@@ -53,16 +64,6 @@ public:
     int fCountX = 0;
 
     uint map[10][22];
-
-	struct Block
-	{
-        int id = 255;
-        int rotation;
-        uint tiles[4][4];
-		int x, y;
-        int inputX = 0, inputY = 1;
-        bool rotate;
-	};
 
     Block block, nextBlock;
 
