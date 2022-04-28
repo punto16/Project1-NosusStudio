@@ -39,14 +39,6 @@ public:
 
 	int Alive_Tetromino = -1;
 
-	uint blockText;
-	char blockText_text[10] = { "\0" };
-
-	char Dictionary[20] = { "abcdefghijklmnopqrs" };
-
-	int Alive_Tetromino_u = -1;
-	uchar pito[10];
-
 	uint playground[23][12] =
 	{
 		255,0,0,0,0,0,0,0,0,0,0,255,
@@ -74,7 +66,7 @@ public:
 		255,255,255,255,255,255,255,255,255,255,255,255,
 	};
 	int x_TileMap = 24;
-	int y_TileMap = 16;
+	int y_TileMap = 24;
 };
 
 #endif
