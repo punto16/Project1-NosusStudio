@@ -44,8 +44,21 @@ Update_Status ModulePlayGround::Update()
 {
 	SaveInput();
 
-	if (isAlive == false)
+	if (isAlive == false) {
+		DeathSequence();
+
+		gameOver = GameoverCheck();
+
+		CheckLine();
+
+		//line sequence();
+
+		//puntuation();
+
+		//pasive_puntuation();
+
 		NextBlock();
+	}
 
 	//Y movement
 	fCountY++;
@@ -231,5 +244,49 @@ void ModulePlayGround::RotateBlock()
 	{
 		for (size_t j = 0; j < 4; j++)
 			block.tiles[i][j] = blockList[block.id][block.rotation][i][j];
+	}
+}
+
+void ModulePlayGround::DeathSequence() {
+	for (size_t i = 0; i < 4; i++)
+	{
+		for (size_t j = 0; j < 4; j++)
+		{
+			if (block.tiles[i][j] != 0)
+			{
+				App->sceneLevel_1->playground[block.y + i][block.x + j] = block.tiles[i][j];
+			}
+		}
+	}
+}
+
+bool ModulePlayGround::GameoverCheck() {
+	for (size_t i = 0; i < 12; i++)
+	{
+		if (App->sceneLevel_1->playground[i][1] == 0)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+void ModulePlayGround::CheckLine() {
+	int count;
+
+	for (size_t i = 0; i < 23; i++)
+	{
+		count = 0;
+		for (size_t j = 0; j < 12; j++)
+		{
+			if (App->sceneLevel_1->playground[block.y + i][block.x + j])
+			{
+				count++;
+			}
+		}
+		if (count == 12) {
+
+		}
 	}
 }
