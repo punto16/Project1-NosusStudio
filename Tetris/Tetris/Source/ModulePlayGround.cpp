@@ -53,12 +53,12 @@ Update_Status ModulePlayGround::Update()
 	{
 		if (block.inputY != 0)
 		{
-			if (!IsColliding(block.x, block.y + 1))
+			if (!IsColliding(block.x, block.y + 1, block))
 				MoveBlock(block.x, block.y + 1);
 			else
 				isAlive = false;
 		}
-		else if (!IsColliding(block.x, block.y + 1)) //block fall
+		else if (!IsColliding(block.x, block.y + 1, block)) //block fall
 			MoveBlock(block.x, block.y + 1);
 
 		fCountY = 0;
@@ -73,20 +73,36 @@ Update_Status ModulePlayGround::Update()
 	{
 		if (block.inputX != 0)
 		{
-			if (!IsColliding(block.x + block.inputX, block.y))
+			if (!IsColliding(block.x + block.inputX, block.y, block))
 				MoveBlock(block.x + block.inputX, block.y);
 		}
-		else if (block.rotate == true)
+
+		if (rotate == true)
 		{
-			RotateBlock();
-			block.rotate = false;
+			blockCheck.id = block.id;
+			blockCheck.rotation = block.rotation + 1;
+
+			LoadBlockMatrix(blockCheck);
+
+			if (!IsColliding(block.x, block.y, blockCheck))
+			{
+				RotateBlock();
+			}
+			else
+			{
+				if (!IsColliding(block.x-1, block.y, blockCheck))
+				{
+					MoveBlock(block.x-1, block.y);
+					RotateBlock();
+				}
+			}
+
+			rotate = false;
 		}
 
 		fCountX = 0;
 		block.inputX = 0;
 	}
-
-
 
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -155,7 +171,7 @@ void ModulePlayGround::SaveInput()
 	}
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
-		block.rotate = true;
+		rotate = true;
 	}
 }
 
@@ -167,7 +183,7 @@ void ModulePlayGround::NextBlock()
 	block.rotation = 0;
 	block.x = 5;
 	block.y = 0;
-	LoadBlockMatrix();
+	LoadBlockMatrix(block);
 	isAlive = true;
 }
 
@@ -176,16 +192,16 @@ int ModulePlayGround::RandomBlock()
 	return rand() % 7;
 }
 
-void ModulePlayGround::LoadBlockMatrix()
+void ModulePlayGround::LoadBlockMatrix(Block& block)
 {
 	for (size_t i = 0; i < 4; i++)
 	{
 		for (size_t j = 0; j < 4; j++)
-			block.tiles[i][j] = blockList[block.id][0][i][j];
+			block.tiles[i][j] = blockList[block.id][block.rotation][i][j];
 	}
 }
 
-bool ModulePlayGround::IsColliding(int x2, int y2)
+bool ModulePlayGround::IsColliding(int x2, int y2, Block& block)
 {
 	for (size_t i = 0; i < 4; i++)
 	{
@@ -210,6 +226,7 @@ void ModulePlayGround::RotateBlock()
 {
 	block.rotation++;
 	if (block.rotation == 4) { block.rotation = 0; }
+
 	for (size_t i = 0; i < 4; i++)
 	{
 		for (size_t j = 0; j < 4; j++)
