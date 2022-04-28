@@ -30,8 +30,11 @@ bool SceneLevel1::Start()
 
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
 
-	char Blocks[] = { "abcdefghijklmnopqrstuvwxyz.," };
-	Alive_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_alive.png", Blocks, 7);
+	char Blocks_1[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ[\^_`abcdefghijklmnopqrstuvwxyz{|Ã}~!Á#$%&Â()*+À-./0123456789:;<=>?@ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»" };
+	Dead_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_dead.png", Blocks_1, 10);
+	
+	char Blocks_2[] = { "abcdefghijklmnopqrstuvwxyz.," };
+	Alive_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_alive.png", Blocks_2, 7);
 
 
 	/*
@@ -75,6 +78,16 @@ Update_Status SceneLevel1::PostUpdate()
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
 	//Draw dead blocks
+	for (size_t i = 0; i < 23; i++)
+	{
+		for (size_t j = 0; j < 12; j++)
+		{
+			if (playground[i][j] != 0 && playground[i][j] != 255)
+			{
+				App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
+			}
+		}
+	}
 
 	//Draw alive block
 	if (App->playground->nextBlock.id != 255)

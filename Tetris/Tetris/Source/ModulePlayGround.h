@@ -55,6 +55,12 @@ public:
 
     void RotateBlock();
 
+    void DeathSequence();
+
+    void CheckLine();
+
+    bool GameoverCheck();
+
 
 
 public:
@@ -68,6 +74,7 @@ public:
     Block block, nextBlock;
 
     bool isAlive = true;
+    bool gameOver = false;
 
     uint blockList[7][4][4][4] = //color, rotation, x, y
     {

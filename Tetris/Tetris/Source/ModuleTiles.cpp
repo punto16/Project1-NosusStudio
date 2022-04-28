@@ -89,7 +89,7 @@ void ModuleTiles::UnLoad(int font_id)
 	}
 }
 
-void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tile, Block actual_block, bool block)
+void ModuleTiles::BlitText(int x, int y, int font_id, uint tile, Block actual_block, bool block)
 {
 	if (font_id < 0 || font_id >= MAX_TETROMINOS || tetrominos[font_id].texture == nullptr)
 	{
@@ -136,8 +136,8 @@ void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tile, Block a
 			y = (y * (tetromino->block_h / 4)) + App->sceneLevel_1->y_TileMap;
 		}
 	}
-	else if (tile != nullptr) {
-		blockText_text[0] = tetromino->table[(int)tile];
+	else if (tile != NULL) {
+		blockText_text[0] = tetromino->table[((int)tile) - 1];
 		x = (x * tetromino->block_w) + App->sceneLevel_1->x_TileMap;
 		y = (y * tetromino->block_h) + App->sceneLevel_1->y_TileMap;
 	}
