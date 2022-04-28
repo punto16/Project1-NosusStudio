@@ -30,7 +30,7 @@ bool SceneLevel1::Start()
 
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
 
-	char Blocks[] = { "ab  cdefghijklmnop  qr  s   " };
+	char Blocks[] = { "abcdefghijklmnopqrstuvwxyz.," };
 	Alive_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_alive.png", Blocks, 7);
 
 

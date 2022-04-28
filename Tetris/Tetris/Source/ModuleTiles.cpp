@@ -107,28 +107,28 @@ void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tile, Block a
 		case 0:
 			break;
 		case 1:
-			blockText += 2;
+			blockText += 4;
 			break;
 		case 2:
-			blockText += 6;
+			blockText += 8;
 			break;
 		case 3:
-			blockText += 10;
+			blockText += 12;
 			break;
 		case 4:
-			blockText += 14;
-			break;
-		case 5:
 			blockText += 16;
 			break;
+		case 5:
+			blockText += 20;
+			break;
 		case 6:
-			blockText += 18;
+			blockText += 24;
 			break;
 		default:
 			break;
 		}
 
-		blockText_text[0] = tetromino->dictionary[blockText];
+		blockText_text[0] = tetromino->table[blockText];
 
 		//we divide by 4 because is the width and height of the block matrix
 		if (actual_block.on_playground == true) {
@@ -137,7 +137,7 @@ void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tile, Block a
 		}
 	}
 	else if (tile != nullptr) {
-		blockText_text[0] = tetromino->dictionary[(int)tile];
+		blockText_text[0] = tetromino->table[(int)tile];
 		x = (x * tetromino->block_w) + App->sceneLevel_1->x_TileMap;
 		y = (y * tetromino->block_h) + App->sceneLevel_1->y_TileMap;
 	}
