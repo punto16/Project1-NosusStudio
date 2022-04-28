@@ -2,6 +2,7 @@
 #define __MODULE_TILES_H__
 
 #include "Module.h"
+#include "ModulePlayGround.h"
 #include "SDL\include\SDL_pixels.h"
 
 #define MAX_TETROMINOS 10
@@ -49,7 +50,7 @@ public:
 	void UnLoad(int fontIndex);
 
 	// Create a surface from text
-	void BlitText(int x, int y, int fontIndex, const uchar* text, bool block = false);
+	void BlitText(int x, int y, int fontIndex, const uchar* text, Block actual_block, bool block = false);
 
 private:
 	// An array to keep track and store all loaded fonts

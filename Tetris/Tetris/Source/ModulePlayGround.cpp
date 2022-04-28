@@ -162,7 +162,9 @@ void ModulePlayGround::SaveInput()
 void ModulePlayGround::NextBlock()
 {
 	block.id = nextBlock.id;
+	block.on_playground = true;
 	nextBlock.id = RandomBlock();
+	nextBlock.rotation = 0;
 	block.x = 5;
 	block.y = 0;
 	LoadBlockMatrix();
@@ -181,7 +183,6 @@ void ModulePlayGround::LoadBlockMatrix()
 		for (size_t j = 0; j < 4; j++)
 			block.tiles[i][j] = blockList[block.id][0][i][j];
 	}
-	block.rotation = 0;
 }
 
 bool ModulePlayGround::IsColliding(int x2, int y2)

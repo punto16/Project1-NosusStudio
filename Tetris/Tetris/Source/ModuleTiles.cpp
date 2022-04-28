@@ -89,7 +89,7 @@ void ModuleTiles::UnLoad(int font_id)
 	}
 }
 
-void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tile, bool block)
+void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tile, Block actual_block, bool block)
 {
 	if (font_id < 0 || font_id >= MAX_TETROMINOS || tetrominos[font_id].texture == nullptr)
 	{
@@ -100,9 +100,9 @@ void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tile, bool bl
 	const Tetrominos* tetromino = &tetrominos[font_id];
 
 	if (block) {
-		blockText = App->playground->block.rotation;
+		blockText = actual_block.rotation;
 
-		switch (App->playground->block.id)
+		switch (actual_block.id)
 		{
 		case 0:
 			break;
@@ -131,8 +131,10 @@ void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tile, bool bl
 		blockText_text[0] = tetromino->dictionary[blockText];
 
 		//we divide by 4 because is the width and height of the block matrix
-		x = (x * (tetromino->block_w / 4)) + App->sceneLevel_1->x_TileMap;
-		y = (y * (tetromino->block_h / 4)) + App->sceneLevel_1->y_TileMap;
+		if (actual_block.on_playground == true) {
+			x = (x * (tetromino->block_w / 4)) + App->sceneLevel_1->x_TileMap;
+			y = (y * (tetromino->block_h / 4)) + App->sceneLevel_1->y_TileMap;
+		}
 	}
 	else if (tile != nullptr) {
 		blockText_text[0] = tetromino->dictionary[(int)tile];
