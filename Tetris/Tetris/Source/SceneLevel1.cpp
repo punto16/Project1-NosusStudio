@@ -81,10 +81,36 @@ Update_Status SceneLevel1::PostUpdate()
 
 	//Draw alive block
 	if (App->playground->block.id != 255) {
-		blockText = App->playground->block.id + App->playground->block.rotation;
+		blockText = App->playground->block.rotation;
+
+		switch (App->playground->block.id)
+		{
+		case 0:
+			break;
+		case 1:
+			blockText += 2;
+			break;
+		case 2:
+			blockText += 6;
+			break;
+		case 3:
+			blockText += 10;
+			break;
+		case 4:
+			blockText += 14;
+			break;
+		case 5:
+			blockText += 16;
+			break;
+		case 6:
+			blockText += 18;
+			break;
+		default:
+			break;
+		}
 
 		blockText_text[0] = Dictionary[blockText];
-		int x = (App->playground->block.x * 8) + 32;
+		int x = (App->playground->block.x * 8) + 24;
 		int y = (App->playground->block.y * 8) + 24;
 
 		App->fonts->BlitText(x, y, Alive_Tetromino, blockText_text);

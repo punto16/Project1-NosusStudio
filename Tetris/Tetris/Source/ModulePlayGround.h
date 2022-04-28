@@ -64,9 +64,9 @@ public:
         bool rotate;
 	};
 
-    Block block;
+    Block block, nextBlock;
 
-    bool charge_blog = false;
+    bool isAlive = true;
 
     uint blockList[7][4][4][4] = //color, rotation, x, y
     {
