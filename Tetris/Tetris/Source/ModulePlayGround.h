@@ -60,9 +60,12 @@ public:
 
     bool GameoverCheck();
 
+    void Score();
 
 public:
 	int currentModule;
+    int lines;
+    int height;
 
     int fCountY = 0;
     int fCountX = 0;

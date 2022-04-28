@@ -58,6 +58,17 @@ bool SceneLevel1::Start()
 	App->player->Enable();
 	App->playground->Enable();
 
+	for (size_t i = 0; i < 23; i++)
+	{
+		for (size_t j = 0; j < 12; j++)
+		{
+			if (playground[i][j] != 255)
+				playground[i][j] = 0;
+		}
+	}
+
+	App->playground->gameOver = false;
+
 	return ret;
 }
 
@@ -89,17 +100,24 @@ Update_Status SceneLevel1::PostUpdate()
 		}
 	}
 
-	//Draw alive block
-	if (App->playground->nextBlock.id != 255)
+	if (App->playground->gameOver == false)
 	{
-		App->tiles->BlitText(8, 24, Alive_Tetromino, NULL, App->playground->nextBlock, true);
+		//Draw alive block
+		if (App->playground->nextBlock.id != 255)
+		{
+			App->tiles->BlitText(8, 24, Alive_Tetromino, NULL, App->playground->nextBlock, true);
+		}
+
+		if (App->playground->block.id != 255) {
+
+			App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
+		}
+	}
+	else
+	{
+		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
 
-	if (App->playground->block.id != 255) {
-
-		App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
-
-	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }

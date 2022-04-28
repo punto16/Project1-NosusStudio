@@ -58,8 +58,6 @@ Update_Status ModulePlayer::PostUpdate()
 
 	}
 
-	score += 1;
-
 	if (score > App->data->high_score) {
 		App->data->high_score = score;
 	}
