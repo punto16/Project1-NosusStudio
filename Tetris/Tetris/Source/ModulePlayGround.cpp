@@ -30,6 +30,9 @@ bool ModulePlayGround::Start()
 	srand(time(NULL));
 	nextBlock.id = RandomBlock();
 	NextBlock();
+
+
+
 	return true;
 }
 
@@ -42,9 +45,12 @@ Update_Status ModulePlayGround::PreUpdate()
 
 Update_Status ModulePlayGround::Update()
 {
-	SaveInput();
-
-	if (isAlive == false) {
+	if (gameOver == true)
+	{
+		return Update_Status::UPDATE_CONTINUE;
+	}
+	if (isAlive == false)
+	{
 		DeathSequence();
 
 		gameOver = GameoverCheck();
@@ -53,12 +59,12 @@ Update_Status ModulePlayGround::Update()
 
 		//line sequence();
 
-		//puntuation();
-
-		//pasive_puntuation();
+		Score();
 
 		NextBlock();
 	}
+
+	SaveInput();
 
 	//Y movement
 	fCountY++;
@@ -75,7 +81,6 @@ Update_Status ModulePlayGround::Update()
 			MoveBlock(block.x, block.y + 1);
 
 		fCountY = 0;
-		block.inputY = 1;
 	}
 	else if (fCountY > 40 / block.inputY)
 		fCountY = 0;
@@ -116,7 +121,6 @@ Update_Status ModulePlayGround::Update()
 		fCountX = 0;
 		block.inputX = 0;
 	}
-
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -170,6 +174,8 @@ bool ModulePlayGround::CleanUp()
 // LOGIC ===========================================================
 void ModulePlayGround::SaveInput()
 {
+	block.inputY = 1;
+
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
 	{
 		block.inputX = -1;
@@ -222,6 +228,7 @@ bool ModulePlayGround::IsColliding(int x2, int y2, Block& block)
 		{
 			if (block.tiles[i][j] && App->sceneLevel_1->playground[y2 + i][x2 + j] != 0)
 			{
+				height = block.y + i;
 				return true;
 			}
 		}
@@ -262,33 +269,68 @@ void ModulePlayGround::DeathSequence() {
 	
 }
 
-bool ModulePlayGround::GameoverCheck() {
-	for (size_t i = 0; i < 12; i++)
+bool ModulePlayGround::GameoverCheck()
+{
+	for (size_t i = 1; i < 11; i++)
 	{
-		if (App->sceneLevel_1->playground[i][1] == 0)
+		if (App->sceneLevel_1->playground[1][i] != 0)
 		{
-			return false;
+			return true;
 		}
 	}
 
-	return true;
+	return false;
 }
 
-void ModulePlayGround::CheckLine() {
+void ModulePlayGround::CheckLine()
+{
+	lines = 0;
 	int count;
 
-	for (size_t i = 0; i < 23; i++)
+	for (size_t i = 0; i < 22; i++)
 	{
 		count = 0;
+
 		for (size_t j = 0; j < 12; j++)
 		{
-			if (App->sceneLevel_1->playground[block.y + i][block.x + j])
+			if (App->sceneLevel_1->playground[i][j] != 0)
 			{
 				count++;
 			}
 		}
-		if (count == 12) {
+		if (count == 12)
+		{
+			lines++;
 
+			for (size_t j = 1; j < 11; j++)
+			{
+				App->sceneLevel_1->playground[i][j] = 0;
+			}
 		}
 	}
+}
+
+void ModulePlayGround::Score()
+{
+	//lines
+	switch (lines)
+	{
+	case 1: App->player->score += 50; break;
+	case 2: App->player->score += 150; break;
+	case 3: App->player->score += 400; break;
+	case 4: App->player->score += 900; break;
+	default: break;
+	}
+
+	//passive
+	int gravity = 1;
+	int rainbow = App->player->rainbow;
+	height = (height - 21) * -1;
+
+	if (block.inputY == 20)
+		gravity = 2;
+
+	App->player->score += gravity * rainbow * (rainbow + height);
+
+	App->player->lines += lines;
 }

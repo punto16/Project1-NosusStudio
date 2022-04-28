@@ -60,6 +60,7 @@ public:
 
 	char high_scoreText[10] = { "\0" };
 
+	uint rainbow = 1;
 };
 
 #endif //!__MODULE_PLAYER_H__
