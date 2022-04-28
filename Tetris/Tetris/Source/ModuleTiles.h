@@ -20,7 +20,7 @@ struct Tetrominos
 	// Font setup data
 	uint totalLength;
 	uint rows, columns;
-	uint char_w, char_h;
+	uint block_w, block_h;
 };
 
 class ModuleTiles : public Module

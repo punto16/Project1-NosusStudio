@@ -3,6 +3,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleTiles.h"
+#include "SceneLevel1.h"
 
 #include<string.h>
 
@@ -60,8 +61,8 @@ int ModuleTiles::Load(const char* texture_path, const uchar* tiles, uint rows)
 
 	uint tex_w, tex_h;
 	App->textures->GetTextureSize(tex, tex_w, tex_h);
-	tetromino.char_w = tex_w / tetromino.columns;
-	tetromino.char_h = tex_h / tetromino.rows;
+	tetromino.block_w = tex_w / tetromino.columns;
+	tetromino.block_h = tex_h / tetromino.rows;
 
 	LOG("Successfully loaded BMP font from %s", texture_path);
 
@@ -90,9 +91,11 @@ void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tex) const
 	SDL_Rect spriteRect;
 	uint len = strlen(reinterpret_cast<const char*>(tex));
 
-	spriteRect.w = tetromino->char_w;
-	spriteRect.h = tetromino->char_h;
+	spriteRect.w = tetromino->block_w;
+	spriteRect.h = tetromino->block_h;
 
+	x = (x * tetromino->block_w) + App->sceneLevel_1->x_TileMap;
+	y = (y * tetromino->block_h) + App->sceneLevel_1->y_TileMap;
 	for (uint i = 0; i < len; ++i)
 	{
 		uint charIndex = 0;

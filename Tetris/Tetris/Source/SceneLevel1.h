@@ -69,7 +69,8 @@ public:
 		0,0,0,0,0,0,0,0,0,0,
 		0,0,0,0,0,0,0,0,0,0,
 	};
-
+	int x_TileMap = 32;
+	int y_TileMap = 24;
 };
 
 #endif
