@@ -46,6 +46,17 @@ bool ModuleAudio::Init()
 		ret = false;
 	}
 
+	newLevelFx = App->audio->LoadFx("Assets/audio/new_level.wav");
+	blockAppearFx = App->audio->LoadFx("Assets/audio/block_appear.wav");
+	bonusPointBarsFx = App->audio->LoadFx("Assets/audio/bonus_point_bars.wav");
+	gameOverFx = App->audio->LoadFx("Assets/audio/game_over.wav");
+	greatScoreFx = App->audio->LoadFx("Assets/audio/great_score.wav");
+	hitFx = App->audio->LoadFx("Assets/audio/hit.wav");
+	insertCoinFx = App->audio->LoadFx("Assets/audio/insert_coin.wav");
+	lineFx = App->audio->LoadFx("Assets/audio/line.wav");
+	roundCompletedFx = App->audio->LoadFx("Assets/audio/round_completed.wav");
+	selectDiffFx = App->audio->LoadFx("Assets/audio/select_diff.wav");
+
 	return ret;
 }
 
@@ -146,15 +157,6 @@ uint ModuleAudio::LoadFx(const char* path)
 	return ret;
 }
 
-bool ModuleAudio::UnloadFx()
-{
-	for (uint i = 0; i < MAX_FX; ++i)
-	{
-		if (soundFx[i] != nullptr)
-			Mix_FreeChunk(soundFx[i]);
-	}
-	return true;
-}
 
 bool ModuleAudio::PlayFx(uint index, int repeat)
 {

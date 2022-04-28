@@ -40,11 +40,20 @@ public:
 	uint LoadFx(const char* path);
 
 
-	bool UnloadFx();
-
 	// Plays a previously loaded WAV
 	// Receives an index from the sound fx array
 	bool PlayFx(uint index, int repeat = 0);
+
+	uint newLevelFx;
+	uint blockAppearFx;
+	uint bonusPointBarsFx;
+	uint gameOverFx;
+	uint greatScoreFx;
+	uint hitFx;
+	uint insertCoinFx;
+	uint lineFx;
+	uint roundCompletedFx;
+	uint selectDiffFx;
 
 private:
 	// The current playing music
@@ -53,6 +62,10 @@ private:
 	// An array of all the loaded sound effects
 	// Allows us to keep track of all sound fx and handle them through indices
 	Mix_Chunk* soundFx[MAX_FX] = { nullptr };
+
+	//LOADERS OF FX
+
+	
 };
 
 #endif // __MODULE_AUDIO_H__
