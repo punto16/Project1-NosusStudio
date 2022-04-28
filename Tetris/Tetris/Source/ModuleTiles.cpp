@@ -100,7 +100,7 @@ void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tile, bool bl
 	const Tetrominos* tetromino = &tetrominos[font_id];
 
 	if (block) {
-		blockText = App->playground->block.id;
+		blockText = App->playground->block.rotation;
 
 		switch (App->playground->block.id)
 		{
@@ -129,9 +129,15 @@ void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tile, bool bl
 		}
 
 		blockText_text[0] = tetromino->dictionary[blockText];
+
+		//we divide by 4 because is the width and height of the block matrix
+		x = (x * (tetromino->block_w / 4)) + App->sceneLevel_1->x_TileMap;
+		y = (y * (tetromino->block_h / 4)) + App->sceneLevel_1->y_TileMap;
 	}
 	else if (tile != nullptr) {
 		blockText_text[0] = tetromino->dictionary[(int)tile];
+		x = (x * tetromino->block_w) + App->sceneLevel_1->x_TileMap;
+		y = (y * tetromino->block_h) + App->sceneLevel_1->y_TileMap;
 	}
 	else {
 		LOG("Unable to render text with bmp font id %d", font_id);
@@ -144,8 +150,6 @@ void ModuleTiles::BlitText(int x, int y, int font_id, const uchar* tile, bool bl
 	spriteRect.w = tetromino->block_w;
 	spriteRect.h = tetromino->block_h;
 
-	x = (x * tetromino->block_w) + App->sceneLevel_1->x_TileMap;
-	y = (y * tetromino->block_h) + App->sceneLevel_1->y_TileMap;
 	for (uint i = 0; i < len; ++i)
 	{
 		uint charIndex = 0;
