@@ -1,6 +1,6 @@
-﻿F:\Visual Studio\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Project_9_Solution.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  ModulePlayGround.cpp
-F:\Tetris\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-F:\Tetris\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-F:\Tetris\Tetris\Tetris\Source\ModulePlayGround.cpp(30,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Tetris.vcxproj -> F:\Tetris\Tetris\Debug\Tetris.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Project_9_Solution.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  SceneLevel1.cpp
+C:\Users\franc_ih4kytq\OneDrive\Escritorio\NosusStudio\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\franc_ih4kytq\OneDrive\Escritorio\NosusStudio\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\franc_ih4kytq\OneDrive\Escritorio\NosusStudio\Tetris\Tetris\Source\SceneLevel1.cpp(34,22): warning C4129: '^': unrecognized character escape sequence
+  Tetris.vcxproj -> C:\Users\franc_ih4kytq\OneDrive\Escritorio\NosusStudio\Tetris\Debug\Tetris.exe

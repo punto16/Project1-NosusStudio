@@ -29,6 +29,7 @@ bool SceneLevel1::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
+	goTexture = App->textures->Load("Assets/Sprites/gameover.png");
 
 	char Blocks_1[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ[\^_`abcdefghijklmnopqrstuvwxyz{|Ã}~!Á#$%&Â()*+À-./0123456789:;<=>?@ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»" };
 	Dead_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_dead.png", Blocks_1, 10);
@@ -57,6 +58,7 @@ bool SceneLevel1::Start()
 	}
 
 	App->playground->gameOver = false;
+	lines = 5;
 
 	return ret;
 }
@@ -92,19 +94,25 @@ Update_Status SceneLevel1::PostUpdate()
 
 	if (App->playground->gameOver == false)
 	{
-		//Draw alive block
-		if (App->playground->nextBlock.id != 255)
-		{
-			App->tiles->BlitText(8, 24, Alive_Tetromino, NULL, App->playground->nextBlock, true);
+		if (lines <= 0) {
+			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		}
+		else {
+			//Draw alive block
+			if (App->playground->nextBlock.id != 255)
+			{
+				App->tiles->BlitText(8, 24, Alive_Tetromino, NULL, App->playground->nextBlock, true);
+			}
 
-		if (App->playground->block.id != 255) {
+			if (App->playground->block.id != 255) {
 
-			App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
+				App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
+			}
 		}
 	}
 	else
 	{
+		App->render->Blit(goTexture, 32, 0, NULL);
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
 
