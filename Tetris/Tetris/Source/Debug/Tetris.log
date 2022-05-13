@@ -1,6 +1,41 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Project_9_Solution.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Application.cpp
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Globals.cpp
+  ModuleAudio.cpp
+  ModuleData.cpp
+  ModuleFadeToBlack.cpp
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\ModuleFadeToBlack.cpp(78,19): warning C4244: '=': conversion from 'float' to 'Uint32', possible loss of data
+  ModuleFonts.cpp
+  ModulePlayGround.cpp
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\ModulePlayGround.cpp(30,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  ModuleTiles.cpp
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\ModuleTiles.cpp(57,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\ModuleTiles.cpp(62,23): warning C4018: '<': signed/unsigned mismatch
+  SceneIntro.cpp
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   SceneLevel1.cpp
-C:\Users\franc_ih4kytq\OneDrive\Escritorio\NosusStudio\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-C:\Users\franc_ih4kytq\OneDrive\Escritorio\NosusStudio\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\franc_ih4kytq\OneDrive\Escritorio\NosusStudio\Tetris\Tetris\Source\SceneLevel1.cpp(34,22): warning C4129: '^': unrecognized character escape sequence
-  Tetris.vcxproj -> C:\Users\franc_ih4kytq\OneDrive\Escritorio\NosusStudio\Tetris\Debug\Tetris.exe
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\SceneLevel1.cpp(34,22): warning C4129: '^': unrecognized character escape sequence
+  ModuleInput.cpp
+  ModulePlayer.cpp
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  ModuleRender.cpp
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\ModuleRender.cpp(89,34): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\ModuleRender.cpp(90,34): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\ModuleRender.cpp(127,34): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Xavi\Desktop\Prototype\Tetris\Tetris\Source\ModuleRender.cpp(128,34): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+  ModuleTextures.cpp
+  ModuleWindow.cpp
+  Main.cpp
+  Module.cpp
+  Generating Code...
+  Tetris.vcxproj -> C:\Users\Xavi\Desktop\Prototype\Tetris\Debug\Tetris.exe

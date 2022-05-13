@@ -278,8 +278,20 @@ void ModulePlayGround::CheckLine()
 			{
 				App->sceneLevel_1->playground[i][j] = 0;
 			}
+			lineDown(i);
+			SDL_Delay(100);
 		}
 	}
+}
+
+void ModulePlayGround::lineDown(int lineI) {
+
+	for (size_t i = lineI; i > 0; i--) {
+		for (size_t j = 1; j < 11; j++) {
+			App->sceneLevel_1->playground[i][j] = App->sceneLevel_1->playground[i - 1][j];
+		}
+	}
+
 }
 
 void ModulePlayGround::Score()

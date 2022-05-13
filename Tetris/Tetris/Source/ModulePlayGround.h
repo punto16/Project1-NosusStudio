@@ -58,6 +58,8 @@ public:
 
     void CheckLine();
 
+    void lineDown(int lineI);
+
     bool GameoverCheck();
 
     void Score();
