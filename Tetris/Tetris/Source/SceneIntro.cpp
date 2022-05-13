@@ -54,8 +54,9 @@ Update_Status SceneIntro::PostUpdate()
 	// Draw everything --------------------------------------
 	uint tex_w, tex_h;
 	App->textures->GetTextureSize(introTexture, tex_w, tex_h);
+	int camera = ((App->render->camera.y / SCREEN_SIZE) + SCREEN_HEIGHT);
 
-	if ((App->render->camera.y / SCREEN_SIZE) == tex_h) {
+	if (camera == tex_h) {
 		play_intro = false;
 	}
 

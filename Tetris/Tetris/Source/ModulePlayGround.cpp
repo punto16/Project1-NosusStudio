@@ -305,4 +305,5 @@ void ModulePlayGround::Score()
 	App->player->score += gravity * rainbow * (rainbow + height);
 
 	App->player->lines += lines;
+	App->sceneLevel_1->lines-=lines;
 }
