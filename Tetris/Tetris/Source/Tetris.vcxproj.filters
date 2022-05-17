@@ -20,7 +20,7 @@
     <Filter Include="Source Files\Modules\Gameplay">
       <UniqueIdentifier>{25d307e8-c01f-47cf-a67c-44f768010c32}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Pieces">
+    <Filter Include="Source Files\Pieses">
       <UniqueIdentifier>{98111cca-93a1-4232-ab73-228d6bef85f8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
