@@ -31,7 +31,7 @@ bool SceneLevel1::Start()
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
 	goTexture = App->textures->Load("Assets/Sprites/gameover.png");
 
-	char Blocks_1[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ[\^_`abcdefghijklmnopqrstuvwxyz{|Г}~!Б#$%&В()*+А-./0123456789:;<=>?@ЗьйвдаезклипомДЕЙжЖфцтыщяЦЬшЈШЧѓбнуъсСЄєї®¬ЅјЎ«»" };
+	char Blocks_1[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ[^_`abcdefghijklmnopqrstuvwxyz{|Г}~!Б#$%&В()*+А-./0123456789:;<=>?@ЗьйвдаезклипомДЕЙжЖфцтыщяЦЬшЈШЧѓбнуъсСЄєї®¬ЅјЎ«»»»»»»»»»»" };
 	Dead_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_dead.png", Blocks_1, 10);
 	
 	char Blocks_2[] = { "abcdefghijklmnopqrstuvwxyz.," };
