@@ -181,7 +181,6 @@ void ModulePlayGround::NextBlock()
 
 int ModulePlayGround::RandomBlock()
 {
-	return 5;
 	return rand() % 7;
 }
 
