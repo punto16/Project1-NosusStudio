@@ -128,6 +128,10 @@ bool SceneLevel1::CleanUp()
 	LOG("Deleting background assets");
 
 	App->textures->Unload(bgTexture);
+	App->textures->Unload(goTexture);
+
+	App->tiles->UnLoad(Dead_Tetromino);
+	App->tiles->UnLoad(Alive_Tetromino);
 
 	return true;
 }
