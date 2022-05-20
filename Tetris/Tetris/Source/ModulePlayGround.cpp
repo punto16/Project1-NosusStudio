@@ -98,7 +98,8 @@ Update_Status ModulePlayGround::Update()
 		if (rotate == true)
 		{
 			blockCheck.id = block.id;
-			blockCheck.rotation = block.rotation + 1;
+			blockCheck.rotation++;
+			if (blockCheck.rotation == 4) { blockCheck.rotation = 0; }
 
 			LoadBlockMatrix(blockCheck);
 
@@ -180,6 +181,7 @@ void ModulePlayGround::NextBlock()
 
 int ModulePlayGround::RandomBlock()
 {
+	return 5;
 	return rand() % 7;
 }
 
