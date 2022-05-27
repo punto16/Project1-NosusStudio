@@ -13,7 +13,25 @@
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
+	//animations curtain opening
+	curtainOpening.PushBack({ 400,0,80,64 });
+	curtainOpening.PushBack({ 320,0,80,64 });
+	curtainOpening.PushBack({ 240,0,80,64 });
+	curtainOpening.PushBack({ 160,0,80,64 });
+	curtainOpening.PushBack({ 80,0,80,64 });
+	curtainOpening.PushBack({ 0,0,80,64 });
+	curtainOpening.speed = 0.15f;
+	curtainOpening.loop = false;
 
+	//animation curtain closing
+	curtainClosing.PushBack({ 0,0,80,64 });
+	curtainClosing.PushBack({ 80,0,80,64 });
+	curtainClosing.PushBack({ 160,0,80,64 });
+	curtainClosing.PushBack({ 240,0,80,64 });
+	curtainClosing.PushBack({ 320,0,80,64 });
+	curtainClosing.PushBack({ 400,0,80,64 });
+	curtainClosing.speed = 0.15f;
+	curtainClosing.loop = false;
 }
 
 SceneLevel1::~SceneLevel1()
@@ -30,6 +48,7 @@ bool SceneLevel1::Start()
 
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
 	goTexture = App->textures->Load("Assets/Sprites/gameover.png");
+	curtainTexture = App->textures->Load("Assets/Sprites/sprites_courtin.png");
 
 	char Blocks_1[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ[^_`abcdefghijklmnopqrstuvwxyz{|Ã}~!Á#$%&Â()*+À-./0123456789:;<=>?@ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»»»»»»»»»»" };
 	Dead_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_dead.png", Blocks_1, 10);
@@ -65,6 +84,10 @@ bool SceneLevel1::Start()
 
 Update_Status SceneLevel1::Update()
 {
+	curtainClosing.Update();
+	curtainOpening.Update();
+	
+
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
@@ -79,6 +102,11 @@ Update_Status SceneLevel1::PostUpdate()
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
+	
+	//CURTAIN ANIMATION OPENING
+	App->render->Blit(curtainTexture, 128, 96, &(curtainOpening.GetCurrentFrame()));
+	
+	
 	//Draw dead blocks
 	for (size_t i = 0; i < 23; i++)
 	{
@@ -112,8 +140,11 @@ Update_Status SceneLevel1::PostUpdate()
 	}
 	else
 	{
+		//CURTAIN ANIMATION CLOSING  NOO VA :(
+		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
+
 		App->render->Blit(goTexture, 32, 0, NULL);
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		//App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
 
 
@@ -129,6 +160,7 @@ bool SceneLevel1::CleanUp()
 
 	App->textures->Unload(bgTexture);
 	App->textures->Unload(goTexture);
+	App->textures->Unload(curtainTexture);
 
 	App->tiles->UnLoad(Dead_Tetromino);
 	App->tiles->UnLoad(Alive_Tetromino);

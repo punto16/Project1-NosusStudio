@@ -14,6 +14,7 @@
 #include "ModulePlayGround.h"
 #include "ModuleData.h"
 #include "ModuleTiles.h"
+#include "SDL/include/SDL.h"
 
 Application::Application()
 {
@@ -77,6 +78,8 @@ Update_Status Application::Update()
 
 	for (int i = 0; i < NUM_MODULES && ret == Update_Status::UPDATE_CONTINUE; ++i)
 		ret = modules[i]->IsEnabled() ? modules[i]->PostUpdate() : Update_Status::UPDATE_CONTINUE;
+
+	SDL_Delay((int)(1000 / 60));
 
 	return ret;
 }

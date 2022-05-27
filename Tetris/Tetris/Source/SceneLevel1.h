@@ -34,9 +34,16 @@ public:
 	
 	int lines = 5;
 
+
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* goTexture = nullptr;
+
+	SDL_Texture* curtainTexture = nullptr;
+	//animation
+	Animation curtainOpening;
+	Animation curtainClosing;
+
 
 	int Dead_Tetromino = -1;
 	int Alive_Tetromino = -1;
