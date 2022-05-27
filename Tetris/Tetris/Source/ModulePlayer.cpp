@@ -26,7 +26,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 
 	bool ret = true;
-
+	
 	destroyed = false;
 	score = 000;
 	lines = 000;
@@ -53,10 +53,7 @@ Update_Status ModulePlayer::Update()
 
 Update_Status ModulePlayer::PostUpdate()
 {
-	if (!destroyed)
-	{
-
-	}
+	if (!destroyed){}
 
 	if (score > App->data->high_score) {
 		App->data->high_score = score;
@@ -93,7 +90,6 @@ Update_Status ModulePlayer::PostUpdate()
 
 bool ModulePlayer::CleanUp()
 {
-
 	LOG("Deleting background assets");
 
 	App->fonts->UnLoad(Tetris_font_black);

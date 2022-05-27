@@ -31,20 +31,21 @@ bool ModulePlayGround::Start()
 	nextBlock.id = RandomBlock();
 	NextBlock();
 
-
-
 	return true;
 }
 
 Update_Status ModulePlayGround::PreUpdate()
 {
-
-
 	return Update_Status::UPDATE_CONTINUE;
 }
 
 Update_Status ModulePlayGround::Update()
 {
+	if (App->player->stateLine == true) 
+	{
+		StateLine();
+	}
+
 	if (gameOver == true)
 	{
 		return Update_Status::UPDATE_CONTINUE;
@@ -128,14 +129,7 @@ Update_Status ModulePlayGround::Update()
 
 Update_Status ModulePlayGround::PostUpdate()
 {
-
-
-
-
-
-
 	return Update_Status::UPDATE_CONTINUE;
-
 }
 
 bool ModulePlayGround::CleanUp()
@@ -149,22 +143,10 @@ void ModulePlayGround::SaveInput()
 {
 	block.inputY = 1;
 
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
-	{
-		block.inputX = -1;
-	}
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
-	{
-		block.inputY = 20;
-	}
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
-	{
-		block.inputX = 1;
-	}
-	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
-	{
-		rotate = true;
-	}
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT) { block.inputX = -1; }
+	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT) { block.inputY = 20; }
+	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT) { block.inputX = 1; }
+	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN) { rotate = true; }
 }
 
 void ModulePlayGround::NextBlock()
@@ -239,7 +221,6 @@ void ModulePlayGround::DeathSequence() {
 			}
 		}
 	}
-	
 }
 
 bool ModulePlayGround::GameoverCheck()
@@ -257,8 +238,11 @@ bool ModulePlayGround::GameoverCheck()
 
 void ModulePlayGround::CheckLine()
 {
-	lines = 0;
 	int count;
+	lines = 0;
+
+	for (int i = 0; i < 4; i++)
+		linePosition[i] = -1;
 
 	for (size_t i = 0; i < 22; i++)
 	{
@@ -273,26 +257,39 @@ void ModulePlayGround::CheckLine()
 		}
 		if (count == 12)
 		{
+			linePosition[lines] = i;
 			lines++;
-
-			for (size_t j = 1; j < 11; j++)
-			{
-				App->sceneLevel_1->playground[i][j] = 0;
-			}
-			lineDown(i);
-			SDL_Delay(100);
 		}
 	}
+
+	if (lines > 0)
+		App->player->stateLine = true;
 }
 
-void ModulePlayGround::lineDown(int lineI) {
-
-	for (size_t i = lineI; i > 0; i--) {
-		for (size_t j = 1; j < 11; j++) {
-			App->sceneLevel_1->playground[i][j] = App->sceneLevel_1->playground[i - 1][j];
+void ModulePlayGround::StateLine()
+{
+	int i;
+	for (i = 0; i < lines; i++)
+	{
+		if (linePosition[i] != -1)
+		{
+			break;
 		}
 	}
 
+	if (lineCounter == 10)
+	{
+		for (size_t j = 1; j < 11; j++) {
+			App->sceneLevel_1->playground[i][j] = lineAnimations[lineAnimation];
+		}
+		lineAnimation++;
+	}
+
+	for (size_t j = 1; j < 11; j++) {
+			App->sceneLevel_1->playground[i][j] = App->sceneLevel_1->playground[i - 1][j];
+		}
+
+	App->player->stateLine = false;
 }
 
 void ModulePlayGround::Score()
