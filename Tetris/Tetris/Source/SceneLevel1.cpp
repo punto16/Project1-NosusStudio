@@ -144,7 +144,7 @@ Update_Status SceneLevel1::PostUpdate()
 		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
 
 		App->render->Blit(goTexture, 32, 0, NULL);
-		//App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
 
 
