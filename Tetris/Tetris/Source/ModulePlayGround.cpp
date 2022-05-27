@@ -44,6 +44,7 @@ Update_Status ModulePlayGround::Update()
 	if (App->player->stateLine == true) 
 	{
 		StateLine();
+		return Update_Status::UPDATE_CONTINUE;
 	}
 
 	if (gameOver == true)
@@ -53,15 +54,9 @@ Update_Status ModulePlayGround::Update()
 	if (isAlive == false)
 	{
 		DeathSequence();
-
 		gameOver = GameoverCheck();
-
 		CheckLine();
-
-		//line sequence();
-
 		Score();
-
 		NextBlock();
 	}
 
@@ -163,7 +158,8 @@ void ModulePlayGround::NextBlock()
 
 int ModulePlayGround::RandomBlock()
 {
-	return rand() % 7;
+	return 0;
+	//return rand() % 7;
 }
 
 void ModulePlayGround::LoadBlockMatrix(Block& block)
@@ -241,9 +237,6 @@ void ModulePlayGround::CheckLine()
 	int count;
 	lines = 0;
 
-	for (int i = 0; i < 4; i++)
-		linePosition[i] = -1;
-
 	for (size_t i = 0; i < 22; i++)
 	{
 		count = 0;
@@ -257,7 +250,7 @@ void ModulePlayGround::CheckLine()
 		}
 		if (count == 12)
 		{
-			linePosition[lines] = i;
+			linePositionList[lines] = i;
 			lines++;
 		}
 	}
@@ -268,28 +261,36 @@ void ModulePlayGround::CheckLine()
 
 void ModulePlayGround::StateLine()
 {
-	int i;
-	for (i = 0; i < lines; i++)
+	int line = linePositionList[linePositionIndex];
+
+	//check for last line
+	if (line == -1 || linePositionIndex == 4)
 	{
-		if (linePosition[i] != -1)
+		linePositionIndex = 0;
+		App->player->stateLine = false;
+
+		for (int i = 0; i < 4; i++)
+			linePositionList[i] = -1;
+	}
+	else if (lineColorIndex == 6)
+	{
+		//move lines down
+		for (int i = line; i > 0; i--)
 		{
-			break;
+			for (int j = 1; j < 11; j++)
+				App->sceneLevel_1->playground[i][j] = App->sceneLevel_1->playground[i - 1][j];
 		}
-	}
 
-	if (lineCounter == 10)
+		lineColorIndex = 0;
+		linePositionIndex++;
+	}
+	else
 	{
-		for (size_t j = 1; j < 11; j++) {
-			App->sceneLevel_1->playground[i][j] = lineAnimations[lineAnimation];
-		}
-		lineAnimation++;
+		//set rainbow color
+		for (size_t j = 1; j < 11; j++)
+			App->sceneLevel_1->playground[line][j] = lineColorList[lineColorIndex];
+		lineColorIndex++;
 	}
-
-	for (size_t j = 1; j < 11; j++) {
-			App->sceneLevel_1->playground[i][j] = App->sceneLevel_1->playground[i - 1][j];
-		}
-
-	App->player->stateLine = false;
 }
 
 void ModulePlayGround::Score()

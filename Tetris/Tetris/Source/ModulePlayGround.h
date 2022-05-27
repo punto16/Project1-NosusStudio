@@ -78,10 +78,10 @@ public:
     bool rotate = false;
     bool gameOver = false;
 
-    int linePosition[4] = { -1 };
-    int lineCounter = 0;
-    int lineAnimation = 0;
-    int lineAnimations[6] = { 136, 137, 138, 139, 140, 141 };
+    int linePositionIndex = 0;
+    int linePositionList[4] = { -1, -1, -1, -1 };
+    int lineColorIndex = 0;
+    int lineColorList[6] = { 136, 137, 138, 139, 140, 141 };
 
     uint blockList[7][4][4][4] = //color, rotation, x, y
     {
