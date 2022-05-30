@@ -14,6 +14,7 @@
 #include "ModulePlayGround.h"
 #include "ModuleData.h"
 #include "ModuleTiles.h"
+#include "SceneMenu.h"
 #include "SDL/include/SDL.h"
 
 Application::Application()
@@ -31,13 +32,14 @@ Application::Application()
 	modules[5] =	playground =	new ModulePlayGround(false);
 
 	modules[6] =	sceneIntro =	new SceneIntro(true);
-	modules[7] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
-	modules[8] =	player =		new ModulePlayer(false);	//Player starts disabled
+	modules[7] =	sceneMenu =		new SceneMenu(false);
+	modules[8] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
+	modules[9] =	player =		new ModulePlayer(false);	//Player starts disabled
 
-	modules[9] =	fade =			new ModuleFadeToBlack(true);
-	modules[10] =	fonts =			new ModuleFonts(true);
-	modules[11] =	tiles =			new ModuleTiles(true);
-	modules[12] =	render =		new ModuleRender(true);
+	modules[10] =	fade =			new ModuleFadeToBlack(true);
+	modules[11] =	fonts =			new ModuleFonts(true);
+	modules[12] =	tiles =			new ModuleTiles(true);
+	modules[13] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()
