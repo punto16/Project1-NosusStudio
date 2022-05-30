@@ -136,6 +136,7 @@ Update_Status SceneLevel1::PostUpdate()
 	if (App->playground->gameOver == false)
 	{
 		if (levelLines <= 0 && App->playground->lineLimit == false) {
+			isCurtainClosing = true;
 			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		}
 		else {
