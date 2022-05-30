@@ -14,15 +14,9 @@
 
 #include "SDL/include/SDL.h"
 
-ModulePlayGround::ModulePlayGround(bool startEnabled) : Module(startEnabled)
-{
+ModulePlayGround::ModulePlayGround(bool startEnabled) : Module(startEnabled) {}
 
-}
-
-ModulePlayGround::~ModulePlayGround()
-{
-
-}
+ModulePlayGround::~ModulePlayGround() {}
 
 
 bool ModulePlayGround::Start()
@@ -45,7 +39,8 @@ Update_Status ModulePlayGround::Update()
 	{
 		fCountL++;
 
-		if (fCountL == 2) {
+		if (fCountL == 2)
+		{
 			StateLine();
 			fCountL = 0;
 		}
@@ -73,8 +68,8 @@ bool ModulePlayGround::CleanUp()
 }
 
 
-// LOGIC ===========================================================
-//				STATES =============================================
+
+// STATES =============================================
 
 void ModulePlayGround::StateLine()
 {
@@ -112,7 +107,8 @@ void ModulePlayGround::StateLine()
 	}
 }
 
-void ModulePlayGround::StatePlay(){
+void ModulePlayGround::StatePlay()
+{
 	if (isAlive == false)
 	{
 		DeathSequence();
@@ -182,7 +178,8 @@ void ModulePlayGround::StatePlay(){
 	}
 }
 
-//				UWU ==============================================
+
+// LOGIC ===========================================================
 
 void ModulePlayGround::SaveInput()
 {
@@ -199,7 +196,8 @@ void ModulePlayGround::SaveInput()
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) { lineLimit = !lineLimit; }
 	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) { selectBlock = !selectBlock; }
 
-	if (selectBlock == true) {
+	if (selectBlock == true)
+	{
 		if (App->input->keys[SDL_SCANCODE_1] == Key_State::KEY_DOWN) { blockSpawnID = 0; }
 		if (App->input->keys[SDL_SCANCODE_2] == Key_State::KEY_DOWN) { blockSpawnID = 1; }
 		if (App->input->keys[SDL_SCANCODE_3] == Key_State::KEY_DOWN) { blockSpawnID = 2; }
@@ -274,7 +272,8 @@ void ModulePlayGround::RotateBlock()
 	}
 }
 
-void ModulePlayGround::DeathSequence() {
+void ModulePlayGround::DeathSequence()
+{
 	for (size_t i = 0; i < 4; i++)
 	{
 		for (size_t j = 0; j < 4; j++)

@@ -41,32 +41,20 @@ public:
 	bool CleanUp();
 
     void SaveInput();
-
     void NextBlock();
-
     int RandomBlock();
-
     void LoadBlockMatrix(Block& block);
-
     bool IsColliding(int x2, int y2, Block& block);
-
     void MoveBlock(int x2, int y2);
-
     void RotateBlock();
-
     void DeathSequence();
-
     void CheckLine();
-
-    void StateLine();
-
     bool GameoverCheck();
 
     void Score();
-
+    void StateLine();
     void StatePlay();
 
-    void Debug();
 
 public:
 	int currentModule;

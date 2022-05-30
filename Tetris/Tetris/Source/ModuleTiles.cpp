@@ -104,28 +104,14 @@ void ModuleTiles::BlitText(int x, int y, int font_id, uint tile, Block actual_bl
 
 		switch (actual_block.id)
 		{
-		case 0:
-			break;
-		case 1:
-			blockText += 4;
-			break;
-		case 2:
-			blockText += 8;
-			break;
-		case 3:
-			blockText += 12;
-			break;
-		case 4:
-			blockText += 16;
-			break;
-		case 5:
-			blockText += 20;
-			break;
-		case 6:
-			blockText += 24;
-			break;
-		default:
-			break;
+		case 0:	break;
+		case 1:	blockText += 4;	 break;
+		case 2:	blockText += 8;	 break;
+		case 3:	blockText += 12; break;
+		case 4:	blockText += 16; break;
+		case 5:	blockText += 20; break;
+		case 6:	blockText += 24; break;
+		default: break;
 		}
 
 		blockText_text[0] = tetromino->table[blockText];
