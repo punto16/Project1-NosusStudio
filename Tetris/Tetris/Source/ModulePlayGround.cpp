@@ -59,6 +59,10 @@ Update_Status ModulePlayGround::Update()
 
 Update_Status ModulePlayGround::PostUpdate()
 {
+	if (lines == 4)
+	{
+		//ACABAR LINEAS ANIMACION LLUIS SEXOO TODO
+	}
 	return Update_Status::UPDATE_CONTINUE;
 }
 
