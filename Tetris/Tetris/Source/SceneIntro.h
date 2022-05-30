@@ -33,7 +33,8 @@ public:
 	SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* introTexture = nullptr;
 
-	bool play_intro = false;
+	bool play_intro = true;
+	int counter = 120;
 };
 
 #endif

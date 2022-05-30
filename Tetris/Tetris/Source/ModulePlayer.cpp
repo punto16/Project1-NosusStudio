@@ -84,6 +84,19 @@ Update_Status ModulePlayer::PostUpdate()
 	App->fonts->BlitText(240, 60, Tetris_font_white, "stats");
 	App->fonts->BlitText(8, 8, Tetris_font_red, "next");
 
+	timer++;
+	if (timer == 240) { timer = 0; }
+
+	if (timer<120) {
+		App->fonts->BlitText(230, 216, Tetris_font_lightblue, "join in");
+		App->fonts->BlitText(230, 224, Tetris_font_lightblue, "any time");
+	}
+
+	if (timer>=120) {
+		App->fonts->BlitText(237, 216, Tetris_font_lightblue, "insert");
+		App->fonts->BlitText(246, 224, Tetris_font_lightblue, "coin");
+	}
+
 	return Update_Status::UPDATE_CONTINUE;
 }
 

@@ -44,6 +44,12 @@ Update_Status SceneIntro::Update()
 	{
 		return Update_Status::UPDATE_STOP;
 	}
+	else if ((play_intro) && (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN))
+	{
+		uint tex_w, tex_h;
+		App->textures->GetTextureSize(introTexture, tex_w, tex_h);
+		App->render->camera.y = ((tex_h - SCREEN_HEIGHT) * SCREEN_SIZE);
+	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -57,12 +63,17 @@ Update_Status SceneIntro::PostUpdate()
 	int camera = ((App->render->camera.y / SCREEN_SIZE) + SCREEN_HEIGHT);
 
 	if (camera == tex_h) {
+		counter--;
+	}
+	else {
+		App->render->camera.y++;
+	}
+	if (counter == 0) {
 		play_intro = false;
 	}
 
 	if (play_intro) {
 		App->render->Blit(introTexture, 0, 0, NULL);
-		App->render->camera.y ++;
 	}
 	else {
 		App->render->camera.y = 0;
