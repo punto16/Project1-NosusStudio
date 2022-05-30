@@ -25,8 +25,10 @@ bool SceneMenu::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Sprites/difficulty_tetris.png");
-
+	modebgTexture = App->textures->Load("Assets/Sprites/selectplayer_tetris.png");
+	diffbgTexture = App->textures->Load("Assets/Sprites/difficulty_tetris.png");
+    rightArrow = App->textures->Load("Assets/Sprites/arrowRight.png");
+	leftArrow = App->textures->Load("Assets/Sprites/arrowLeft.png");
 
 	App->audio->PlayMusic("", 1.0f);
 
@@ -46,14 +48,29 @@ Update_Status SceneMenu::Update()
 	}
     else if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
-		switch (selection)
+		if (play_diff)
 		{
-		case 0: //Singleplayer
-			// TODO Seleccion de dificultades
-			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+			switch (selection)
+			{
+			case 0: //Easy
+				App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
+			case 1: //Normal
+				App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
+			case 2: //Hard
+				App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
+			}
+		}
+		else
+		{
+			switch (selection)
+			{
+			case 0: //Singleplayer
+				// TODO Seleccion de dificultades
+				play_diff = true;
 
-		case 1: //Multiplayer
-			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+			case 1: //Multiplayer
+				App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+			}
 		}
 	}
 	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
@@ -72,11 +89,42 @@ Update_Status SceneMenu::Update()
 Update_Status SceneMenu::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	
-	App->render->Blit(bgTexture, 0, 0, NULL);
+	if (play_diff)
+	{
+		App->render->Blit(diffbgTexture, 0, 0, NULL);
+		switch (selection)
+		{
+		 case 0:
+			 App->render->Blit(rightArrow, 31, 33, NULL);
+			 App->render->Blit(leftArrow, 71, 33, NULL);
+			 break;
+		 case 1:
+			 App->render->Blit(rightArrow, 136, 33, NULL);
+			 App->render->Blit(leftArrow, 192, 33, NULL);
+			 break;
+		 case 2:
+			 App->render->Blit(rightArrow, 256, 33, NULL);
+			 App->render->Blit(leftArrow, 296, 33, NULL);
+			 break;
+		}
+	}
+	else 
+	{
+		App->render->Blit(modebgTexture, 0, 0, NULL);
 
-	
-
+		switch (selection)
+		{
+		 case 0:
+			App->render->Blit(leftArrow, 111, 33, NULL);
+			App->render->Blit(rightArrow, 47, 33, NULL);
+			
+			break;
+		 case 1:
+			App->render->Blit(rightArrow, 215, 33, NULL);
+			App->render->Blit(leftArrow, 289, 33, NULL);
+			break;
+		}
+	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -94,12 +142,26 @@ void SceneMenu::selectionToRight()
 {
 	selection++;
 
-	selection % 2;
+	if (play_diff)
+	{
+		if (selection > 2) selection = 0;
+	}
+	else
+	{
+		if (selection > 1) selection = 0;
+	}
 }
 
 void SceneMenu::selectionToLeft()
 {
 	selection--;
 
-	selection % 2;
+	if (play_diff)
+	{
+		if (selection < 0) selection = 2;
+	}
+	else
+	{
+		if (selection < 0) selection = 1;
+	}
 }
