@@ -10,7 +10,16 @@
 
 SceneMenu::SceneMenu(bool startEnabled) : Module(startEnabled)
 {
-
+	lateralBarsAnim.PushBack({ 0,0,2,15 });//pink
+	lateralBarsAnim.PushBack({ 2,0,2,15 });//red
+	lateralBarsAnim.PushBack({ 4,0,2,15 });//orange
+	lateralBarsAnim.PushBack({ 6,0,2,15 });//yellow
+	lateralBarsAnim.PushBack({ 8,0,2,15 });//white
+	lateralBarsAnim.PushBack({ 10,0,2,15 });//green
+	lateralBarsAnim.PushBack({ 12,0,2,15 });//cyan
+	lateralBarsAnim.PushBack({ 14,0,2,15 });//blue
+	lateralBarsAnim.loop = true;
+	lateralBarsAnim.speed = 0.2f;
 }
 
 SceneMenu::~SceneMenu()
@@ -29,6 +38,7 @@ bool SceneMenu::Start()
 	diffbgTexture = App->textures->Load("Assets/Sprites/difficulty_tetris.png");
     rightArrow = App->textures->Load("Assets/Sprites/arrowRight.png");
 	leftArrow = App->textures->Load("Assets/Sprites/arrowLeft.png");
+	lateralBars = App->textures->Load("Assets/Sprites/lateralBars.png");
 
 	App->audio->PlayMusic("", 1.0f);
 
@@ -44,6 +54,9 @@ bool SceneMenu::Start()
 
 Update_Status SceneMenu::Update()
 {
+	lateralBarsAnim.Update();
+
+
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
@@ -101,6 +114,9 @@ Update_Status SceneMenu::Update()
 // Update: draw background
 Update_Status SceneMenu::PostUpdate()
 {
+	int lateralBarsY = 0, lateralBarsX = 0;
+
+
 	// Draw everything --------------------------------------
 	if (play_diff) // If Difficulty menu is true
 	{
@@ -110,14 +126,18 @@ Update_Status SceneMenu::PostUpdate()
 		 case 0: //Easy Difficulty Arrows
 			 App->render->Blit(rightArrow, 31, 33, NULL);
 			 App->render->Blit(leftArrow, 71, 33, NULL);
+			 App->render->Blit(lateralBars, 12 + lateralBarsX, 86 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
 			 break;
 		 case 1: //Normal Difficulty Arrows
 			 App->render->Blit(rightArrow, 136, 33, NULL);
 			 App->render->Blit(leftArrow, 192, 33, NULL);
+			 App->render->Blit(lateralBars, 123 + lateralBarsX, 86 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
+
 			 break;
 		 case 2: //Hard Difficulty Arrows
 			 App->render->Blit(rightArrow, 256, 33, NULL);
 			 App->render->Blit(leftArrow, 296, 33, NULL);
+			 App->render->Blit(lateralBars, 236 + lateralBarsX, 86 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
 			 break;
 		}
 	}
@@ -145,7 +165,12 @@ bool SceneMenu::CleanUp()
 {
 	LOG("Deleting background assets");
 
-	
+	App->textures->Unload(modebgTexture);
+	App->textures->Unload(diffbgTexture);
+	App->textures->Unload(rightArrow);
+	App->textures->Unload(leftArrow);
+	App->textures->Unload(lateralBars);
+
 
 	return true;
 }

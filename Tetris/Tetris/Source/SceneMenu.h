@@ -38,6 +38,9 @@ public:
 	SDL_Texture* diffbgTexture = nullptr;
 	SDL_Texture* leftArrow = nullptr;
 	SDL_Texture* rightArrow = nullptr;
+	SDL_Texture* lateralBars = nullptr;
+
+	Animation lateralBarsAnim;
 
 	bool play_diff = false;
 	int selection;
