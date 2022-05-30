@@ -33,6 +33,8 @@ bool SceneMenu::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+	selection = 0;
+
 	return ret;
 }
 
@@ -42,9 +44,25 @@ Update_Status SceneMenu::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
-	else if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
+    else if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+		switch (selection)
+		{
+		case 0: //Singleplayer
+			// TODO Seleccion de dificultades
+			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+
+		case 1: //Multiplayer
+			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+		}
+	}
+	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
+	{
+		selectionToLeft();
+	}
+	else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN)
+	{
+		selectionToRight();
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -70,4 +88,18 @@ bool SceneMenu::CleanUp()
 	
 
 	return true;
+}
+
+void SceneMenu::selectionToRight()
+{
+	selection++;
+
+	selection % 2;
+}
+
+void SceneMenu::selectionToLeft()
+{
+	selection--;
+
+	selection % 2;
 }
