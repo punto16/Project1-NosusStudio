@@ -8,6 +8,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
 #include "ModuleData.h"
+#include "SceneLevel1.h"
 
 #include <stdio.h>
 
@@ -96,6 +97,12 @@ Update_Status ModulePlayer::PostUpdate()
 		App->fonts->BlitText(237, 216, Tetris_font_lightblue, "insert");
 		App->fonts->BlitText(246, 224, Tetris_font_lightblue, "coin");
 	}
+
+	if (App->sceneLevel_1->levelLines < 10) { sprintf_s(linesLeftText, 10, "0%d", App->sceneLevel_1->levelLines); }
+	else{ sprintf_s(linesLeftText, 10, "%d", App->sceneLevel_1->levelLines); }
+	App->fonts->BlitText(150, 130, Tetris_font_white, "lines");
+	App->fonts->BlitText(150, 146, Tetris_font_white, "left");
+	App->fonts->BlitText(135, 115, Tetris_font_red, linesLeftText);
 
 	return Update_Status::UPDATE_CONTINUE;
 }

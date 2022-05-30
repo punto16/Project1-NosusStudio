@@ -324,6 +324,7 @@ void ModulePlayGround::CheckLine()
 	}
 
 	if (lines > 0) {
+		CutTextures();
 		App->player->stateLine = true;
 		App->player->statePlay = false;
 	}
@@ -353,4 +354,70 @@ void ModulePlayGround::Score()
 
 	App->player->totalLines += lines;
 	App->sceneLevel_1->levelLines-=lines;
+	if (App->sceneLevel_1->levelLines < 0) { App->sceneLevel_1->levelLines = 0; }
+}
+
+void ModulePlayGround::CutTextures() {
+	int line_up = (linePositionList[0])-1;
+	int line_down = (linePositionList[lines-1])+1;
+
+	for (size_t i = 1; i < 11; i++) {
+		switch ((App->sceneLevel_1->playground[line_up][i])%15)
+		{
+		case 4:
+			App->sceneLevel_1->playground[line_up][i] += 11;
+			break;
+		case 5:
+			App->sceneLevel_1->playground[line_up][i] += 1;
+			break;
+		case 8:
+			App->sceneLevel_1->playground[line_up][i] += 5;
+			break;
+		case 9:
+			App->sceneLevel_1->playground[line_up][i] -= 7;
+			break;
+		case 10:
+			App->sceneLevel_1->playground[line_up][i] += 2;
+			break;
+		case 11:
+			App->sceneLevel_1->playground[line_up][i] -= 10;
+			break;
+		case 14:
+			App->sceneLevel_1->playground[line_up][i] -= 11;
+			break;
+		default:
+			break;
+		}
+	}
+
+	if (line_down<22) {
+		for (size_t j = 1; j < 11; j++) {
+			switch ((App->sceneLevel_1->playground[line_down][j]) % 15)
+			{
+			case 5:
+				App->sceneLevel_1->playground[line_down][j] -= 1;
+				break;
+			case 6:
+				App->sceneLevel_1->playground[line_down][j] += 9;
+				break;
+			case 7:
+				App->sceneLevel_1->playground[line_down][j] -= 5;
+				break;
+			case 8:
+				App->sceneLevel_1->playground[line_down][j] += 3;
+				break;
+			case 10:
+				App->sceneLevel_1->playground[line_down][j] += 4;
+				break;
+			case 12:
+				App->sceneLevel_1->playground[line_down][j] -= 9;
+				break;
+			case 13:
+				App->sceneLevel_1->playground[line_down][j] -= 12;
+				break;
+			default:
+				break;
+			}
+		}
+	}
 }

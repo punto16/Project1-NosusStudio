@@ -50,7 +50,7 @@ public:
     void DeathSequence();
     void CheckLine();
     bool GameoverCheck();
-
+    void CutTextures();
     void Score();
     void StateLine();
     void StatePlay();

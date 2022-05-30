@@ -65,6 +65,8 @@ public:
 
 	uint rainbow = 1;
 
+	char linesLeftText[10] = { "\0" };
+
 	int timer = 0;
 };
 
