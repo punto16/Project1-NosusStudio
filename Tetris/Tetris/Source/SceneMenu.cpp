@@ -35,6 +35,7 @@ bool SceneMenu::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+	play_diff = false;
 	selection = 0;
 
 	return ret;
@@ -46,31 +47,29 @@ Update_Status SceneMenu::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
-    else if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
+    else if (play_diff && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
-		if (play_diff)
+		
+		switch (selection)
 		{
-			switch (selection)
-			{
-			case 0: //Easy
-				App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
-			case 1: //Normal
-				App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
-			case 2: //Hard
-				App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
-			}
-		}
-		else
+		case 0: //Easy
+			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
+		case 1: //Normal
+			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
+		case 2: //Hard
+			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
+		}		
+	}
+	else if (!play_diff && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
+	{
+		switch (selection)
 		{
-			switch (selection)
-			{
-			case 0: //Singleplayer
-				// TODO Seleccion de dificultades
-				play_diff = true;
+		case 0: //Singleplayer
+			// TODO Seleccion de dificultades
+			play_diff = true;
 
-			case 1: //Multiplayer
-				App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
-			}
+		case 1: //Multiplayer
+			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
 		}
 	}
 	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
