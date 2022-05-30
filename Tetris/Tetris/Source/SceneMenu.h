@@ -29,11 +29,18 @@ public:
 
 	bool SceneMenu::CleanUp() override;
 
+	void selectionToRight();
+	void selectionToLeft();
+
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* bgTexture = nullptr;
-	
+	SDL_Texture* modebgTexture = nullptr;
+	SDL_Texture* diffbgTexture = nullptr;
+	SDL_Texture* leftArrow = nullptr;
+	SDL_Texture* rightArrow = nullptr;
 
+	bool play_diff = false;
+	int selection;
 	
 };
 
