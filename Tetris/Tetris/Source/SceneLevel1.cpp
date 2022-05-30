@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayGround.h"
+#include "ModulePlayGround2.h"
 #include "ModuleFonts.h"
 #include "ModuleTiles.h"
 
@@ -59,8 +60,6 @@ bool SceneLevel1::Start()
 	char Blocks_2[] = { "abcdefghijklmnopqrstuvwxyz.," };
 	Alive_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_alive.png", Blocks_2, 7);
 
-
-	
 
 	App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
 
@@ -120,18 +119,29 @@ Update_Status SceneLevel1::PostUpdate()
 		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
 	}
 	
-	//Draw dead blocks
+	//Draw dead blocks player 1 (left)
 	for (size_t i = 0; i < 23; i++)
 	{
 		for (size_t j = 0; j < 12; j++)
 		{
 			if (playground[i][j] != 0 && playground[i][j] != 255)
-			{
 				App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
+		}
+	}
 
+	//Draw dead blocks player 2 (right)
+	if (true)	//multiplayer enabled?
+	{
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground2[i][j] != 0 && playground2[i][j] != 255)
+					App->tiles->BlitText2(j, i, Dead_Tetromino, playground2[i][j], App->playground2->block, false);
 			}
 		}
 	}
+	
 
 	if (App->playground->gameOver == false)
 	{
