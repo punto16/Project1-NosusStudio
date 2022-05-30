@@ -41,6 +41,7 @@ public:
 
 	bool play_diff = false;
 	int selection;
+	uint timer;
 	
 };
 

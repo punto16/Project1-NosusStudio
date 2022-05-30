@@ -37,6 +37,7 @@ bool SceneMenu::Start()
 
 	play_diff = false;
 	selection = 0;
+	timer = 0;
 
 	return ret;
 }
@@ -47,31 +48,6 @@ Update_Status SceneMenu::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
-    else if (play_diff && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
-	{
-		
-		switch (selection)
-		{
-		case 0: //Easy
-			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
-		case 1: //Normal
-			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
-		case 2: //Hard
-			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
-		}		
-	}
-	else if (!play_diff && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
-	{
-		switch (selection)
-		{
-		case 0: //Singleplayer
-			// TODO Seleccion de dificultades
-			play_diff = true;
-
-		case 1: //Multiplayer
-			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
-		}
-	}
 	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
 	{
 		selectionToLeft();
@@ -80,6 +56,44 @@ Update_Status SceneMenu::Update()
 	{
 		selectionToRight();
 	}
+
+
+	if (play_diff == true && timer < 60)
+	{
+		timer++;
+	}
+	else if (play_diff && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN && timer >= 60)
+	{
+
+		switch (selection)
+		{
+		case 0: //Easy
+			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
+			break;
+		case 1: //Normal
+			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
+			break;
+		case 2: //Hard
+			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
+			break;
+		}
+
+	}
+	else if (!play_diff && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
+	{
+
+		switch (selection)
+		{
+		case 0: //Singleplayer
+			play_diff = true;
+			break;
+		case 1: //Multiplayer
+			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+			break;
+		}
+
+	}
+	
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -114,9 +128,8 @@ Update_Status SceneMenu::PostUpdate()
 		switch (selection)
 		{
 		 case 0:
-			App->render->Blit(leftArrow, 111, 33, NULL);
 			App->render->Blit(rightArrow, 47, 33, NULL);
-			
+			App->render->Blit(leftArrow, 111, 33, NULL);
 			break;
 		 case 1:
 			App->render->Blit(rightArrow, 215, 33, NULL);
