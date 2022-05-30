@@ -102,20 +102,20 @@ Update_Status SceneMenu::Update()
 Update_Status SceneMenu::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	if (play_diff)
+	if (play_diff) // If Difficulty menu is true
 	{
 		App->render->Blit(diffbgTexture, 0, 0, NULL);
 		switch (selection)
 		{
-		 case 0:
+		 case 0: //Easy Difficulty Arrows
 			 App->render->Blit(rightArrow, 31, 33, NULL);
 			 App->render->Blit(leftArrow, 71, 33, NULL);
 			 break;
-		 case 1:
+		 case 1: //Normal Difficulty Arrows
 			 App->render->Blit(rightArrow, 136, 33, NULL);
 			 App->render->Blit(leftArrow, 192, 33, NULL);
 			 break;
-		 case 2:
+		 case 2: //Hard Difficulty Arrows
 			 App->render->Blit(rightArrow, 256, 33, NULL);
 			 App->render->Blit(leftArrow, 296, 33, NULL);
 			 break;
@@ -127,11 +127,11 @@ Update_Status SceneMenu::PostUpdate()
 
 		switch (selection)
 		{
-		 case 0:
+		 case 0: //Singleplayer Arrows
 			App->render->Blit(rightArrow, 47, 33, NULL);
 			App->render->Blit(leftArrow, 111, 33, NULL);
 			break;
-		 case 1:
+		 case 1: //Multiplayer Arrows
 			App->render->Blit(rightArrow, 215, 33, NULL);
 			App->render->Blit(leftArrow, 289, 33, NULL);
 			break;
