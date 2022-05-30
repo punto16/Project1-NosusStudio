@@ -34,6 +34,7 @@ public:
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
+	bool stateLine = false;
 
 	// Fonts
 	int Tetris_font_black		= -1;

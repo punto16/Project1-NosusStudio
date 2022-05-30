@@ -58,7 +58,7 @@ public:
 
     void CheckLine();
 
-    void lineDown(int lineI);
+    void StateLine();
 
     bool GameoverCheck();
 
@@ -77,6 +77,11 @@ public:
     bool isAlive = true;
     bool rotate = false;
     bool gameOver = false;
+
+    int linePositionIndex = 0;
+    int linePositionList[4] = { -1, -1, -1, -1 };
+    int lineColorIndex = 0;
+    int lineColorList[6] = { 136, 137, 138, 139, 140, 141 };
 
     uint blockList[7][4][4][4] = //color, rotation, x, y
     {

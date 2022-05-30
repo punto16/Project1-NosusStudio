@@ -31,20 +31,22 @@ bool ModulePlayGround::Start()
 	nextBlock.id = RandomBlock();
 	NextBlock();
 
-
-
 	return true;
 }
 
 Update_Status ModulePlayGround::PreUpdate()
 {
-
-
 	return Update_Status::UPDATE_CONTINUE;
 }
 
 Update_Status ModulePlayGround::Update()
 {
+	if (App->player->stateLine == true) 
+	{
+		StateLine();
+		return Update_Status::UPDATE_CONTINUE;
+	}
+
 	if (gameOver == true)
 	{
 		return Update_Status::UPDATE_CONTINUE;
@@ -52,15 +54,9 @@ Update_Status ModulePlayGround::Update()
 	if (isAlive == false)
 	{
 		DeathSequence();
-
 		gameOver = GameoverCheck();
-
 		CheckLine();
-
-		//line sequence();
-
 		Score();
-
 		NextBlock();
 	}
 
@@ -128,14 +124,7 @@ Update_Status ModulePlayGround::Update()
 
 Update_Status ModulePlayGround::PostUpdate()
 {
-
-
-
-
-
-
 	return Update_Status::UPDATE_CONTINUE;
-
 }
 
 bool ModulePlayGround::CleanUp()
@@ -149,22 +138,10 @@ void ModulePlayGround::SaveInput()
 {
 	block.inputY = 1;
 
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
-	{
-		block.inputX = -1;
-	}
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
-	{
-		block.inputY = 20;
-	}
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
-	{
-		block.inputX = 1;
-	}
-	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
-	{
-		rotate = true;
-	}
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT) { block.inputX = -1; }
+	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT) { block.inputY = 20; }
+	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT) { block.inputX = 1; }
+	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN) { rotate = true; }
 }
 
 void ModulePlayGround::NextBlock()
@@ -181,7 +158,8 @@ void ModulePlayGround::NextBlock()
 
 int ModulePlayGround::RandomBlock()
 {
-	return rand() % 7;
+	return 0;
+	//return rand() % 7;
 }
 
 void ModulePlayGround::LoadBlockMatrix(Block& block)
@@ -239,7 +217,6 @@ void ModulePlayGround::DeathSequence() {
 			}
 		}
 	}
-	
 }
 
 bool ModulePlayGround::GameoverCheck()
@@ -257,8 +234,8 @@ bool ModulePlayGround::GameoverCheck()
 
 void ModulePlayGround::CheckLine()
 {
-	lines = 0;
 	int count;
+	lines = 0;
 
 	for (size_t i = 0; i < 22; i++)
 	{
@@ -273,26 +250,47 @@ void ModulePlayGround::CheckLine()
 		}
 		if (count == 12)
 		{
+			linePositionList[lines] = i;
 			lines++;
-
-			for (size_t j = 1; j < 11; j++)
-			{
-				App->sceneLevel_1->playground[i][j] = 0;
-			}
-			lineDown(i);
-			SDL_Delay(100);
 		}
 	}
+
+	if (lines > 0)
+		App->player->stateLine = true;
 }
 
-void ModulePlayGround::lineDown(int lineI) {
+void ModulePlayGround::StateLine()
+{
+	int line = linePositionList[linePositionIndex];
 
-	for (size_t i = lineI; i > 0; i--) {
-		for (size_t j = 1; j < 11; j++) {
-			App->sceneLevel_1->playground[i][j] = App->sceneLevel_1->playground[i - 1][j];
-		}
+	//check for last line
+	if (line == -1 || linePositionIndex == 4)
+	{
+		linePositionIndex = 0;
+		App->player->stateLine = false;
+
+		for (int i = 0; i < 4; i++)
+			linePositionList[i] = -1;
 	}
+	else if (lineColorIndex == 6)
+	{
+		//move lines down
+		for (int i = line; i > 0; i--)
+		{
+			for (int j = 1; j < 11; j++)
+				App->sceneLevel_1->playground[i][j] = App->sceneLevel_1->playground[i - 1][j];
+		}
 
+		lineColorIndex = 0;
+		linePositionIndex++;
+	}
+	else
+	{
+		//set rainbow color
+		for (size_t j = 1; j < 11; j++)
+			App->sceneLevel_1->playground[line][j] = lineColorList[lineColorIndex];
+		lineColorIndex++;
+	}
 }
 
 void ModulePlayGround::Score()
