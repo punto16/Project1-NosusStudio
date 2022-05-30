@@ -43,7 +43,12 @@ Update_Status ModulePlayGround::Update()
 {
 	if (App->player->stateLine == true) 
 	{
-		StateLine();
+		fCountL++;
+
+		if (fCountL == 2) {
+			StateLine();
+			fCountL = 0;
+		}
 		return Update_Status::UPDATE_CONTINUE;
 	}
 
@@ -274,6 +279,7 @@ void ModulePlayGround::StateLine()
 	}
 	else if (lineColorIndex == 6)
 	{
+		App->audio->PlayFx(App->audio->lineFx);
 		//move lines down
 		for (int i = line; i > 0; i--)
 		{

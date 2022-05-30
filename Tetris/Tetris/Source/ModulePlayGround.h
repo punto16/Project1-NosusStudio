@@ -69,6 +69,7 @@ public:
     int lines;
     int height;
 
+    int fCountL = 0;
     int fCountY = 0;
     int fCountX = 0;
 
