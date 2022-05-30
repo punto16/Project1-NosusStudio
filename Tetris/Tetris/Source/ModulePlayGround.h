@@ -64,6 +64,10 @@ public:
 
     void Score();
 
+    void StatePlay();
+
+    void Debug();
+
 public:
 	int currentModule;
     int lines;
@@ -75,9 +79,14 @@ public:
 
     Block block, nextBlock, blockCheck;
 
+    int blockSpawnID;
+
     bool isAlive = true;
     bool rotate = false;
     bool gameOver = false;
+
+    bool lineLimit = false;
+    bool selectBlock = false;
 
     int linePositionIndex = 0;
     int linePositionList[4] = { -1, -1, -1, -1 };

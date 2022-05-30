@@ -32,7 +32,7 @@ public:
 
 public:
 	
-	int lines = 5;
+	int levelLines = 5;
 
 	int isCurtainClosing = false;
 

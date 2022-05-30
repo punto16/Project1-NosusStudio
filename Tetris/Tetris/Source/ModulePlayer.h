@@ -35,6 +35,8 @@ public:
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
 	bool stateLine = false;
+	bool statePlay = true;
+	bool stateStartLevel = false;
 
 	// Fonts
 	int Tetris_font_black		= -1;
@@ -50,7 +52,7 @@ public:
 	uint score;
 	char scoreText[10] = { "\0" };
 
-	uint lines;
+	uint totalLines;
 	char linesText[10] = { "\0" };
 
 	uint round;

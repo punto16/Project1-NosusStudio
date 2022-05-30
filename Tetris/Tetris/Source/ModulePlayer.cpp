@@ -29,7 +29,7 @@ bool ModulePlayer::Start()
 	
 	destroyed = false;
 	score = 000;
-	lines = 000;
+	totalLines = 000;
 	round = 000;
 
 	char lookupTable[] = { "abcdefghijklmnopqrstuvwxyz 0123456789.,;:$#'! /?%&()@ " };
@@ -64,11 +64,11 @@ Update_Status ModulePlayer::PostUpdate()
 	App->fonts->BlitText(25, 217, Tetris_font_red, "score");
 	App->fonts->BlitText(65, 217, Tetris_font_red, scoreText);
 
-	sprintf_s(linesText, 10, "%7d", lines);
+	sprintf_s(linesText, 10, "%7d", totalLines);
 	App->fonts->BlitText(25, 225, Tetris_font_red, "lines");
 	App->fonts->BlitText(65, 225, Tetris_font_red, linesText);
 
-	sprintf_s(roundText, 10, "%7d", lines);
+	sprintf_s(roundText, 10, "%7d", totalLines);
 	App->fonts->BlitText(130, 210, Tetris_font_darkblue, "lines");
 	App->fonts->BlitText(153, 210, Tetris_font_darkblue, linesText);
 

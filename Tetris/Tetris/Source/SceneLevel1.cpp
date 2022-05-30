@@ -80,7 +80,7 @@ bool SceneLevel1::Start()
 	}
 
 	App->playground->gameOver = false;
-	lines = 5;
+	levelLines = 5;
 
 	return ret;
 }
@@ -135,7 +135,7 @@ Update_Status SceneLevel1::PostUpdate()
 
 	if (App->playground->gameOver == false)
 	{
-		if (lines <= 0) {
+		if (levelLines <= 0 && App->playground->lineLimit == false) {
 			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		}
 		else {
