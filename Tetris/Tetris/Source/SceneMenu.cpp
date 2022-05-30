@@ -48,6 +48,9 @@ bool SceneMenu::Start()
 	play_diff = false;
 	selection = 0;
 	timer = 0;
+	lateralBarCounter = 0;
+
+	lateralBarsY = 0, lateralBarsX = 0;
 
 	return ret;
 }
@@ -55,7 +58,7 @@ bool SceneMenu::Start()
 Update_Status SceneMenu::Update()
 {
 	lateralBarsAnim.Update();
-
+	lateralBarCounter++;
 
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
 	{
@@ -114,8 +117,36 @@ Update_Status SceneMenu::Update()
 // Update: draw background
 Update_Status SceneMenu::PostUpdate()
 {
-	int lateralBarsY = 0, lateralBarsX = 0;
-
+	
+	
+	if (lateralBarCounter==17)
+	{
+		lateralBarCounter = 0;
+	}
+	else if (lateralBarCounter == 1)
+	{
+		lateralBarsY = 0, lateralBarsX = 0;
+	}
+	else if (lateralBarCounter == 3)
+	{
+		lateralBarsY = 35, lateralBarsX = 0;
+	}
+	else if (lateralBarCounter == 6)
+	{
+		lateralBarsY = 70, lateralBarsX = 0;
+	}
+	else if (lateralBarCounter == 9)
+	{
+		lateralBarsY = 70, lateralBarsX = 88;
+	}
+	else if (lateralBarCounter == 12)
+	{
+		lateralBarsY = 35, lateralBarsX = 88;
+	}
+	else if (lateralBarCounter == 15)
+	{
+		lateralBarsY = 0, lateralBarsX = 88;
+	}
 
 	// Draw everything --------------------------------------
 	if (play_diff) // If Difficulty menu is true

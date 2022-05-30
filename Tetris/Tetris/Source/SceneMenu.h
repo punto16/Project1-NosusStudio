@@ -41,6 +41,9 @@ public:
 	SDL_Texture* lateralBars = nullptr;
 
 	Animation lateralBarsAnim;
+	unsigned int lateralBarCounter;
+	int lateralBarsY = 0, lateralBarsX = 0;
+
 
 	bool play_diff = false;
 	int selection;
