@@ -45,6 +45,9 @@ bool SceneLevel1::Start()
 	LOG("Loading background assets");
 
 	bool ret = true;
+	isCurtainClosing = false;
+	curtainClosing.Reset();
+	curtainOpening.Reset();
 
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
 	goTexture = App->textures->Load("Assets/Sprites/gameover.png");
@@ -84,7 +87,11 @@ bool SceneLevel1::Start()
 
 Update_Status SceneLevel1::Update()
 {
-	curtainClosing.Update();
+	if (isCurtainClosing == true)
+	{
+		curtainClosing.Update();
+	}
+
 	curtainOpening.Update();
 	
 
@@ -106,6 +113,12 @@ Update_Status SceneLevel1::PostUpdate()
 	//CURTAIN ANIMATION OPENING
 	App->render->Blit(curtainTexture, 128, 96, &(curtainOpening.GetCurrentFrame()));
 	
+
+	if (isCurtainClosing == true)
+	{
+		//CURTAIN ANIMATION CLOSING  NOO VA :(
+		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
+	}
 	
 	//Draw dead blocks
 	for (size_t i = 0; i < 23; i++)
@@ -139,9 +152,8 @@ Update_Status SceneLevel1::PostUpdate()
 		}
 	}
 	else
-	{
-		//CURTAIN ANIMATION CLOSING  NOO VA :(
-		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
+	{	
+		isCurtainClosing = true;
 
 		App->render->Blit(goTexture, 32, 0, NULL);
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);

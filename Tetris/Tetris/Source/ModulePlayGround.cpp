@@ -158,8 +158,8 @@ void ModulePlayGround::NextBlock()
 
 int ModulePlayGround::RandomBlock()
 {
-	return 0;
-	//return rand() % 7;
+	//return 0;
+	return rand() % 7;
 }
 
 void ModulePlayGround::LoadBlockMatrix(Block& block)
