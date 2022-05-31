@@ -119,7 +119,7 @@ Update_Status SceneLevel1::PostUpdate()
 		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
 	}
 	
-	//Draw dead blocks player 1 (left)
+	//Draw dead blocks (player 1) 
 	for (size_t i = 0; i < 23; i++)
 	{
 		for (size_t j = 0; j < 12; j++)
@@ -129,9 +129,9 @@ Update_Status SceneLevel1::PostUpdate()
 		}
 	}
 
-	//Draw dead blocks player 2 (right)
-	if (true)	//multiplayer enabled?
+	if (App->player->multiplayer)	//multiplayer enabled?
 	{
+		//Draw dead blocks (player 2)
 		for (size_t i = 0; i < 23; i++)
 		{
 			for (size_t j = 0; j < 12; j++)
@@ -145,19 +145,28 @@ Update_Status SceneLevel1::PostUpdate()
 
 	if (App->playground->gameOver == false)
 	{
+		//check win condition
 		if (levelLines <= 0 && App->playground->lineLimit == false) {
 			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		}
-		else {
-			//Draw alive block
+		else
+		{
+			//Draw alive block (player 1)
 			if (App->playground->nextBlock.id != 255)
-			{
 				App->tiles->BlitText(8, 24, Alive_Tetromino, NULL, App->playground->nextBlock, true);
-			}
 
-			if (App->playground->block.id != 255) {
-
+			if (App->playground->block.id != 255) 
 				App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
+
+
+			if (App->player->multiplayer)	//multiplayer enabled?
+			{
+				//Draw alive block (player 2)
+				if (App->playground2->nextBlock.id != 255)
+					App->tiles->BlitText2(8, 24, Alive_Tetromino, NULL, App->playground2->nextBlock, true);
+
+				if (App->playground2->block.id != 255)
+					App->tiles->BlitText2(App->playground2->block.x, App->playground2->block.y, Alive_Tetromino, NULL, App->playground2->block, true);
 			}
 		}
 	}

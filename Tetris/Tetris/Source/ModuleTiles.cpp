@@ -195,13 +195,13 @@ void ModuleTiles::BlitText2(int x, int y, int font_id, uint tile, Block2 actual_
 
 		//we divide by 4 because is the width and height of the block matrix
 		if (actual_block.on_playground == true) {
-			x = (x * (tetromino->block_w / 4)) + App->sceneLevel_1->x_TileMap + 192;
+			x = (x * (tetromino->block_w / 4)) + App->sceneLevel_1->x_TileMap2;
 			y = (y * (tetromino->block_h / 4)) + App->sceneLevel_1->y_TileMap;
 		}
 	}
 	else if (tile != NULL) {
 		blockText_text[0] = tetromino->table[((int)tile) - 1];
-		x = (x * tetromino->block_w) + App->sceneLevel_1->x_TileMap;
+		x = (x * tetromino->block_w) + App->sceneLevel_1->x_TileMap2;
 		y = (y * tetromino->block_h) + App->sceneLevel_1->y_TileMap;
 	}
 	else {

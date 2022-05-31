@@ -31,7 +31,7 @@ Application::Application()
 
 	modules[4] =	data =			new ModuleData(true);
 	modules[5] =	playground =	new ModulePlayGround(false);
-	modules[6] =	playground2 =	new ModulePlayGround2(true);
+	modules[6] =	playground2 =	new ModulePlayGround2(false);
 
 	modules[7] =	sceneIntro =	new SceneIntro(true);
 	modules[8] =	sceneMenu =		new SceneMenu(false);
