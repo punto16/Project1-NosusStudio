@@ -40,6 +40,9 @@ bool SceneMenu::Start()
 	leftArrow = App->textures->Load("Assets/Sprites/arrowLeft.png");
 	lateralBars = App->textures->Load("Assets/Sprites/lateralBars.png");
 
+	lateralBarCounter = 0;
+
+	lateralBarsY = 0;
 	App->audio->PlayMusic("", 1.0f);
 
 	App->render->camera.x = 0;
@@ -117,8 +120,7 @@ Update_Status SceneMenu::Update()
 // Update: draw background
 Update_Status SceneMenu::PostUpdate()
 {
-	
-	
+	//counter to change lateral bars position
 	if (lateralBarCounter==17)
 	{
 		lateralBarCounter = 0;
