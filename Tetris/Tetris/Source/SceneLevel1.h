@@ -44,6 +44,10 @@ public:
 	SDL_Texture* curtainTexture = nullptr;
 	SDL_Texture* lateralBars = nullptr;
 
+	SDL_Texture* Russian1 = nullptr;
+	SDL_Texture* Russian2 = nullptr;
+	SDL_Texture* Russian3 = nullptr;
+
 
 	Animation lateralBarsAnim;
 	unsigned int lateralBarCounter;
@@ -51,6 +55,9 @@ public:
 	//animation
 	Animation curtainOpening;
 	Animation curtainClosing;
+	Animation Dance1;
+	Animation Dance2;
+	Animation Dance3;
 
 
 	int Dead_Tetromino = -1;
