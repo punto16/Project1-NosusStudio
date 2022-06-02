@@ -42,6 +42,12 @@ public:
 	SDL_Texture* goTexture = nullptr;
 
 	SDL_Texture* curtainTexture = nullptr;
+	SDL_Texture* lateralBars = nullptr;
+
+
+	Animation lateralBarsAnim;
+	unsigned int lateralBarCounter;
+	int lateralBarsY = 0;
 	//animation
 	Animation curtainOpening;
 	Animation curtainClosing;

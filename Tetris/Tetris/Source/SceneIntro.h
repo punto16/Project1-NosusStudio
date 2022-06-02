@@ -34,6 +34,7 @@ public:
 	SDL_Texture* introTexture = nullptr;
 
 	bool play_intro = false;
+	int counter = 120;
 };
 
 #endif

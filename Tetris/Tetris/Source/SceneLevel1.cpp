@@ -33,6 +33,18 @@ SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 	curtainClosing.PushBack({ 400,0,80,64 });
 	curtainClosing.speed = 0.15f;
 	curtainClosing.loop = false;
+
+	//lateral bars animation
+	lateralBarsAnim.PushBack({ 0,0,2,15 });//pink
+	lateralBarsAnim.PushBack({ 2,0,2,15 });//red
+	lateralBarsAnim.PushBack({ 4,0,2,15 });//orange
+	lateralBarsAnim.PushBack({ 6,0,2,15 });//yellow
+	lateralBarsAnim.PushBack({ 8,0,2,15 });//white
+	lateralBarsAnim.PushBack({ 10,0,2,15 });//green
+	lateralBarsAnim.PushBack({ 12,0,2,15 });//cyan
+	lateralBarsAnim.PushBack({ 14,0,2,15 });//blue
+	lateralBarsAnim.loop = true;
+	lateralBarsAnim.speed = 0.1f;
 }
 
 SceneLevel1::~SceneLevel1()
@@ -53,8 +65,9 @@ bool SceneLevel1::Start()
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
 	goTexture = App->textures->Load("Assets/Sprites/gameover.png");
 	curtainTexture = App->textures->Load("Assets/Sprites/sprites_courtin.png");
+	lateralBars = App->textures->Load("Assets/Sprites/lateralBars.png");
 
-	char Blocks_1[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ[^_`abcdefghijklmnopqrstuvwxyz{|Ã}~!Á#$%&Â()*+À-./0123456789:;<=>?@ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»»»»»»»»»»" };
+	char Blocks_1[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ[^_`abcdefghijklmnopqrstuvwxyz{|Ãƒ}~!Ã#$%&Ã‚()*+Ã€-./0123456789:;<=>?@Ã‡Ã¼Ã©Ã¢Ã¤Ã Ã¥Ã§ÃªÃ«Ã¨Ã¯Ã®Ã¬Ã„Ã…Ã‰Ã¦Ã†Ã´Ã¶Ã²Ã»Ã¹Ã¿Ã–ÃœÃ¸Â£Ã˜Ã—Æ’Ã¡Ã­Ã³ÃºÃ±Ã‘ÂªÂºÂ¿Â®Â¬Â½Â¼Â¡Â«Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»" };
 	Dead_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_dead.png", Blocks_1, 10);
 	
 	char Blocks_2[] = { "abcdefghijklmnopqrstuvwxyz.," };
@@ -95,6 +108,8 @@ Update_Status SceneLevel1::Update()
 	}
 
 	curtainOpening.Update();
+	lateralBarsAnim.Update();
+	lateralBarCounter++;
 	
 
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
@@ -122,7 +137,68 @@ Update_Status SceneLevel1::PostUpdate()
 		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
 	}
 	
-	//Draw dead blocks (player 1) 
+	if (App->playground->lines == 4)
+	{
+		//counter to change lateral bars position
+		if (lateralBarCounter >= 60)
+		{
+			lateralBarCounter = 0;
+		}
+		else if (lateralBarCounter == 1)
+		{
+			lateralBarsY = 24;
+		}
+		else if (lateralBarCounter == 5)
+		{
+			lateralBarsY = 46;
+		}
+		else if (lateralBarCounter == 10)
+		{
+			lateralBarsY = 69;
+		}
+		else if (lateralBarCounter == 15)
+		{
+			lateralBarsY = 91;
+		}
+		else if (lateralBarCounter == 20)
+		{
+			lateralBarsY = 115;
+		}
+		else if (lateralBarCounter == 25)
+		{
+			lateralBarsY = 0;
+		}
+		else if (lateralBarCounter == 30)
+		{
+			lateralBarsY = 24;
+		}
+		else if (lateralBarCounter == 35)
+		{
+			lateralBarsY = 46;
+		}
+		else if (lateralBarCounter == 40)
+		{
+			lateralBarsY = 69;
+		}
+		else if (lateralBarCounter == 45)
+		{
+			lateralBarsY = 91;
+		}
+		else if (lateralBarCounter == 50)
+		{
+			lateralBarsY = 115;
+		}
+		else if (lateralBarCounter == 55)
+		{
+			App->playground->lines = 0;
+		}
+
+		App->render->Blit(lateralBars, 28, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
+		App->render->Blit(lateralBars, 116, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
+	}
+
+
+  //Draw dead blocks (player 1) 
 	for (size_t i = 0; i < 23; i++)
 	{
 		for (size_t j = 0; j < 12; j++)
@@ -150,6 +226,7 @@ Update_Status SceneLevel1::PostUpdate()
 	{
 		//check win condition
 		if (levelLines <= 0 && App->playground->lineLimit == false) {
+			isCurtainClosing = true;
 			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		}
 		else
@@ -195,6 +272,7 @@ bool SceneLevel1::CleanUp()
 	App->textures->Unload(bgTexture);
 	App->textures->Unload(goTexture);
 	App->textures->Unload(curtainTexture);
+	App->textures->Unload(lateralBars);
 
 	App->tiles->UnLoad(Dead_Tetromino);
 	App->tiles->UnLoad(Alive_Tetromino);
