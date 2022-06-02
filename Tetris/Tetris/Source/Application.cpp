@@ -3,6 +3,7 @@
 #include "Module.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
+#include "ModuleController.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
@@ -20,28 +21,31 @@
 
 Application::Application()
 {
+	//THIS VERSION IS WORKING
 	// The order in which the modules are added is very important.
 	// It will define the order in which Pre/Update/Post will be called
 	// Render should always be last, as our last action should be updating the screen
 
 	modules[0] =	window =		new ModuleWindow(true);
-	modules[1] =	input =			new ModuleInput(true);
-	modules[2] =	textures =		new ModuleTextures(true);
-	modules[3] =	audio =			new ModuleAudio(true);
+	modules[1] =    input =         new ModuleInput(true);
+	modules[2] =	controller =	new ModuleController(true);
 
-	modules[4] =	data =			new ModuleData(true);
-	modules[5] =	playground =	new ModulePlayGround(false);
-	modules[6] =	playground2 =	new ModulePlayGround2(false);
+	modules[3] =	textures =		new ModuleTextures(true);
+	modules[4] =	audio =			new ModuleAudio(true);
 
-	modules[7] =	sceneIntro =	new SceneIntro(true);
-	modules[8] =	sceneMenu =		new SceneMenu(false);
-	modules[9] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
-	modules[10] =	player =		new ModulePlayer(false);	//Player starts disabled
+	modules[5] =	data =			new ModuleData(true);
+	modules[6] =	playground =	new ModulePlayGround(false);
+	modules[7] =	playground2 =	new ModulePlayGround2(false);
 
-	modules[11] =	fade =			new ModuleFadeToBlack(true);
-	modules[12] =	fonts =			new ModuleFonts(true);
-	modules[13] =	tiles =			new ModuleTiles(true);
-	modules[14] =	render =		new ModuleRender(true);
+	modules[8] =	sceneIntro =	new SceneIntro(true);
+	modules[9] =	sceneMenu =		new SceneMenu(false);
+	modules[10] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
+	modules[11] =	player =		new ModulePlayer(false);	//Player starts disabled
+
+	modules[12] =	fade =			new ModuleFadeToBlack(true);
+	modules[13] =	fonts =			new ModuleFonts(true);
+	modules[14] =	tiles =			new ModuleTiles(true);
+	modules[15] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()

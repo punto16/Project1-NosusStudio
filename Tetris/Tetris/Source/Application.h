@@ -3,25 +3,31 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 15
+#define NUM_MODULES 16
 #define NUM_LEVELS 1
 
 class Module;
 class ModuleWindow;
 class ModuleInput;
+class ModuleController;
+
 class ModuleTextures;
 class ModuleAudio;
-class ModulePlayer;
-class SceneIntro;
-class SceneLevel1;
-class ModuleFadeToBlack;
-class ModuleFonts;
-class ModuleRender;
+
+class ModuleData;
 class ModulePlayGround;
 class ModulePlayGround2;
-class ModuleData;
-class ModuleTiles;
+
+class SceneIntro;
 class SceneMenu;
+class SceneLevel1;
+class ModulePlayer;
+
+class ModuleFadeToBlack;
+class ModuleFonts;
+class ModuleTiles;
+class ModuleRender;
+
 
 class Application
 {
@@ -50,23 +56,23 @@ public:
 	// All the modules stored individually
 	ModuleWindow* window = nullptr;
 	ModuleInput* input = nullptr;
+	ModuleController* controller  = nullptr;
+
 	ModuleTextures* textures = nullptr;
 	ModuleAudio* audio = nullptr;
 
-	ModulePlayer* player = nullptr;
-
-	SceneIntro* sceneIntro = nullptr;
-	SceneLevel1* sceneLevel_1 = nullptr;
-	SceneMenu* sceneMenu = nullptr;
-
+	ModuleData* data = nullptr;
 	ModulePlayGround* playground = nullptr;
 	ModulePlayGround2* playground2 = nullptr;
-	ModuleData* data = nullptr;
+
+	SceneIntro* sceneIntro = nullptr;
+	SceneMenu* sceneMenu = nullptr;
+	SceneLevel1* sceneLevel_1 = nullptr;
+	ModulePlayer* player = nullptr;
 
 	ModuleFadeToBlack* fade = nullptr;
 	ModuleFonts* fonts = nullptr;
 	ModuleTiles* tiles = nullptr;
-
 	ModuleRender* render = nullptr;
 };
 
