@@ -45,6 +45,82 @@ SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 	lateralBarsAnim.PushBack({ 14,0,2,15 });//blue
 	lateralBarsAnim.loop = true;
 	lateralBarsAnim.speed = 0.1f;
+
+	//Victory animation 1
+	Dance1.PushBack({ 0, 0, 33, 40 });
+	Dance1.PushBack({ 33, 0, 33, 40 });
+	Dance1.PushBack({ 66, 0, 33, 40 });
+	Dance1.PushBack({ 99, 0, 33, 40 });
+	Dance1.PushBack({ 132, 0, 33, 40 });
+	Dance1.PushBack({ 165, 0, 33, 40 }); //Final puerta
+	Dance1.PushBack({ 198, 0, 33, 40 });
+	Dance1.PushBack({ 231, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 297, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 330, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 363, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 330, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 297, 0, 33, 40 });
+	Dance1.PushBack({ 396, 0, 33, 40 });
+	Dance1.PushBack({ 297, 0, 33, 40 });
+	Dance1.PushBack({ 429, 0, 33, 40 });
+	Dance1.PushBack({ 297, 0, 33, 40 });
+	Dance1.PushBack({ 396, 0, 33, 40 });
+	Dance1.PushBack({ 297, 0, 33, 40 });
+	Dance1.PushBack({ 462, 0, 33, 40 });
+	Dance1.PushBack({ 495, 0, 33, 40 });
+	Dance1.PushBack({ 528, 0, 33, 40 });
+	Dance1.PushBack({ 495, 0, 33, 40 });
+	Dance1.PushBack({ 462, 0, 33, 40 });
+	Dance1.PushBack({ 495, 0, 33, 40 }); //ESTE FRAME ESTA MAL
+	Dance1.PushBack({ 561, 0, 33, 40 });
+	Dance1.PushBack({ 495, 0, 33, 40 }); //ESTE FRAME ESTA MAL
+	Dance1.PushBack({ 462, 0, 33, 40 });
+	Dance1.PushBack({ 495, 0, 33, 40 });
+	Dance1.PushBack({ 528, 0, 33, 40 });
+	Dance1.PushBack({ 495, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 330, 0, 33, 40 });
+	Dance1.PushBack({ 594, 0, 33, 40 });
+	Dance1.PushBack({ 330, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 363, 0, 33, 40 });
+	Dance1.PushBack({ 627, 0, 33, 40 });
+	Dance1.PushBack({ 363, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 330, 0, 33, 40 });
+	Dance1.PushBack({ 594, 0, 33, 40 });
+	Dance1.PushBack({ 330, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 363, 0, 33, 40 });
+	Dance1.PushBack({ 627, 0, 33, 40 });
+	Dance1.PushBack({ 363, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 561, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 660, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 231, 0, 33, 40 });
+	Dance1.PushBack({ 198, 0, 33, 40 });
+	Dance1.PushBack({ 165, 0, 33, 40 });
+	Dance1.PushBack({ 132, 0, 33, 40 });
+	Dance1.PushBack({ 99, 0, 33, 40 });
+	Dance1.PushBack({ 66, 0, 33, 40 });
+	Dance1.PushBack({ 33, 0, 33, 40 });
+	Dance1.PushBack({ 0, 0, 33, 40 });
+
+
+	Dance1.loop = false;
+	Dance1.speed = 0.1f;
+
+	//Victory animation 2
+
+	//Victory animation 3
+
 }
 
 SceneLevel1::~SceneLevel1()
@@ -66,6 +142,10 @@ bool SceneLevel1::Start()
 	goTexture = App->textures->Load("Assets/Sprites/gameover.png");
 	curtainTexture = App->textures->Load("Assets/Sprites/sprites_courtin.png");
 	lateralBars = App->textures->Load("Assets/Sprites/lateralBars.png");
+	Russian1 = App->textures->Load("Assets/Sprites/Dance1");
+	Russian2 = App->textures->Load("Assets/Sprites/Dance2");
+	Russian3 = App->textures->Load("Assets/Sprites/Dance3");
+
 
 	char Blocks_1[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ[^_`abcdefghijklmnopqrstuvwxyz{|Ã}~!Á#$%&Â()*+À-./0123456789:;<=>?@ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»»»»»»»»»»" };
 	Dead_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_dead.png", Blocks_1, 10);
@@ -110,7 +190,7 @@ Update_Status SceneLevel1::Update()
 	curtainOpening.Update();
 	lateralBarsAnim.Update();
 	lateralBarCounter++;
-	
+	Dance1.Update();
 
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
 	{
@@ -273,6 +353,9 @@ bool SceneLevel1::CleanUp()
 	App->textures->Unload(goTexture);
 	App->textures->Unload(curtainTexture);
 	App->textures->Unload(lateralBars);
+	App->textures->Unload(Russian1);
+	App->textures->Unload(Russian2);
+	App->textures->Unload(Russian3);
 
 	App->tiles->UnLoad(Dead_Tetromino);
 	App->tiles->UnLoad(Alive_Tetromino);
