@@ -34,8 +34,13 @@ public:
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
-	bool stateLine = false;
-	bool statePlay = true;
+
+	bool stateLine1 = false;
+	bool statePlay1 = true;
+	bool stateLine2 = false;
+	bool statePlay2 = true;
+
+	bool multiplayer = true;
 	bool stateStartLevel = false;
 
 	// Fonts

@@ -24,7 +24,7 @@ typedef unsigned char uchar;
 #define SCREEN_WIDTH 336
 #define SCREEN_HEIGHT 240
 
-#define SCREEN_SIZE 3
+#define SCREEN_SIZE 4
 #define WIN_FULLSCREEN 0
 #define WIN_FULLSCREEN_DESKTOP 0
 #define WIN_BORDERLESS 0

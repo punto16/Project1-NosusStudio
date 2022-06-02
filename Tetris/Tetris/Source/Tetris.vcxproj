@@ -82,6 +82,7 @@
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModulePlayGround.h" />
+    <ClInclude Include="ModulePlayGround2.h" />
     <ClInclude Include="ModuleTiles.h" />
     <ClInclude Include="SceneIntro.h" />
     <ClInclude Include="SceneLevel1.h" />
@@ -103,6 +104,7 @@
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModulePlayGround.cpp" />
+    <ClCompile Include="ModulePlayGround2.cpp" />
     <ClCompile Include="ModuleTiles.cpp" />
     <ClCompile Include="SceneIntro.cpp" />
     <ClCompile Include="SceneLevel1.cpp" />

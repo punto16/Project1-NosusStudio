@@ -12,6 +12,7 @@
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
 #include "ModulePlayGround.h"
+#include "ModulePlayGround2.h"
 #include "ModuleData.h"
 #include "ModuleTiles.h"
 #include "SceneMenu.h"
@@ -30,16 +31,17 @@ Application::Application()
 
 	modules[4] =	data =			new ModuleData(true);
 	modules[5] =	playground =	new ModulePlayGround(false);
+	modules[6] =	playground2 =	new ModulePlayGround2(false);
 
-	modules[6] =	sceneIntro =	new SceneIntro(true);
-	modules[7] =	sceneMenu =		new SceneMenu(false);
-	modules[8] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
-	modules[9] =	player =		new ModulePlayer(false);	//Player starts disabled
+	modules[7] =	sceneIntro =	new SceneIntro(true);
+	modules[8] =	sceneMenu =		new SceneMenu(false);
+	modules[9] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
+	modules[10] =	player =		new ModulePlayer(false);	//Player starts disabled
 
-	modules[10] =	fade =			new ModuleFadeToBlack(true);
-	modules[11] =	fonts =			new ModuleFonts(true);
-	modules[12] =	tiles =			new ModuleTiles(true);
-	modules[13] =	render =		new ModuleRender(true);
+	modules[11] =	fade =			new ModuleFadeToBlack(true);
+	modules[12] =	fonts =			new ModuleFonts(true);
+	modules[13] =	tiles =			new ModuleTiles(true);
+	modules[14] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()

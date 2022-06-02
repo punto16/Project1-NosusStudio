@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayGround.h"
+#include "ModulePlayGround2.h"
 #include "ModuleFonts.h"
 #include "ModuleTiles.h"
 
@@ -66,15 +67,12 @@ bool SceneLevel1::Start()
 	curtainTexture = App->textures->Load("Assets/Sprites/sprites_courtin.png");
 	lateralBars = App->textures->Load("Assets/Sprites/lateralBars.png");
 
-	char Blocks_1[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ[^_`abcdefghijklmnopqrstuvwxyz{|Ã}~!Á#$%&Â()*+À-./0123456789:;<=>?@ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»»»»»»»»»»" };
+	char Blocks_1[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ[^_`abcdefghijklmnopqrstuvwxyz{|Ãƒ}~!Ã#$%&Ã‚()*+Ã€-./0123456789:;<=>?@Ã‡Ã¼Ã©Ã¢Ã¤Ã Ã¥Ã§ÃªÃ«Ã¨Ã¯Ã®Ã¬Ã„Ã…Ã‰Ã¦Ã†Ã´Ã¶Ã²Ã»Ã¹Ã¿Ã–ÃœÃ¸Â£Ã˜Ã—Æ’Ã¡Ã­Ã³ÃºÃ±Ã‘ÂªÂºÂ¿Â®Â¬Â½Â¼Â¡Â«Â»Â»Â»Â»Â»Â»Â»Â»Â»Â»" };
 	Dead_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_dead.png", Blocks_1, 10);
 	
 	char Blocks_2[] = { "abcdefghijklmnopqrstuvwxyz.," };
 	Alive_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_alive.png", Blocks_2, 7);
 
-
-
-	
 
 	App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
 
@@ -83,6 +81,9 @@ bool SceneLevel1::Start()
 
 	App->player->Enable();
 	App->playground->Enable();
+
+	if (App->player->multiplayer == true)
+		App->playground2->Enable();
 
 	for (size_t i = 0; i < 23; i++)
 	{
@@ -196,35 +197,56 @@ Update_Status SceneLevel1::PostUpdate()
 		App->render->Blit(lateralBars, 116, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
 	}
 
-	//Draw dead blocks
+
+  //Draw dead blocks (player 1) 
 	for (size_t i = 0; i < 23; i++)
 	{
 		for (size_t j = 0; j < 12; j++)
 		{
 			if (playground[i][j] != 0 && playground[i][j] != 255)
-			{
 				App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
-
-			}
 		}
 	}
 
+	if (App->player->multiplayer)	//multiplayer enabled?
+	{
+		//Draw dead blocks (player 2)
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground2[i][j] != 0 && playground2[i][j] != 255)
+					App->tiles->BlitText2(j, i, Dead_Tetromino, playground2[i][j], App->playground2->block, false);
+			}
+		}
+	}
+	
+
 	if (App->playground->gameOver == false)
 	{
+		//check win condition
 		if (levelLines <= 0 && App->playground->lineLimit == false) {
 			isCurtainClosing = true;
 			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		}
-		else {
-			//Draw alive block
+		else
+		{
+			//Draw alive block (player 1)
 			if (App->playground->nextBlock.id != 255)
-			{
 				App->tiles->BlitText(8, 24, Alive_Tetromino, NULL, App->playground->nextBlock, true);
-			}
 
-			if (App->playground->block.id != 255) {
-
+			if (App->playground->block.id != 255) 
 				App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
+
+
+			if (App->player->multiplayer)	//multiplayer enabled?
+			{
+				//Draw alive block (player 2)
+				if (App->playground2->nextBlock.id != 255)
+					App->tiles->BlitText2(8, 24, Alive_Tetromino, NULL, App->playground2->nextBlock, true);
+
+				if (App->playground2->block.id != 255)
+					App->tiles->BlitText2(App->playground2->block.x, App->playground2->block.y, Alive_Tetromino, NULL, App->playground2->block, true);
 			}
 		}
 	}
