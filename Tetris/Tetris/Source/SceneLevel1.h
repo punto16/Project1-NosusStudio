@@ -41,11 +41,13 @@ public:
 
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* lateralNumbersTexture = nullptr;
 	SDL_Texture* goTexture = nullptr;
 
 	SDL_Texture* curtainTexture = nullptr;
 	SDL_Texture* lateralBars = nullptr;
 
+	SDL_Rect lateralNumbersSection;
 
 	Animation lateralBarsAnim;
 	unsigned int lateralBarCounter;

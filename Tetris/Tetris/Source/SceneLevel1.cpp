@@ -62,6 +62,7 @@ bool SceneLevel1::Start()
 	curtainOpening.Reset();
 
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
+	lateralNumbersTexture = App->textures->Load("Assets/Sprites/lateralNumbers_BG_1.png");
 	goTexture = App->textures->Load("Assets/Sprites/gameover.png");
 	curtainTexture = App->textures->Load("Assets/Sprites/sprites_courtin.png");
 	lateralBars = App->textures->Load("Assets/Sprites/lateralBars.png");
@@ -208,6 +209,40 @@ Update_Status SceneLevel1::PostUpdate()
 				}
 			}
 		}
+
+		//draw lateral numbers (5 to 1)
+		if (levelLines == 5)
+		{
+			lateralNumbersSection.x = 0; lateralNumbersSection.y = 0;
+			lateralNumbersSection.w = 16; lateralNumbersSection.h = 16;
+			App->render->Blit(lateralNumbersTexture, 4, 68, &lateralNumbersSection);
+		}
+		else if (levelLines == 4)
+		{
+			lateralNumbersSection.x = 16; lateralNumbersSection.y = 0;
+			lateralNumbersSection.w = 16; lateralNumbersSection.h = 16;
+			App->render->Blit(lateralNumbersTexture, 4, 95, &lateralNumbersSection);
+		}
+		else if (levelLines == 3)
+		{
+			lateralNumbersSection.x = 32; lateralNumbersSection.y = 0;
+			lateralNumbersSection.w = 16; lateralNumbersSection.h = 16;
+			App->render->Blit(lateralNumbersTexture, 4, 122, &lateralNumbersSection);
+		}
+		else if (levelLines == 2)
+		{
+			lateralNumbersSection.x = 48; lateralNumbersSection.y = 0;
+			lateralNumbersSection.w = 16; lateralNumbersSection.h = 16;
+			App->render->Blit(lateralNumbersTexture, 4, 149, &lateralNumbersSection);
+		}
+		else if (levelLines == 1)
+		{
+			lateralNumbersSection.x = 64; lateralNumbersSection.y = 0;
+			lateralNumbersSection.w = 16; lateralNumbersSection.h = 16;
+			App->render->Blit(lateralNumbersTexture, 4, 176, &lateralNumbersSection);
+		}
+
+
 
 		if (App->playground->gameOver == false)
 		{

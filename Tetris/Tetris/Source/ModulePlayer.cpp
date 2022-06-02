@@ -50,6 +50,8 @@ bool ModulePlayer::Start()
 	Tetris_font_red = App->fonts->Load("Assets/Fonts/sprite_font_red.png", lookupTable, 6);
 	Tetris_font_white = App->fonts->Load("Assets/Fonts/sprite_font_white.png", lookupTable, 6);
 
+	rainbowBar = App->textures->Load("Assets/Sprites/rainbowBar.png");
+
 	return ret;
 }
 
@@ -66,6 +68,10 @@ Update_Status ModulePlayer::PostUpdate()
 	if (score > App->data->high_score) {
 		App->data->high_score = score;
 	}
+
+	//Draw rainbow bar
+
+
 
 	// Draw UI (score) --------------------------------------
 	sprintf_s(scoreText, 10, "%7d", score);
@@ -152,6 +158,8 @@ bool ModulePlayer::CleanUp()
 	App->fonts->UnLoad(Tetris_font_purpura);
 	App->fonts->UnLoad(Tetris_font_red);
 	App->fonts->UnLoad(Tetris_font_white);
+
+	App->textures->Unload(rainbowBar);
 
 	return true;
 }
