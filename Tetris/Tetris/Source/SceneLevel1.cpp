@@ -69,6 +69,9 @@ bool SceneLevel1::Start()
 	App->player->Enable();
 	App->playground->Enable();
 
+	if (App->player->multiplayer == true)
+		App->playground2->Enable();
+
 	for (size_t i = 0; i < 23; i++)
 	{
 		for (size_t j = 0; j < 12; j++)

@@ -182,10 +182,10 @@ void ModulePlayGround2::SaveInput()
 {
 	block.inputY = 1;
 
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT) { block.inputX = -1; }
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT) { block.inputY = 20; }
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT) { block.inputX = 1; }
-	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN) { rotate = true; }
+	if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT) { block.inputX = -1; }
+	if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT) { block.inputY = 20; }
+	if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT) { block.inputX = 1; }
+	if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_DOWN) { rotate = true; }
 
 	// DEBUG KEYS
 	if (App->input->keys[SDL_SCANCODE_F1] == Key_State::KEY_DOWN) { App->sceneLevel_1->levelLines = 0; }
