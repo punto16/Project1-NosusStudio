@@ -57,7 +57,7 @@ bool SceneLevel1::Start()
 	LOG("Loading background assets");
 
 	bool ret = true;
-	isCurtainClosing = false;
+
 	curtainClosing.Reset();
 	curtainOpening.Reset();
 
@@ -72,11 +72,7 @@ bool SceneLevel1::Start()
 	char Blocks_2[] = { "abcdefghijklmnopqrstuvwxyz.," };
 	Alive_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_alive.png", Blocks_2, 7);
 
-
-
-	
-
-	App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
+	//App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -101,12 +97,8 @@ bool SceneLevel1::Start()
 
 Update_Status SceneLevel1::Update()
 {
-	if (isCurtainClosing == true)
-	{
-		curtainClosing.Update();
-	}
-
-	curtainOpening.Update();
+	if(App->player->stateWin || App->player->stateLose){ curtainClosing.Update(); }
+	if (App->player->stateStartLevel) { curtainOpening.Update(); }
 	lateralBarsAnim.Update();
 	lateralBarCounter++;
 	
@@ -125,115 +117,156 @@ Update_Status SceneLevel1::PostUpdate()
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
-	
-	//CURTAIN ANIMATION OPENING
-	App->render->Blit(curtainTexture, 128, 96, &(curtainOpening.GetCurrentFrame()));
-	
-
-	if (isCurtainClosing == true)
+	//Next block
+	if (App->playground->nextBlock.id != 255)
 	{
+		App->tiles->BlitText(8, 24, Alive_Tetromino, NULL, App->playground->nextBlock, true);
+	}
+
+	
+	if (App->player->stateStartLevel) {
+		//CURTAIN ANIMATION OPENING
+		App->render->Blit(curtainTexture, 128, 96, &(curtainOpening.GetCurrentFrame()));
+	}
+	
+	if (App->player->statePlay || App->player->stateLine) {
+
+		if (!playMusic) {
+			App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
+			playMusic = true;
+		}
+
+		if (App->playground->lines == 4)
+		{
+			//counter to change lateral bars position
+			if (lateralBarCounter >= 60)
+			{
+				lateralBarCounter = 0;
+			}
+			else if (lateralBarCounter == 1)
+			{
+				lateralBarsY = 24;
+			}
+			else if (lateralBarCounter == 5)
+			{
+				lateralBarsY = 46;
+			}
+			else if (lateralBarCounter == 10)
+			{
+				lateralBarsY = 69;
+			}
+			else if (lateralBarCounter == 15)
+			{
+				lateralBarsY = 91;
+			}
+			else if (lateralBarCounter == 20)
+			{
+				lateralBarsY = 115;
+			}
+			else if (lateralBarCounter == 25)
+			{
+				lateralBarsY = 0;
+			}
+			else if (lateralBarCounter == 30)
+			{
+				lateralBarsY = 24;
+			}
+			else if (lateralBarCounter == 35)
+			{
+				lateralBarsY = 46;
+			}
+			else if (lateralBarCounter == 40)
+			{
+				lateralBarsY = 69;
+			}
+			else if (lateralBarCounter == 45)
+			{
+				lateralBarsY = 91;
+			}
+			else if (lateralBarCounter == 50)
+			{
+				lateralBarsY = 115;
+			}
+			else if (lateralBarCounter == 55)
+			{
+				App->playground->lines = 0;
+			}
+
+			App->render->Blit(lateralBars, 28, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
+			App->render->Blit(lateralBars, 116, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
+		}
+
+		//Draw dead blocks
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground[i][j] != 0 && playground[i][j] != 255)
+				{
+					App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
+
+				}
+			}
+		}
+
+		if (App->playground->gameOver == false)
+		{
+			if (levelLines <= 0 && App->playground->lineLimit == false && App->player->statePlay == true) {
+				//WIN
+				App->player->stateWin = true;
+				App->player->statePlay = false;
+			}
+			else {
+				//Draw alive block
+
+				if (App->playground->block.id != 255) {
+
+					App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
+				}
+			}
+		}
+		else
+		{
+			//Game Over
+			App->player->stateLose = true;
+			App->player->statePlay = false;
+		}
+	}
+
+	if (App->player->stateLose == true) {
+		//Game Over
+
+		if (playMusic) {
+			App->audio->PlayMusic("", 1.0f);
+			playMusic = false;
+		}
+
 		//CURTAIN ANIMATION CLOSING  NOO VA :(
 		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
-	}
-	
-	if (App->playground->lines == 4)
-	{
-		//counter to change lateral bars position
-		if (lateralBarCounter >= 60)
-		{
-			lateralBarCounter = 0;
-		}
-		else if (lateralBarCounter == 1)
-		{
-			lateralBarsY = 24;
-		}
-		else if (lateralBarCounter == 5)
-		{
-			lateralBarsY = 46;
-		}
-		else if (lateralBarCounter == 10)
-		{
-			lateralBarsY = 69;
-		}
-		else if (lateralBarCounter == 15)
-		{
-			lateralBarsY = 91;
-		}
-		else if (lateralBarCounter == 20)
-		{
-			lateralBarsY = 115;
-		}
-		else if (lateralBarCounter == 25)
-		{
-			lateralBarsY = 0;
-		}
-		else if (lateralBarCounter == 30)
-		{
-			lateralBarsY = 24;
-		}
-		else if (lateralBarCounter == 35)
-		{
-			lateralBarsY = 46;
-		}
-		else if (lateralBarCounter == 40)
-		{
-			lateralBarsY = 69;
-		}
-		else if (lateralBarCounter == 45)
-		{
-			lateralBarsY = 91;
-		}
-		else if (lateralBarCounter == 50)
-		{
-			lateralBarsY = 115;
-		}
-		else if (lateralBarCounter == 55)
-		{
-			App->playground->lines = 0;
-		}
-
-		App->render->Blit(lateralBars, 28, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
-		App->render->Blit(lateralBars, 116, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
-	}
-
-	//Draw dead blocks
-	for (size_t i = 0; i < 23; i++)
-	{
-		for (size_t j = 0; j < 12; j++)
-		{
-			if (playground[i][j] != 0 && playground[i][j] != 255)
-			{
-				App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
-
-			}
-		}
-	}
-
-	if (App->playground->gameOver == false)
-	{
-		if (levelLines <= 0 && App->playground->lineLimit == false) {
-			isCurtainClosing = true;
-			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
-		}
-		else {
-			//Draw alive block
-			if (App->playground->nextBlock.id != 255)
-			{
-				App->tiles->BlitText(8, 24, Alive_Tetromino, NULL, App->playground->nextBlock, true);
-			}
-
-			if (App->playground->block.id != 255) {
-
-				App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
-			}
-		}
-	}
-	else
-	{	
-		isCurtainClosing = true;
 
 		App->render->Blit(goTexture, 32, 0, NULL);
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+
+		if (winDelay <= 0) {
+			//App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		}
+		winDelay--;
+	}
+
+	if (App->player->stateWin == true) {
+		//WIN
+
+		if (playMusic) {
+			App->audio->PlayMusic("", 1.0f);
+			playMusic = false;
+		}
+
+		//CURTAIN ANIMATION CLOSING  NOO VA :(
+		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
+
+		if (winDelay<=0) {
+			//App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		}
+		winDelay--;
 	}
 
 

@@ -34,7 +34,9 @@ public:
 	
 	int levelLines = 5;
 
-	int isCurtainClosing = false;
+	bool playMusic = false;
+
+	int winDelay = 120;
 
 
 	// The scene sprite sheet loaded into an SDL_Texture
