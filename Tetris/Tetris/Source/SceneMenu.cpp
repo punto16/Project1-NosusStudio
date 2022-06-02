@@ -183,10 +183,12 @@ Update_Status SceneMenu::PostUpdate()
 		 case 0: //Singleplayer Arrows
 			App->render->Blit(rightArrow, 47, 33, NULL);
 			App->render->Blit(leftArrow, 111, 33, NULL);
+			App->render->Blit(lateralBars, 12 + lateralBarsX * 1.64, 86 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
 			break;
 		 case 1: //Multiplayer Arrows
 			App->render->Blit(rightArrow, 215, 33, NULL);
 			App->render->Blit(leftArrow, 289, 33, NULL);
+			App->render->Blit(lateralBars, 180 + lateralBarsX * 1.64, 86 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
 			break;
 		}
 	}
