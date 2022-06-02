@@ -67,11 +67,9 @@ bool SceneLevel1::Start()
 	curtainTexture = App->textures->Load("Assets/Sprites/sprites_courtin.png");
 	lateralBars = App->textures->Load("Assets/Sprites/lateralBars.png");
 
-	char Blocks_1[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ[^_`abcdefghijklmnopqrstuvwxyz{|Ã}~!Á#$%&Â()*+À-./0123456789:;<=>?@ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»»»»»»»»»»" };
-	Dead_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_dead.png", Blocks_1, 10);
+	Dead_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_dead.png", 15, 10);
 	
-	char Blocks_2[] = { "abcdefghijklmnopqrstuvwxyz.," };
-	Alive_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_alive.png", Blocks_2, 7);
+	Alive_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_alive.png", 4, 7);
 
 
 	App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);

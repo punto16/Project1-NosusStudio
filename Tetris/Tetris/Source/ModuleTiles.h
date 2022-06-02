@@ -13,10 +13,6 @@ struct SDL_Texture;
 
 struct Tetrominos
 {
-	// Lookup table. All characters displayed in the same order as the texture
-	char table[MAX_TETROMINO_BLOCKS];
-	char dictionary[MAX_TETROMINO_BLOCKS];
-
 	// The font texture
 	SDL_Texture* texture = nullptr;
 
@@ -44,7 +40,7 @@ public:
 	// Param texturePath	- The path to the texture file
 	// Param characters		- The lookup table. All characters displayed in the same order as the texture
 	// Param rows			- The amount of character rows in the texture
-	int Load(const char* texturePath, const char* tiles, uint rows = 1);
+	int Load(const char* texturePath, uint columns, uint rows = 1);
 
 	// Removes a font by its index
 	// Unloads the texture and removes it from the fonts array
