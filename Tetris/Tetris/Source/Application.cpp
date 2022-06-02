@@ -21,6 +21,7 @@
 
 Application::Application()
 {
+	//THIS VERSION IS WORKING
 	// The order in which the modules are added is very important.
 	// It will define the order in which Pre/Update/Post will be called
 	// Render should always be last, as our last action should be updating the screen
