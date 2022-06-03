@@ -52,7 +52,8 @@ public:
 	Animation lateralBarsAnim;
 	unsigned int lateralBarCounter;
 	int lateralBarsY = 0;
-	//animation
+
+	//animations
 	Animation curtainOpening;
 	Animation curtainClosing;
 	Animation Dance1;

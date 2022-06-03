@@ -40,7 +40,7 @@ public:
 	bool stateLine2 = false;
 	bool statePlay2 = true;
 
-	bool multiplayer = true;
+	bool multiplayer = false;
 	bool stateStartLevel = false;
 
 	// Fonts

@@ -1,5 +1,7 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: El directorio intermedio (Debug\) contiene archivos compartidos de otro proyecto (Project_9_Solution.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
-  SceneLevel1.cpp
-C:\Users\franciscofp4\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\franciscofp4\source\repos\Project1-NosusStudio\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-  Tetris.vcxproj -> C:\Users\franciscofp4\source\repos\Project1-NosusStudio\Tetris\Debug\Tetris.exe
+  SceneMenu.cpp
+C:\Users\hekba\OneDrive\CITM\1B\Project_1\Tetris\Tetris\Tetris\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\hekba\OneDrive\CITM\1B\Project_1\Tetris\Tetris\Tetris\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\hekba\OneDrive\CITM\1B\Project_1\Tetris\Tetris\Tetris\Source\SceneMenu.cpp(184,38): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\hekba\OneDrive\CITM\1B\Project_1\Tetris\Tetris\Tetris\Source\SceneMenu.cpp(189,39): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+  Tetris.vcxproj -> C:\Users\hekba\OneDrive\CITM\1B\Project_1\Tetris\Tetris\Debug\Tetris.exe

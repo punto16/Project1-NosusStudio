@@ -321,7 +321,7 @@ Update_Status SceneLevel1::PostUpdate()
 			{
 				//Draw alive block (player 2)
 				if (App->playground2->nextBlock.id != 255)
-					App->tiles->BlitText2(8, 24, Alive_Tetromino, NULL, App->playground2->nextBlock, true);
+					App->tiles->BlitText2(304, 24, Alive_Tetromino, NULL, App->playground2->nextBlock, true);
 
 				if (App->playground2->block.id != 255)
 					App->tiles->BlitText2(App->playground2->block.x, App->playground2->block.y, Alive_Tetromino, NULL, App->playground2->block, true);
