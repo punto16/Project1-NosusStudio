@@ -20,8 +20,8 @@
     <Filter Include="Source Files\Modules\Gameplay">
       <UniqueIdentifier>{25d307e8-c01f-47cf-a67c-44f768010c32}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Pieses">
-      <UniqueIdentifier>{98111cca-93a1-4232-ab73-228d6bef85f8}</UniqueIdentifier>
+    <Filter Include="Source Files\Modules\Scenes">
+      <UniqueIdentifier>{ed3fce8f-8705-4167-b2f7-8445611cf2c5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -61,12 +61,6 @@
     <ClInclude Include="ModuleFadeToBlack.h">
       <Filter>Source Files\Modules\Core</Filter>
     </ClInclude>
-    <ClInclude Include="SceneLevel1.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneIntro.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleFonts.h">
       <Filter>Source Files\Modules\Core</Filter>
     </ClInclude>
@@ -79,8 +73,20 @@
     <ClInclude Include="ModuleTiles.h">
       <Filter>Source Files\Modules\Core</Filter>
     </ClInclude>
-    <ClInclude Include="SceneMenu.h">
+    <ClInclude Include="ModulePlayGround2.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleController.h">
+      <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMenu.h">
+      <Filter>Source Files\Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneLevel1.h">
+      <Filter>Source Files\Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneIntro.h">
+      <Filter>Source Files\Modules\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -117,12 +123,6 @@
     <ClCompile Include="ModuleFadeToBlack.cpp">
       <Filter>Source Files\Modules\Core</Filter>
     </ClCompile>
-    <ClCompile Include="SceneLevel1.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneIntro.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleFonts.cpp">
       <Filter>Source Files\Modules\Core</Filter>
     </ClCompile>
@@ -135,8 +135,20 @@
     <ClCompile Include="ModuleTiles.cpp">
       <Filter>Source Files\Modules\Core</Filter>
     </ClCompile>
-    <ClCompile Include="SceneMenu.cpp">
+    <ClCompile Include="ModulePlayGround2.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleController.cpp">
+      <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMenu.cpp">
+      <Filter>Source Files\Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneLevel1.cpp">
+      <Filter>Source Files\Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneIntro.cpp">
+      <Filter>Source Files\Modules\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

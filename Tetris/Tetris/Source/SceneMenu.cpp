@@ -6,7 +6,9 @@
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
+#include "ModulePlayer.h"
 #include "SceneIntro.h"
+
 
 SceneMenu::SceneMenu(bool startEnabled) : Module(startEnabled)
 {
@@ -83,7 +85,6 @@ Update_Status SceneMenu::Update()
 	}
 	else if (play_diff && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN && timer >= 60)
 	{
-
 		switch (selection)
 		{
 		case 0: //Easy
@@ -96,23 +97,20 @@ Update_Status SceneMenu::Update()
 			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
 			break;
 		}
-
 	}
 	else if (!play_diff && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
-
 		switch (selection)
 		{
 		case 0: //Singleplayer
 			play_diff = true;
 			break;
 		case 1: //Multiplayer
+			App->player->multiplayer = true;
 			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
 			break;
 		}
-
-	}
-	
+	}	
 
 	return Update_Status::UPDATE_CONTINUE;
 }

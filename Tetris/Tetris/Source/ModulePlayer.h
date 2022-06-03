@@ -34,11 +34,17 @@ public:
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
-	bool stateLine = false;
-	bool statePlay = false;
+
 	bool stateStartLevel = true;
 	bool stateWin = false;
 	bool stateLose = false;
+
+	bool stateLine1 = false;
+	bool statePlay1 = true;
+	bool stateLine2 = false;
+	bool statePlay2 = true;
+
+	bool multiplayer = false;
 
 	// Fonts
 	int Tetris_font_black		= -1;

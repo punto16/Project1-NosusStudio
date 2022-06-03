@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayGround.h"
+#include "ModulePlayGround2.h"
 #include "ModuleFonts.h"
 #include "ModuleTiles.h"
 
@@ -44,6 +45,82 @@ SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 	lateralBarsAnim.PushBack({ 14,0,2,15 });//blue
 	lateralBarsAnim.loop = true;
 	lateralBarsAnim.speed = 0.1f;
+
+	//Victory animation 1
+	Dance1.PushBack({ 0, 0, 33, 40 });
+	Dance1.PushBack({ 33, 0, 33, 40 });
+	Dance1.PushBack({ 66, 0, 33, 40 });
+	Dance1.PushBack({ 99, 0, 33, 40 });
+	Dance1.PushBack({ 132, 0, 33, 40 });
+	Dance1.PushBack({ 165, 0, 33, 40 }); //Final puerta
+	Dance1.PushBack({ 198, 0, 33, 40 });
+	Dance1.PushBack({ 231, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 297, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 330, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 363, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 330, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 297, 0, 33, 40 });
+	Dance1.PushBack({ 396, 0, 33, 40 });
+	Dance1.PushBack({ 297, 0, 33, 40 });
+	Dance1.PushBack({ 429, 0, 33, 40 });
+	Dance1.PushBack({ 297, 0, 33, 40 });
+	Dance1.PushBack({ 396, 0, 33, 40 });
+	Dance1.PushBack({ 297, 0, 33, 40 });
+	Dance1.PushBack({ 462, 0, 33, 40 });
+	Dance1.PushBack({ 495, 0, 33, 40 });
+	Dance1.PushBack({ 528, 0, 33, 40 });
+	Dance1.PushBack({ 495, 0, 33, 40 });
+	Dance1.PushBack({ 462, 0, 33, 40 });
+	Dance1.PushBack({ 495, 0, 33, 40 }); //ESTE FRAME ESTA MAL
+	Dance1.PushBack({ 561, 0, 33, 40 });
+	Dance1.PushBack({ 495, 0, 33, 40 }); //ESTE FRAME ESTA MAL
+	Dance1.PushBack({ 462, 0, 33, 40 });
+	Dance1.PushBack({ 495, 0, 33, 40 });
+	Dance1.PushBack({ 528, 0, 33, 40 });
+	Dance1.PushBack({ 495, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 330, 0, 33, 40 });
+	Dance1.PushBack({ 594, 0, 33, 40 });
+	Dance1.PushBack({ 330, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 363, 0, 33, 40 });
+	Dance1.PushBack({ 627, 0, 33, 40 });
+	Dance1.PushBack({ 363, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 330, 0, 33, 40 });
+	Dance1.PushBack({ 594, 0, 33, 40 });
+	Dance1.PushBack({ 330, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 363, 0, 33, 40 });
+	Dance1.PushBack({ 627, 0, 33, 40 });
+	Dance1.PushBack({ 363, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 561, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 660, 0, 33, 40 });
+	Dance1.PushBack({ 264, 0, 33, 40 });
+	Dance1.PushBack({ 231, 0, 33, 40 });
+	Dance1.PushBack({ 198, 0, 33, 40 });
+	Dance1.PushBack({ 165, 0, 33, 40 });
+	Dance1.PushBack({ 132, 0, 33, 40 });
+	Dance1.PushBack({ 99, 0, 33, 40 });
+	Dance1.PushBack({ 66, 0, 33, 40 });
+	Dance1.PushBack({ 33, 0, 33, 40 });
+	Dance1.PushBack({ 0, 0, 33, 40 });
+
+
+	Dance1.loop = false;
+	Dance1.speed = 0.1f;
+
+	//Victory animation 2
+
+	//Victory animation 3
+
 }
 
 SceneLevel1::~SceneLevel1()
@@ -66,20 +143,25 @@ bool SceneLevel1::Start()
 	goTexture = App->textures->Load("Assets/Sprites/gameover.png");
 	curtainTexture = App->textures->Load("Assets/Sprites/sprites_courtin.png");
 	lateralBars = App->textures->Load("Assets/Sprites/lateralBars.png");
-
-	char Blocks_1[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ[^_`abcdefghijklmnopqrstuvwxyz{|Ã}~!Á#$%&Â()*+À-./0123456789:;<=>?@ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»»»»»»»»»»" };
-	Dead_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_dead.png", Blocks_1, 10);
-	
-	char Blocks_2[] = { "abcdefghijklmnopqrstuvwxyz.," };
-	Alive_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_alive.png", Blocks_2, 7);
-
+  
 	//App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
-
+  
+	Russian1 = App->textures->Load("Assets/Sprites/Dance1");
+	Russian2 = App->textures->Load("Assets/Sprites/Dance2");
+	Russian3 = App->textures->Load("Assets/Sprites/Dance3");
+  
+	Dead_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_dead.png", 15, 10);
+	
+	Alive_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_alive.png", 4, 7);
+  
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
 	App->player->Enable();
 	App->playground->Enable();
+
+	if (App->player->multiplayer == true)
+		App->playground2->Enable();
 
 	for (size_t i = 0; i < 23; i++)
 	{
@@ -102,7 +184,7 @@ Update_Status SceneLevel1::Update()
 	if (App->player->stateStartLevel) { curtainOpening.Update(); }
 	lateralBarsAnim.Update();
 	lateralBarCounter++;
-	
+	Dance1.Update();
 
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
 	{
@@ -279,6 +361,7 @@ Update_Status SceneLevel1::PostUpdate()
 		//CURTAIN ANIMATION CLOSING  NOO VA :(
 		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
 
+
 		App->render->Blit(goTexture, 32, 0, NULL);
 
 		if (winDelay <= 0) {
@@ -286,6 +369,57 @@ Update_Status SceneLevel1::PostUpdate()
 		}
 		winDelay--;
 	}
+  
+  //HECTOR CODE CORREGIR
+  
+	//Draw dead blocks (player 1) 
+	for (size_t i = 0; i < 23; i++)
+	{
+		for (size_t j = 0; j < 12; j++)
+		{
+			if (playground[i][j] != 0 && playground[i][j] != 255)
+				App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
+		}
+	}
+
+	if (App->player->multiplayer)	//multiplayer enabled?
+	{
+		//Draw dead blocks (player 2)
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground2[i][j] != 0 && playground2[i][j] != 255)
+					App->tiles->BlitText2(j, i, Dead_Tetromino, playground2[i][j], App->playground2->block, false);
+			}
+      
+      if (App->playground->gameOver == false)
+	{
+		//check win condition
+		if (levelLines <= 0 && App->playground->lineLimit == false) {
+			isCurtainClosing = true;
+			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		}
+		else
+		{
+			//Draw alive block (player 1)
+			if (App->playground->nextBlock.id != 255)
+				App->tiles->BlitText(8, 24, Alive_Tetromino, NULL, App->playground->nextBlock, true);
+
+			if (App->playground->block.id != 255) 
+				App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
+
+
+			if (App->player->multiplayer)	//multiplayer enabled?
+			{
+				//Draw alive block (player 2)
+				if (App->playground2->nextBlock.id != 255)
+					App->tiles->BlitText2(304, 24, Alive_Tetromino, NULL, App->playground2->nextBlock, true);
+
+				if (App->playground2->block.id != 255)
+					App->tiles->BlitText2(App->playground2->block.x, App->playground2->block.y, Alive_Tetromino, NULL, App->playground2->block, true);
+			}
+//HECTOR CODE CORREGIR
 
 	if (App->player->stateWin == true) {
 		//WIN
@@ -304,7 +438,6 @@ Update_Status SceneLevel1::PostUpdate()
 		winDelay--;
 	}
 
-
 	return Update_Status::UPDATE_CONTINUE;
 }
 
@@ -319,6 +452,9 @@ bool SceneLevel1::CleanUp()
 	App->textures->Unload(goTexture);
 	App->textures->Unload(curtainTexture);
 	App->textures->Unload(lateralBars);
+	App->textures->Unload(Russian1);
+	App->textures->Unload(Russian2);
+	App->textures->Unload(Russian3);
 
 	App->tiles->UnLoad(Dead_Tetromino);
 	App->tiles->UnLoad(Alive_Tetromino);

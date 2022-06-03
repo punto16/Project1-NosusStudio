@@ -78,10 +78,12 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="ModuleAudio.h" />
+    <ClInclude Include="ModuleController.h" />
     <ClInclude Include="ModuleData.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModulePlayGround.h" />
+    <ClInclude Include="ModulePlayGround2.h" />
     <ClInclude Include="ModuleTiles.h" />
     <ClInclude Include="SceneIntro.h" />
     <ClInclude Include="SceneLevel1.h" />
@@ -99,10 +101,12 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
+    <ClCompile Include="ModuleController.cpp" />
     <ClCompile Include="ModuleData.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModulePlayGround.cpp" />
+    <ClCompile Include="ModulePlayGround2.cpp" />
     <ClCompile Include="ModuleTiles.cpp" />
     <ClCompile Include="SceneIntro.cpp" />
     <ClCompile Include="SceneLevel1.cpp" />

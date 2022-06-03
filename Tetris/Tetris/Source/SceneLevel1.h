@@ -49,12 +49,22 @@ public:
 
 	SDL_Rect lateralNumbersSection;
 
+	SDL_Texture* Russian1 = nullptr;
+	SDL_Texture* Russian2 = nullptr;
+	SDL_Texture* Russian3 = nullptr;
+
+
+
 	Animation lateralBarsAnim;
 	unsigned int lateralBarCounter;
 	int lateralBarsY = 0;
-	//animation
+
+	//animations
 	Animation curtainOpening;
 	Animation curtainClosing;
+	Animation Dance1;
+	Animation Dance2;
+	Animation Dance3;
 
 
 	int Dead_Tetromino = -1;
@@ -89,7 +99,33 @@ public:
 	int x_TileMap = 24;
 	int y_TileMap = 24;
 
-	
+	uint playground2[23][12] =
+	{
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,0,0,0,0,0,0,0,0,0,0,255,
+		255,255,255,255,255,255,255,255,255,255,255,255,
+	};
+	int x_TileMap2 = 216;
 };
 
 #endif
