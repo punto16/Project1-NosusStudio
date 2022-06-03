@@ -32,14 +32,14 @@ bool ModulePlayer::Start()
 	
 	destroyed = false;
 	
-	bool stateStartLevel = true;
-	bool stateWin = false;
-	bool stateLose = false;
+	stateStartLevel = true;
+	stateWin = false;
+	stateLose = false;
 
-	bool stateLine1 = false;
-	bool stateLine2 = false;
-	bool statePlay1 = false;
-	bool statePlay2 = false;
+	stateLine1 = false;
+	stateLine2 = false;
+	statePlay1 = false;
+	statePlay2 = false;
 
 	//bool multiplayer = false;
 
