@@ -200,19 +200,24 @@ Update_Status SceneLevel1::PostUpdate()
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
-	//Next block
+	//Next block (player 1)
 	if (App->playground->nextBlock.id != 255)
 	{
 		App->tiles->BlitText(8, 24, Alive_Tetromino, NULL, App->playground->nextBlock, true);
 	}
 
+	//Next block (player 2)
+	if (App->playground2->nextBlock.id != 255 && App->player->multiplayer)
+	{
+		App->tiles->BlitText2(304, 24, Alive_Tetromino, NULL, App->playground2->nextBlock, true);
+	}
 	
 	if (App->player->stateStartLevel) {
 		//CURTAIN ANIMATION OPENING
 		App->render->Blit(curtainTexture, 128, 96, &(curtainOpening.GetCurrentFrame()));
 	}
 	
-	if (App->player->statePlay || App->player->stateLine) {
+	if (!App->player->multiplayer && (App->player->statePlay1 || App->player->stateLine1)) {
 
 		if (!playMusic) {
 			App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
@@ -279,19 +284,6 @@ Update_Status SceneLevel1::PostUpdate()
 			App->render->Blit(lateralBars, 116, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
 		}
 
-		//Draw dead blocks
-		for (size_t i = 0; i < 23; i++)
-		{
-			for (size_t j = 0; j < 12; j++)
-			{
-				if (playground[i][j] != 0 && playground[i][j] != 255)
-				{
-					App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
-
-				}
-			}
-		}
-
 		//draw lateral numbers (5 to 1)
 		if (levelLines == 5)
 		{
@@ -324,14 +316,25 @@ Update_Status SceneLevel1::PostUpdate()
 			App->render->Blit(lateralNumbersTexture, 4, 176, &lateralNumbersSection);
 		}
 
+		//Draw dead blocks
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground[i][j] != 0 && playground[i][j] != 255)
+				{
+					App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
 
+				}
+			}
+		}
 
 		if (App->playground->gameOver == false)
 		{
-			if (levelLines <= 0 && App->playground->lineLimit == false && App->player->statePlay == true) {
+			if (levelLines <= 0 && App->playground->lineLimit == false && App->player->statePlay1 == true) {
 				//WIN
 				App->player->stateWin = true;
-				App->player->statePlay = false;
+				App->player->statePlay1 = false;
 			}
 			else {
 				//Draw alive block
@@ -346,7 +349,7 @@ Update_Status SceneLevel1::PostUpdate()
 		{
 			//Game Over
 			App->player->stateLose = true;
-			App->player->statePlay = false;
+			App->player->statePlay1 = false;
 		}
 	}
 
@@ -365,61 +368,10 @@ Update_Status SceneLevel1::PostUpdate()
 		App->render->Blit(goTexture, 32, 0, NULL);
 
 		if (winDelay <= 0) {
-			//App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		}
 		winDelay--;
 	}
-  
-  //HECTOR CODE CORREGIR
-  
-	//Draw dead blocks (player 1) 
-	for (size_t i = 0; i < 23; i++)
-	{
-		for (size_t j = 0; j < 12; j++)
-		{
-			if (playground[i][j] != 0 && playground[i][j] != 255)
-				App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
-		}
-	}
-
-	if (App->player->multiplayer)	//multiplayer enabled?
-	{
-		//Draw dead blocks (player 2)
-		for (size_t i = 0; i < 23; i++)
-		{
-			for (size_t j = 0; j < 12; j++)
-			{
-				if (playground2[i][j] != 0 && playground2[i][j] != 255)
-					App->tiles->BlitText2(j, i, Dead_Tetromino, playground2[i][j], App->playground2->block, false);
-			}
-      
-      if (App->playground->gameOver == false)
-	{
-		//check win condition
-		if (levelLines <= 0 && App->playground->lineLimit == false) {
-			isCurtainClosing = true;
-			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
-		}
-		else
-		{
-			//Draw alive block (player 1)
-			if (App->playground->nextBlock.id != 255)
-				App->tiles->BlitText(8, 24, Alive_Tetromino, NULL, App->playground->nextBlock, true);
-
-			if (App->playground->block.id != 255) 
-				App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
-
-
-			if (App->player->multiplayer)	//multiplayer enabled?
-			{
-				//Draw alive block (player 2)
-				if (App->playground2->nextBlock.id != 255)
-					App->tiles->BlitText2(304, 24, Alive_Tetromino, NULL, App->playground2->nextBlock, true);
-
-				if (App->playground2->block.id != 255)
-					App->tiles->BlitText2(App->playground2->block.x, App->playground2->block.y, Alive_Tetromino, NULL, App->playground2->block, true);
-			}
-//HECTOR CODE CORREGIR
 
 	if (App->player->stateWin == true) {
 		//WIN
@@ -433,9 +385,102 @@ Update_Status SceneLevel1::PostUpdate()
 		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
 
 		if (winDelay<=0) {
-			//App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		}
 		winDelay--;
+	}
+
+	if (App->player->multiplayer && (App->player->statePlay1 || App->player->stateLine1))
+	{
+		//Hay que hacer lo mismo para el otro player
+		if (App->playground->lines == 4)
+		{
+			//counter to change lateral bars position
+			if (lateralBarCounter >= 60)
+			{
+				lateralBarCounter = 0;
+			}
+			else if (lateralBarCounter == 1)
+			{
+				lateralBarsY = 24;
+			}
+			else if (lateralBarCounter == 5)
+			{
+				lateralBarsY = 46;
+			}
+			else if (lateralBarCounter == 10)
+			{
+				lateralBarsY = 69;
+			}
+			else if (lateralBarCounter == 15)
+			{
+				lateralBarsY = 91;
+			}
+			else if (lateralBarCounter == 20)
+			{
+				lateralBarsY = 115;
+			}
+			else if (lateralBarCounter == 25)
+			{
+				lateralBarsY = 0;
+			}
+			else if (lateralBarCounter == 30)
+			{
+				lateralBarsY = 24;
+			}
+			else if (lateralBarCounter == 35)
+			{
+				lateralBarsY = 46;
+			}
+			else if (lateralBarCounter == 40)
+			{
+				lateralBarsY = 69;
+			}
+			else if (lateralBarCounter == 45)
+			{
+				lateralBarsY = 91;
+			}
+			else if (lateralBarCounter == 50)
+			{
+				lateralBarsY = 115;
+			}
+			else if (lateralBarCounter == 55)
+			{
+				App->playground->lines = 0;
+			}
+
+			App->render->Blit(lateralBars, 28, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
+			App->render->Blit(lateralBars, 116, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
+		}
+
+		//Draw dead blocks (player 1) 
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground[i][j] != 0 && playground[i][j] != 255)
+					App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
+			}
+		}
+
+		//Draw dead blocks (player 2)
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground2[i][j] != 0 && playground2[i][j] != 255)
+					App->tiles->BlitText2(j, i, Dead_Tetromino, playground2[i][j], App->playground2->block, false);
+			}
+		}
+
+		if (App->playground->gameOver == false)
+		{
+			if (App->playground->block.id != 255)
+				App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
+
+			if (App->playground2->block.id != 255)
+				App->tiles->BlitText2(App->playground2->block.x, App->playground2->block.y, Alive_Tetromino, NULL, App->playground2->block, true);
+		}
 	}
 
 	return Update_Status::UPDATE_CONTINUE;

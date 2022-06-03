@@ -10,6 +10,7 @@
 #include "ModuleData.h"
 #include "SceneLevel1.h"
 #include "ModulePlayGround.h"
+#include "ModulePlayGround2.h"
 
 #include <stdio.h>
 
@@ -30,11 +31,17 @@ bool ModulePlayer::Start()
 	bool ret = true;
 	
 	destroyed = false;
-	stateLine = false;
-	statePlay = false;
-	stateStartLevel = true;
-	stateWin = false;
-	stateLose = false;
+	
+	bool stateStartLevel = true;
+	bool stateWin = false;
+	bool stateLose = false;
+
+	bool stateLine1 = false;
+	bool stateLine2 = false;
+	bool statePlay1 = false;
+	bool statePlay2 = false;
+
+	//bool multiplayer = false;
 
 	score = 000;
 	totalLines = 000;
@@ -165,7 +172,7 @@ Update_Status ModulePlayer::PostUpdate()
 
 
 	//Middle screen (Objectives)
-	if (statePlay || stateLine) {
+	if (!multiplayer && (statePlay1 || stateLine1)) {
 		if (App->sceneLevel_1->levelLines < 10) { sprintf_s(linesLeftText, 10, "0%d", App->sceneLevel_1->levelLines); }
 		else { sprintf_s(linesLeftText, 10, "%d", App->sceneLevel_1->levelLines); }
 		App->fonts->BlitText(150, 130, Tetris_font_white, "lines");
@@ -188,8 +195,12 @@ Update_Status ModulePlayer::PostUpdate()
 
 		if (delayStart <= -80) {
 			stateStartLevel = false;
-			statePlay = true;
+			statePlay1 = true;
 			App->playground->NextBlock();
+			if (multiplayer) {
+				statePlay2 = true;
+				App->playground2->NextBlock();
+			}
 			delayStart = 40;
 		}
 	}

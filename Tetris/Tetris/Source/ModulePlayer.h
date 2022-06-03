@@ -40,9 +40,9 @@ public:
 	bool stateLose = false;
 
 	bool stateLine1 = false;
-	bool statePlay1 = true;
 	bool stateLine2 = false;
-	bool statePlay2 = true;
+	bool statePlay1 = false;
+	bool statePlay2 = false;
 
 	bool multiplayer = false;
 

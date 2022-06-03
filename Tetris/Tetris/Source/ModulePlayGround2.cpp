@@ -23,7 +23,6 @@ bool ModulePlayGround2::Start()
 {
 	srand(time(NULL));
 	nextBlock.id = RandomBlock();
-	NextBlock();
 
 	return true;
 }
