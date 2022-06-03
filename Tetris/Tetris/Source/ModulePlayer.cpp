@@ -45,6 +45,8 @@ bool ModulePlayer::Start()
 
 	score = 000;
 	totalLines = 000;
+	scorePlayer2 = 000;
+	totalLinesPlayer2 = 000;
 	round = 000;
 
 	char lookupTable[] = { "abcdefghijklmnopqrstuvwxyz 0123456789.,;:$#'! /?%&()@ " };
@@ -154,21 +156,39 @@ Update_Status ModulePlayer::PostUpdate()
 	App->fonts->BlitText(153, 226, Tetris_font_darkblue, creditsText);
 
 	//Text
-	App->fonts->BlitText(240, 60, Tetris_font_white, "stats");
+	if (!multiplayer) //Singleplayer UI
+	{
+		App->fonts->BlitText(240, 60, Tetris_font_white, "stats");
+
+		timer++;
+		if (timer == 240) { timer = 0; }
+
+		if (timer < 120) {
+			App->fonts->BlitText(230, 216, Tetris_font_lightblue, "join in");
+			App->fonts->BlitText(230, 224, Tetris_font_lightblue, "any time");
+		}
+
+		if (timer >= 120) {
+			App->fonts->BlitText(237, 216, Tetris_font_lightblue, "insert");
+			App->fonts->BlitText(246, 224, Tetris_font_lightblue, "coin");
+		}
+	}
+	else //Multiplayer UI
+	{
+		sprintf_s(scoreTextPlayer2, 10, "%7d", scorePlayer2);
+		App->fonts->BlitText(217, 217, Tetris_font_red, "score");
+		App->fonts->BlitText(257, 217, Tetris_font_red, scoreTextPlayer2);
+
+		sprintf_s(linesTextPlayer2, 10, "%7d", totalLinesPlayer2);
+		App->fonts->BlitText(217, 225, Tetris_font_red, "lines");
+		App->fonts->BlitText(257, 225, Tetris_font_red, linesTextPlayer2);
+
+
+		App->fonts->BlitText(296, 8, Tetris_font_red, "next");
+	}
 	App->fonts->BlitText(8, 8, Tetris_font_red, "next");
 
-	timer++;
-	if (timer == 240) { timer = 0; }
-
-	if (timer<120) {
-		App->fonts->BlitText(230, 216, Tetris_font_lightblue, "join in");
-		App->fonts->BlitText(230, 224, Tetris_font_lightblue, "any time");
-	}
-
-	if (timer>=120) {
-		App->fonts->BlitText(237, 216, Tetris_font_lightblue, "insert");
-		App->fonts->BlitText(246, 224, Tetris_font_lightblue, "coin");
-	}
+	
 
 
 	//Middle screen (Objectives)

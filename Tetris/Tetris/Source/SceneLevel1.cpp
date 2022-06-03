@@ -172,6 +172,15 @@ bool SceneLevel1::Start()
 		}
 	}
 
+	for (size_t i = 0; i < 23; i++)
+	{
+		for (size_t j = 0; j < 12; j++)
+		{
+			if (playground2[i][j] != 255)
+				playground2[i][j] = 0;
+		}
+	}
+
 	App->playground->gameOver = false;
 	levelLines = 5;
 
@@ -361,7 +370,7 @@ Update_Status SceneLevel1::PostUpdate()
 			playMusic = false;
 		}
 
-		//CURTAIN ANIMATION CLOSING  NOO VA :(
+		//CURTAIN ANIMATION CLOSING  NOO VA :( (ahora si :))
 		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
 
 
@@ -381,7 +390,7 @@ Update_Status SceneLevel1::PostUpdate()
 			playMusic = false;
 		}
 
-		//CURTAIN ANIMATION CLOSING  NOO VA :(
+		//CURTAIN ANIMATION CLOSING  NOO VA :( (si que va :))
 		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
 
 		if (winDelay<=0) {
@@ -480,6 +489,13 @@ Update_Status SceneLevel1::PostUpdate()
 
 			if (App->playground2->block.id != 255)
 				App->tiles->BlitText2(App->playground2->block.x, App->playground2->block.y, Alive_Tetromino, NULL, App->playground2->block, true);
+		}
+		else
+		{
+			//Game Over
+			App->player->stateLose = true;
+			App->player->statePlay1 = false;
+			App->player->statePlay2 = false;
 		}
 	}
 

@@ -330,10 +330,10 @@ void ModulePlayGround2::Score()
 	//lines
 	switch (lines)
 	{
-	case 1: App->player->score += 50; break;
-	case 2: App->player->score += 150; break;
-	case 3: App->player->score += 400; break;
-	case 4: App->player->score += 900; break;
+	case 1: App->player->scorePlayer2 += 50; break;
+	case 2: App->player->scorePlayer2 += 150; break;
+	case 3: App->player->scorePlayer2 += 400; break;
+	case 4: App->player->scorePlayer2 += 900; break;
 	default: break;
 	}
 
@@ -345,8 +345,8 @@ void ModulePlayGround2::Score()
 	if (block.inputY == 20)
 		gravity = 2;
 
-	App->player->score += gravity * rainbow * (rainbow + height);
+	App->player->scorePlayer2 += gravity * rainbow * (rainbow + height);
 
-	App->player->totalLines += lines;
-	App->sceneLevel_1->levelLines -= lines;
+	App->player->totalLinesPlayer2 += lines;
+	//App->sceneLevel_1->levelLines -= lines;
 }

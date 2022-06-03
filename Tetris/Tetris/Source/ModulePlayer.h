@@ -69,6 +69,12 @@ public:
 	uint totalLines;
 	char linesText[10] = { "\0" };
 
+	uint scorePlayer2;
+	char scoreTextPlayer2[10] = { "\0" };
+
+	uint totalLinesPlayer2;
+	char linesTextPlayer2[10] = { "\0" };
+
 	uint round;
 	char roundText[10] = { "\0" };
 
