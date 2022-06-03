@@ -34,19 +34,25 @@ public:
 	
 	int levelLines = 5;
 
-	int isCurtainClosing = false;
+	bool playMusic = false;
+
+	int winDelay = 120;
 
 
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* lateralNumbersTexture = nullptr;
 	SDL_Texture* goTexture = nullptr;
 
 	SDL_Texture* curtainTexture = nullptr;
 	SDL_Texture* lateralBars = nullptr;
 
+	SDL_Rect lateralNumbersSection;
+
 	SDL_Texture* Russian1 = nullptr;
 	SDL_Texture* Russian2 = nullptr;
 	SDL_Texture* Russian3 = nullptr;
+
 
 
 	Animation lateralBarsAnim;

@@ -23,7 +23,6 @@ bool ModulePlayGround::Start()
 {
 	srand(time(NULL));
 	nextBlock.id = RandomBlock();
-	NextBlock();
 
 	return true;
 }
@@ -95,6 +94,8 @@ void ModulePlayGround::StateLine()
 			for (int j = 1; j < 11; j++)
 				App->sceneLevel_1->playground[i][j] = App->sceneLevel_1->playground[i - 1][j];
 		}
+		App->sceneLevel_1->levelLines --;
+		if (App->sceneLevel_1->levelLines < 0) { App->sceneLevel_1->levelLines = 0; }
 
 		lineColorIndex = 0;
 		linePositionIndex++;
@@ -355,8 +356,7 @@ void ModulePlayGround::Score()
 	App->player->score += gravity * rainbow * (rainbow + height);
 
 	App->player->totalLines += lines;
-	App->sceneLevel_1->levelLines-=lines;
-	if (App->sceneLevel_1->levelLines < 0) { App->sceneLevel_1->levelLines = 0; }
+
 }
 
 void ModulePlayGround::CutTextures() {

@@ -35,13 +35,16 @@ public:
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
 
+	bool stateStartLevel = true;
+	bool stateWin = false;
+	bool stateLose = false;
+
 	bool stateLine1 = false;
 	bool statePlay1 = true;
 	bool stateLine2 = false;
 	bool statePlay2 = true;
 
 	bool multiplayer = false;
-	bool stateStartLevel = false;
 
 	// Fonts
 	int Tetris_font_black		= -1;
@@ -53,6 +56,12 @@ public:
 	int	Tetris_font_red			= -1;
 	int	Tetris_font_white		= -1;
 
+
+	//textures
+	
+	SDL_Texture* rainbowBar = nullptr;
+	SDL_Rect rainbowBarSection = { 0,16,8,2 };
+	
 	//UI elements
 	uint score;
 	char scoreText[10] = { "\0" };
@@ -73,6 +82,7 @@ public:
 	char linesLeftText[10] = { "\0" };
 
 	int timer = 0;
+	int delayStart = 40;
 };
 
 #endif //!__MODULE_PLAYER_H__
