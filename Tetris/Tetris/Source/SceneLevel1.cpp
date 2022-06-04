@@ -182,7 +182,13 @@ bool SceneLevel1::Start()
 	}
 
 	App->playground->gameOver = false;
+	if (App->player->multiplayer) App->playground2->gameOver = false;
+	
 	levelLines = 5;
+
+	App->player->statePlay1 = true;
+	if (App->player->multiplayer) App->player->statePlay2 = true;
+	
 
 	return ret;
 }
@@ -233,7 +239,7 @@ Update_Status SceneLevel1::PostUpdate()
 			playMusic = true;
 		}
 
-		if (App->playground->lines == 4)
+		if (App->playground->lines == 4) // lateral bars for player 1
 		{
 			//counter to change lateral bars position
 			if (lateralBarCounter >= 60)
@@ -292,6 +298,8 @@ Update_Status SceneLevel1::PostUpdate()
 			App->render->Blit(lateralBars, 28, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
 			App->render->Blit(lateralBars, 116, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
 		}
+
+		
 
 		//draw lateral numbers (5 to 1)
 		if (levelLines == 5)
@@ -399,7 +407,7 @@ Update_Status SceneLevel1::PostUpdate()
 		winDelay--;
 	}
 
-	if (App->player->multiplayer && (App->player->statePlay1 || App->player->stateLine1))
+	if (App->player->multiplayer && ((App->player->statePlay1 || App->player->stateLine1) || (App->player->statePlay2 || App->player->stateLine2)))
 	{
 		//Hay que hacer lo mismo para el otro player
 		if (App->playground->lines == 4)
@@ -462,6 +470,66 @@ Update_Status SceneLevel1::PostUpdate()
 			App->render->Blit(lateralBars, 116, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
 		}
 
+		if (App->playground2->lines == 4) //lateral bars for player 2
+		{
+			//counter to change lateral bars position
+			if (lateralBarCounter >= 60)
+			{
+				lateralBarCounter = 0;
+			}
+			else if (lateralBarCounter == 1)
+			{
+				lateralBarsY = 24;
+			}
+			else if (lateralBarCounter == 5)
+			{
+				lateralBarsY = 46;
+			}
+			else if (lateralBarCounter == 10)
+			{
+				lateralBarsY = 69;
+			}
+			else if (lateralBarCounter == 15)
+			{
+				lateralBarsY = 91;
+			}
+			else if (lateralBarCounter == 20)
+			{
+				lateralBarsY = 115;
+			}
+			else if (lateralBarCounter == 25)
+			{
+				lateralBarsY = 0;
+			}
+			else if (lateralBarCounter == 30)
+			{
+				lateralBarsY = 24;
+			}
+			else if (lateralBarCounter == 35)
+			{
+				lateralBarsY = 46;
+			}
+			else if (lateralBarCounter == 40)
+			{
+				lateralBarsY = 69;
+			}
+			else if (lateralBarCounter == 45)
+			{
+				lateralBarsY = 91;
+			}
+			else if (lateralBarCounter == 50)
+			{
+				lateralBarsY = 115;
+			}
+			else if (lateralBarCounter == 55)
+			{
+				App->playground2->lines = 0;
+			}
+
+			App->render->Blit(lateralBars, 220, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
+			App->render->Blit(lateralBars, 308, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
+		}
+
 		//Draw dead blocks (player 1) 
 		for (size_t i = 0; i < 23; i++)
 		{
@@ -482,13 +550,17 @@ Update_Status SceneLevel1::PostUpdate()
 			}
 		}
 
-		if (App->playground->gameOver == false)
+		if (App->playground->gameOver == false || App->playground2->gameOver == false)
 		{
 			if (App->playground->block.id != 255)
 				App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
 
 			if (App->playground2->block.id != 255)
 				App->tiles->BlitText2(App->playground2->block.x, App->playground2->block.y, Alive_Tetromino, NULL, App->playground2->block, true);
+
+			if (App->playground->gameOver == true) App->player->statePlay1 = false;
+
+			if (App->playground2->gameOver == true) App->player->statePlay2 = false;
 		}
 		else
 		{
@@ -506,6 +578,7 @@ bool SceneLevel1::CleanUp()
 {
 	App->player->Disable();
 	App->playground->Disable();
+	App->playground2->Disable();
 
 	LOG("Deleting background assets");
 

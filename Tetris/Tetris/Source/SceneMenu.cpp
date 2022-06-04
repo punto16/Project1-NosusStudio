@@ -50,6 +50,8 @@ bool SceneMenu::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+	App->player->multiplayer = false;
+
 	play_diff = false;
 	selection = 0;
 	timer = 0;
