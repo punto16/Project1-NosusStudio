@@ -73,10 +73,12 @@ Update_Status SceneMenu::Update()
 	}
 	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
 	{
+		App->audio->PlayFx(App->audio->changeDiffFx);
 		selectionToLeft();
 	}
 	else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN)
 	{
+		App->audio->PlayFx(App->audio->changeDiffFx);
 		selectionToRight();
 	}
 
@@ -87,6 +89,8 @@ Update_Status SceneMenu::Update()
 	}
 	else if (play_diff && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN && timer >= 60)
 	{
+		App->audio->PlayFx(App->audio->selectDiffFx);
+
 		switch (selection)
 		{
 		case 0: //Easy
@@ -102,6 +106,9 @@ Update_Status SceneMenu::Update()
 	}
 	else if (!play_diff && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
+
+		App->audio->PlayFx(App->audio->selectDiffFx);
+
 		switch (selection)
 		{
 		case 0: //Singleplayer
