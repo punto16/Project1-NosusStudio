@@ -140,6 +140,7 @@ bool SceneGame::Start()
 
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
 	lateralNumbersTexture = App->textures->Load("Assets/Sprites/lateralNumbers_BG_1.png");
+	lateralNumbersBlink = App->textures->Load("Assets/Sprites/lateralNumbers_white.png");
 	goTexture = App->textures->Load("Assets/Sprites/gameover.png");
 	curtainTexture = App->textures->Load("Assets/Sprites/sprites_courtin.png");
 	lateralBars = App->textures->Load("Assets/Sprites/lateralBars.png");
@@ -415,32 +416,79 @@ Update_Status SceneGame::PostUpdate()
 		{
 			lateralNumbersSection.x = 0; lateralNumbersSection.y = 0;
 			lateralNumbersSection.w = 16; lateralNumbersSection.h = 16;
-			App->render->Blit(lateralNumbersTexture, 4, 68, &lateralNumbersSection);
+			if (numberBlink < 2 && App->game->stateLine1)
+			{
+				App->render->Blit(lateralNumbersBlink, 4, 68, &lateralNumbersSection);
+			}
+			else
+			{
+				App->render->Blit(lateralNumbersTexture, 4, 68, &lateralNumbersSection);
+			}
+
 		}
 		else if (levelLines == 4)
 		{
 			lateralNumbersSection.x = 16; lateralNumbersSection.y = 0;
 			lateralNumbersSection.w = 16; lateralNumbersSection.h = 16;
-			App->render->Blit(lateralNumbersTexture, 4, 95, &lateralNumbersSection);
+
+			if (numberBlink < 2 && App->game->stateLine1)
+			{
+				App->render->Blit(lateralNumbersBlink, 4, 95, &lateralNumbersSection);
+			}
+			else
+			{
+				App->render->Blit(lateralNumbersTexture, 4, 95, &lateralNumbersSection);
+			}
 		}
 		else if (levelLines == 3)
 		{
 			lateralNumbersSection.x = 32; lateralNumbersSection.y = 0;
 			lateralNumbersSection.w = 16; lateralNumbersSection.h = 16;
-			App->render->Blit(lateralNumbersTexture, 4, 122, &lateralNumbersSection);
+
+			if (numberBlink < 2 && App->game->stateLine1)
+			{
+				App->render->Blit(lateralNumbersBlink, 4, 122, &lateralNumbersSection);
+			}
+			else
+			{
+				App->render->Blit(lateralNumbersTexture, 4, 122, &lateralNumbersSection);
+			}
+
 		}
 		else if (levelLines == 2)
 		{
 			lateralNumbersSection.x = 48; lateralNumbersSection.y = 0;
 			lateralNumbersSection.w = 16; lateralNumbersSection.h = 16;
-			App->render->Blit(lateralNumbersTexture, 4, 149, &lateralNumbersSection);
+
+			if (numberBlink < 2 && App->game->stateLine1)
+			{
+				App->render->Blit(lateralNumbersBlink, 4, 149, &lateralNumbersSection);
+			}
+			else
+			{
+				App->render->Blit(lateralNumbersTexture, 4, 149, &lateralNumbersSection);
+			}
 		}
 		else if (levelLines == 1)
 		{
 			lateralNumbersSection.x = 64; lateralNumbersSection.y = 0;
 			lateralNumbersSection.w = 16; lateralNumbersSection.h = 16;
-			App->render->Blit(lateralNumbersTexture, 4, 176, &lateralNumbersSection);
+
+			if (numberBlink < 2)
+			{
+				App->render->Blit(lateralNumbersBlink, 4, 176, &lateralNumbersSection);
+			}
+			else
+			{
+				App->render->Blit(lateralNumbersTexture, 4, 176, &lateralNumbersSection);
+			}
 		}
+
+		numberBlink++;
+		if (numberBlink > 4) {
+			numberBlink = 0;
+		}
+
 
 		//Draw dead blocks
 		for (size_t i = 0; i < 23; i++)
