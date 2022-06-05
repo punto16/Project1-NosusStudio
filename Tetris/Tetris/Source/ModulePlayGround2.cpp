@@ -380,66 +380,40 @@ void ModulePlayGround2::Score()
 	//App->sceneGame->levelLines -= lines;
 }
 
-void ModulePlayGround2::CutTextures() {
+void ModulePlayGround2::CutTextures()
+{
 	int line_up = (linePositionList[0]) - 1;
 	int line_down = (linePositionList[lines - 1]) + 1;
 
-	for (size_t i = 1; i < 11; i++) {
+	for (size_t i = 1; i < 11; i++)
+	{
 		switch ((App->sceneGame->playground2[line_up][i]) % 15)
-		{
-		case 4:
-			App->sceneGame->playground2[line_up][i] += 11;
-			break;
-		case 5:
-			App->sceneGame->playground2[line_up][i] += 1;
-			break;
-		case 8:
-			App->sceneGame->playground2[line_up][i] += 5;
-			break;
-		case 9:
-			App->sceneGame->playground2[line_up][i] -= 7;
-			break;
-		case 10:
-			App->sceneGame->playground2[line_up][i] += 2;
-			break;
-		case 11:
-			App->sceneGame->playground2[line_up][i] -= 10;
-			break;
-		case 14:
-			App->sceneGame->playground2[line_up][i] -= 11;
-			break;
-		default:
-			break;
+		{								   
+		case 4:	 App->sceneGame->playground2[line_up][i] += 11;	break;
+		case 5:	 App->sceneGame->playground2[line_up][i] += 1;	break;
+		case 8:	 App->sceneGame->playground2[line_up][i] += 5;	break;
+		case 9:	 App->sceneGame->playground2[line_up][i] -= 7;	break;
+		case 10: App->sceneGame->playground2[line_up][i] += 2;	break;
+		case 11: App->sceneGame->playground2[line_up][i] -= 10;	break;
+		case 14: App->sceneGame->playground2[line_up][i] -= 11;	break;
+		default: break;
 		}
 	}
 
-	if (line_down < 22) {
-		for (size_t j = 1; j < 11; j++) {
+	if (line_down < 22)
+	{
+		for (size_t j = 1; j < 11; j++)
+		{
 			switch ((App->sceneGame->playground2[line_down][j]) % 15)
-			{
-			case 5:
-				App->sceneGame->playground2[line_down][j] -= 1;
-				break;
-			case 6:
-				App->sceneGame->playground2[line_down][j] += 9;
-				break;
-			case 7:
-				App->sceneGame->playground2[line_down][j] -= 5;
-				break;
-			case 8:
-				App->sceneGame->playground2[line_down][j] += 3;
-				break;
-			case 10:
-				App->sceneGame->playground2[line_down][j] += 4;
-				break;
-			case 12:
-				App->sceneGame->playground2[line_down][j] -= 9;
-				break;
-			case 13:
-				App->sceneGame->playground2[line_down][j] -= 12;
-				break;
-			default:
-				break;
+			{								   
+			case 5:	 App->sceneGame->playground2[line_down][j] -= 1;  break;
+			case 6:	 App->sceneGame->playground2[line_down][j] += 9;  break;
+			case 7:	 App->sceneGame->playground2[line_down][j] -= 5;  break;
+			case 8:	 App->sceneGame->playground2[line_down][j] += 3;  break;
+			case 10: App->sceneGame->playground2[line_down][j] += 4;  break;
+			case 12: App->sceneGame->playground2[line_down][j] -= 9;  break;
+			case 13: App->sceneGame->playground2[line_down][j] -= 12; break;
+			default: break;
 			}
 		}
 	}
