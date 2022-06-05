@@ -491,3 +491,38 @@ void ModulePlayGround::Blink() {
 		}
 	}
 }
+
+void ModulePlayGround::RandomBlockSpawn() {
+
+	int SpawnX = (rand() % 11) + 1;
+	for (int i = 0; i < 22; i++) {
+		if (App->sceneGame->playground[i + 1][SpawnX] > 0) {
+			App->sceneGame->playground[i][SpawnX] = 120;
+			break;
+		}
+	}
+}
+
+void ModulePlayGround::GarbageSpawn() {
+
+	for (int i = 0; i < 22; i++) {
+		int counter = 0;
+		for (int j = 1; j < 11; j++) {
+			if (i != 21) {
+				App->sceneGame->playground[i][j] = App->sceneGame->playground[i + 1][j];
+			}
+			else if (i == 21) {
+				if (j == 10 && counter == 9) {
+					App->sceneGame->playground[i][j] = 0;
+				}
+				else {
+					App->sceneGame->playground[i][j] = ((rand() % 9) * 15) - 15;
+					if (App->sceneGame->playground[i][j] != 0) {
+						counter++;
+					}
+				}
+			}
+		}
+	}
+
+}

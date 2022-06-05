@@ -56,6 +56,8 @@ public:
     void StatePlay();
     void Bonus();
     void Blink();
+    void RandomBlockSpawn();
+    void GarbageSpawn();
 
 
 public:
