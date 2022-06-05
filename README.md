@@ -28,7 +28,12 @@ The game consists in different pieces falling and the objective is to make them 
 - Up arrow    - It rotates the piece counterclockwise
 
 **Additional Controls**
-- Go back to game intro / Exit game - Escape
+- Escape      - Go back to game intro / Exit game
+- F1          - Win condition
+- F2          - Lose condition
+- F3          - Infinite lines
+- F4          - God mode (enable the keys from 1 to 7 to select the piece you want to appear, click it againt to disable)
+- F5          - It adds a line to your completed lines counter
 
 ## Game Trailer
 
