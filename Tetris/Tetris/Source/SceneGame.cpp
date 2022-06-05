@@ -478,7 +478,8 @@ Update_Status SceneGame::PostUpdate()
 		}
 
 		if (winDelay<=-60) {
-			ResetLevel();
+			if (currentLevel < 11) { ResetLevel(); }
+			else{ App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90); }
 		}
 		else{ winDelay--; }
 	}

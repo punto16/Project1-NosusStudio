@@ -199,9 +199,9 @@ Update_Status ModuleGame::PostUpdate()
 	App->fonts->BlitText(25, 225, Tetris_font_red, "lines");
 	App->fonts->BlitText(65, 225, Tetris_font_red, linesText);
 
-	sprintf_s(roundText, 10, "%7d", totalLines);
-	App->fonts->BlitText(130, 210, Tetris_font_darkblue, "lines");
-	App->fonts->BlitText(153, 210, Tetris_font_darkblue, linesText);
+	sprintf_s(roundText, 10, "%7d", (App->sceneGame->currentLevel) + 1);
+	App->fonts->BlitText(130, 210, Tetris_font_darkblue, "round");
+	App->fonts->BlitText(153, 210, Tetris_font_darkblue, roundText);
 
 	sprintf_s(high_scoreText, 10, "%7d", App->data->high_score);
 	App->fonts->BlitText(130, 185, Tetris_font_darkblue, "high score");
