@@ -193,17 +193,70 @@ bool SceneGame::Start()
 	
 	levelLines = levelsTotalLines[currentLevel];
 
+	if (currentLevel >= 0 && currentLevel < 3) {
+		bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
+		App->game->fontMiddle = App->game->Tetris_font_darkblue;
+		App->game->fontRight = App->game->Tetris_font_lightblue;
+		App->game->fontScore = App->game->Tetris_font_darkblue;
+	}
+	else if (currentLevel >= 3 && currentLevel < 6) {
+		bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_2.png");
+		App->game->fontMiddle = App->game->Tetris_font_purpura;
+		App->game->fontRight = App->game->Tetris_font_blue;
+		App->game->fontScore = App->game->Tetris_font_purpura;
+	}
+	else if (currentLevel >= 6 && currentLevel < 9) {
+		bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_3.png");
+		App->game->fontMiddle = App->game->Tetris_font_lightblue;
+		App->game->fontRight = App->game->Tetris_font_lightblue;
+		App->game->fontScore = App->game->Tetris_font_brown;
+	}
+	else if (currentLevel >= 9 && currentLevel < 12) {
+		bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
+		App->game->fontMiddle = App->game->Tetris_font_darkblue;
+		App->game->fontRight = App->game->Tetris_font_lightblue;
+		App->game->fontScore = App->game->Tetris_font_darkblue;
+	}
+
 	return ret;
 }
 
 void SceneGame::ResetLevel()
 {
+	currentLevel++;
+	levelLines = levelsTotalLines[currentLevel];
+
 	App->playground->nextBlock.id = App->playground->RandomBlock();
 	
 	App->playground->lineLimit = false;
 	App->playground->selectBlock = false;
 
 	App->playground->lineLimit = false;
+
+	if (currentLevel >= 0 && currentLevel < 3) {
+		bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
+		App->game->fontMiddle = App->game->Tetris_font_darkblue;
+		App->game->fontRight = App->game->Tetris_font_lightblue;
+		App->game->fontScore = App->game->Tetris_font_darkblue;
+	}
+	else if (currentLevel >= 3 && currentLevel < 6) {
+		bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_2.png");
+		App->game->fontMiddle = App->game->Tetris_font_purpura;
+		App->game->fontRight = App->game->Tetris_font_blue;
+		App->game->fontScore = App->game->Tetris_font_purpura;
+	}
+	else if (currentLevel >= 6 && currentLevel < 9) {
+		bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_3.png");
+		App->game->fontMiddle = App->game->Tetris_font_lightblue;
+		App->game->fontRight = App->game->Tetris_font_lightblue;
+		App->game->fontScore = App->game->Tetris_font_brown;
+	}
+	else if (currentLevel >= 9 && currentLevel < 12) {
+		bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
+		App->game->fontMiddle = App->game->Tetris_font_darkblue;
+		App->game->fontRight = App->game->Tetris_font_lightblue;
+		App->game->fontScore = App->game->Tetris_font_darkblue;
+	}
 
 	for (size_t i = 0; i < 23; i++)
 	{
@@ -222,9 +275,6 @@ void SceneGame::ResetLevel()
 	App->playground->bonusPoints = 10;
 	App->playground->bonus = false;
 	App->playground->lastBonus = 2;
-
-	currentLevel++;
-	levelLines = levelsTotalLines[currentLevel];
 
 	curtainClosing.Reset();
 	curtainOpening.Reset();
@@ -285,7 +335,18 @@ Update_Status SceneGame::PostUpdate()
 	if (!App->game->multiplayer && (App->game->statePlay1 || App->game->stateLine1)) {
 
 		if (!playMusic) {
-			App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
+			if (currentLevel == 0 || currentLevel ==4 || currentLevel == 8) {
+				App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
+			}
+			else if (currentLevel == 1 || currentLevel == 5 || currentLevel == 9) {
+				App->audio->PlayMusic("Assets/audio/2_Bradinsky.ogg", 1.0f);
+			}
+			else if (currentLevel == 2 || currentLevel == 6 || currentLevel == 10) {
+				App->audio->PlayMusic("Assets/audio/3_Karinka.ogg", 1.0f);
+			}
+			else if (currentLevel == 3 || currentLevel == 7 || currentLevel == 11) {
+				App->audio->PlayMusic("Assets/audio/4_Troika.ogg", 1.0f);
+			}
 			playMusic = true;
 		}
 

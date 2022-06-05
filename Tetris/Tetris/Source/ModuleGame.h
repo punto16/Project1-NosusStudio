@@ -58,6 +58,10 @@ public:
 	int	Tetris_font_red			= -1;
 	int	Tetris_font_white		= -1;
 
+	int fontMiddle				= -1;
+	int fontScore				= -1;
+	int fontRight				= -1;
+
 
 	//textures
 	
@@ -65,8 +69,8 @@ public:
 	SDL_Rect rainbowBarSection = { 0,16,8,2 };
 	
 	//UI elements
-	uint score;
-	char scoreText[10] = { "\0" };
+	uint scorePlayer1;
+	char scoreTextPlayer1[10] = { "\0" };
 
 	uint totalLines;
 	char linesText[10] = { "\0" };

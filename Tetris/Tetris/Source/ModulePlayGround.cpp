@@ -379,10 +379,10 @@ void ModulePlayGround::Score()
 	//lines
 	switch (lines)
 	{
-	case 1: App->game->score += 50;  break;
-	case 2: App->game->score += 150; break;
-	case 3: App->game->score += 400; break;
-	case 4: App->game->score += 900; break;
+	case 1: App->game->scorePlayer1 += 50;  break;
+	case 2: App->game->scorePlayer1 += 150; break;
+	case 3: App->game->scorePlayer1 += 400; break;
+	case 4: App->game->scorePlayer1 += 900; break;
 	default: break;
 	}
 
@@ -394,7 +394,7 @@ void ModulePlayGround::Score()
 	if (block.inputY == 20)
 		gravity = 2;
 
-	App->game->score += gravity * rainbow * (rainbow + height);
+	App->game->scorePlayer1 += gravity * rainbow * (rainbow + height);
 
 	App->game->totalLines += lines;
 
@@ -481,7 +481,7 @@ void ModulePlayGround::Bonus() {
 				else if (j == 10) { App->sceneGame->playground[lastBonus][j] = 108; }
 				else { App->sceneGame->playground[lastBonus][j] = 107; }
 			}
-			App->game->score += bonusPoints;
+			App->game->scorePlayer1 += bonusPoints;
 			bonusPoints += 10;
 		}
 		lastBonus++;

@@ -21,6 +21,7 @@ public:
 public:
 
 	uint high_score = 0;
+	uint high_score_multiplayer = 0;
 
 };
 

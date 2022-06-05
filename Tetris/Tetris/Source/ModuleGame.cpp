@@ -44,7 +44,7 @@ bool ModuleGame::Start()
 
 	//bool multiplayer = false;
 
-	score = 000;
+	scorePlayer1 = 000;
 	totalLines = 000;
 	scorePlayer2 = 000;
 	totalLinesPlayer2 = 000;
@@ -55,7 +55,7 @@ bool ModuleGame::Start()
 	Tetris_font_blue = App->fonts->Load("Assets/Fonts/sprite_font_blue.png", lookupTable, 6);
 	Tetris_font_brown = App->fonts->Load("Assets/Fonts/sprite_font_brown.png", lookupTable, 6);
 	Tetris_font_darkblue = App->fonts->Load("Assets/Fonts/sprite_font_darkblue.png", lookupTable, 6);
-	Tetris_font_lightblue = App->fonts->Load("Assets/Fonts/sprite_font_lightblue).png", lookupTable, 6);
+	Tetris_font_lightblue = App->fonts->Load("Assets/Fonts/sprite_font_lightblue.png", lookupTable, 6);
 	Tetris_font_purpura = App->fonts->Load("Assets/Fonts/sprite_font_purpura.png", lookupTable, 6);
 	Tetris_font_red = App->fonts->Load("Assets/Fonts/sprite_font_red.png", lookupTable, 6);
 	Tetris_font_white = App->fonts->Load("Assets/Fonts/sprite_font_white.png", lookupTable, 6);
@@ -73,10 +73,18 @@ Update_Status ModuleGame::Update()
 
 Update_Status ModuleGame::PostUpdate()
 {
-	if (!destroyed){}
+	if (!destroyed){} //Huevo de verano
 
-	if (score > App->data->high_score) {
-		App->data->high_score = score;
+	if (scorePlayer1 > App->data->high_score) {
+		App->data->high_score = scorePlayer1;
+	}
+	if (multiplayer) {
+		if (scorePlayer1 > App->data->high_score_multiplayer) {
+			App->data->high_score_multiplayer = scorePlayer1;
+		}
+		if (scorePlayer2 > App->data->high_score_multiplayer) {
+			App->data->high_score_multiplayer = scorePlayer2;
+		}
 	}
 
 	//Draw rainbow bar Player 1
@@ -190,47 +198,51 @@ Update_Status ModuleGame::PostUpdate()
 	}
 
 
-	// Draw UI (score) --------------------------------------
-	sprintf_s(scoreText, 10, "%7d", score);
+	// Draw UI --------------------------------------
+
+	//Player 1 score
+	sprintf_s(scoreTextPlayer1, 10, "%7d", scorePlayer1);
 	App->fonts->BlitText(25, 217, Tetris_font_red, "score");
-	App->fonts->BlitText(65, 217, Tetris_font_red, scoreText);
+	App->fonts->BlitText(65, 217, Tetris_font_red, scoreTextPlayer1);
 
 	sprintf_s(linesText, 10, "%7d", totalLines);
 	App->fonts->BlitText(25, 225, Tetris_font_red, "lines");
 	App->fonts->BlitText(65, 225, Tetris_font_red, linesText);
 
-	sprintf_s(roundText, 10, "%7d", (App->sceneGame->currentLevel) + 1);
-	App->fonts->BlitText(130, 210, Tetris_font_darkblue, "round");
-	App->fonts->BlitText(153, 210, Tetris_font_darkblue, roundText);
-
-	sprintf_s(high_scoreText, 10, "%7d", App->data->high_score);
-	App->fonts->BlitText(130, 185, Tetris_font_darkblue, "high score");
-	App->fonts->BlitText(153, 195, Tetris_font_darkblue, high_scoreText);
-
-	sprintf_s(creditsText, 10, "%7d", credits);
-	App->fonts->BlitText(130, 226, Tetris_font_darkblue, "credits");
-	App->fonts->BlitText(153, 226, Tetris_font_darkblue, creditsText);
-
-	//Text
 	if (!multiplayer) //Singleplayer UI
 	{
+		//Game data middle
+		sprintf_s(high_scoreText, 10, "%7d", App->data->high_score);
+		App->fonts->BlitText(130, 185, fontMiddle, "high score");
+		App->fonts->BlitText(153, 195, fontMiddle, high_scoreText);
+
+		sprintf_s(roundText, 10, "%7d", (App->sceneGame->currentLevel) + 1);
+		App->fonts->BlitText(130, 210, fontMiddle, "round");
+		App->fonts->BlitText(153, 210, fontMiddle, roundText);
+
+		sprintf_s(creditsText, 10, "%7d", credits);
+		App->fonts->BlitText(130, 226, fontMiddle, "credits");
+		App->fonts->BlitText(153, 226, fontMiddle, creditsText);
+
+		//Text right
 		App->fonts->BlitText(240, 60, Tetris_font_white, "stats");
 
 		timer++;
 		if (timer == 240) { timer = 0; }
 
 		if (timer < 120) {
-			App->fonts->BlitText(230, 216, Tetris_font_lightblue, "join in");
-			App->fonts->BlitText(230, 224, Tetris_font_lightblue, "any time");
+			App->fonts->BlitText(230, 217, fontRight, "join in");
+			App->fonts->BlitText(230, 225, fontRight, "any time");
 		}
 
 		if (timer >= 120) {
-			App->fonts->BlitText(237, 216, Tetris_font_lightblue, "insert");
-			App->fonts->BlitText(246, 224, Tetris_font_lightblue, "coin");
+			App->fonts->BlitText(237, 217, fontRight, "insert");
+			App->fonts->BlitText(245, 225, fontRight, "coin");
 		}
 	}
 	else //Multiplayer UI
 	{
+		//Player 2 score
 		sprintf_s(scoreTextPlayer2, 10, "%7d", scorePlayer2);
 		App->fonts->BlitText(217, 217, Tetris_font_red, "score");
 		App->fonts->BlitText(257, 217, Tetris_font_red, scoreTextPlayer2);
@@ -239,8 +251,16 @@ Update_Status ModuleGame::PostUpdate()
 		App->fonts->BlitText(217, 225, Tetris_font_red, "lines");
 		App->fonts->BlitText(257, 225, Tetris_font_red, linesTextPlayer2);
 
-
 		App->fonts->BlitText(296, 8, Tetris_font_red, "next");
+
+		//Game data middle
+		sprintf_s(high_scoreText, 10, "%7d", App->data->high_score_multiplayer);
+		App->fonts->BlitText(130, 185, Tetris_font_darkblue, "high score");
+		App->fonts->BlitText(153, 195, Tetris_font_darkblue, high_scoreText);
+
+		sprintf_s(creditsText, 10, "%7d", credits);
+		App->fonts->BlitText(130, 226, Tetris_font_darkblue, "credits");
+		App->fonts->BlitText(153, 226, Tetris_font_darkblue, creditsText);
 	}
 	App->fonts->BlitText(8, 8, Tetris_font_red, "next");
 
