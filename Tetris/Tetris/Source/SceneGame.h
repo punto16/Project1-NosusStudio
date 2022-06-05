@@ -43,10 +43,13 @@ public:
 	int winDelay = 240;
 	int loseDelay = 120;
 
+	int numberBlink;
+
 
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* lateralNumbersTexture = nullptr;
+	SDL_Texture* lateralNumbersBlink = nullptr;
 	SDL_Texture* goTexture = nullptr;
 
 	SDL_Texture* curtainTexture = nullptr;
