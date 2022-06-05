@@ -49,4 +49,4 @@ Besides the current responsibility, each team member has worked on the game's co
 
 ## License
 
-This project is licensed under an unmodified MIT license, which is an OSI-certified license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
+This project is licensed under an unmodified MIT license, which is an OSI-certified license that allows static linking with closed source software. Check [LICENSE](LICENSE.md) for further details.
