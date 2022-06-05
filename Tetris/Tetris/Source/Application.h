@@ -20,8 +20,8 @@ class ModulePlayGround2;
 
 class SceneIntro;
 class SceneMenu;
-class SceneLevel1;
-class ModulePlayer;
+class SceneGame;
+class ModuleGame;
 
 class ModuleFadeToBlack;
 class ModuleFonts;
@@ -67,8 +67,8 @@ public:
 
 	SceneIntro* sceneIntro = nullptr;
 	SceneMenu* sceneMenu = nullptr;
-	SceneLevel1* sceneLevel_1 = nullptr;
-	ModulePlayer* player = nullptr;
+	SceneGame* sceneGame = nullptr;
+	ModuleGame* game = nullptr;
 
 	ModuleFadeToBlack* fade = nullptr;
 	ModuleFonts* fonts = nullptr;

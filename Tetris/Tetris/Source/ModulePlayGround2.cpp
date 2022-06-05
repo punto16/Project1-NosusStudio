@@ -7,8 +7,8 @@
 #include "ModuleAudio.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
-#include "ModulePlayer.h"
-#include "SceneLevel1.h"
+#include "ModuleGame.h"
+#include "SceneGame.h"
 
 #include <stdio.h>
 
@@ -34,7 +34,7 @@ Update_Status ModulePlayGround2::PreUpdate()
 
 Update_Status ModulePlayGround2::Update()
 {
-	if (App->player->stateLine2 == true)
+	if (App->game->stateLine2 == true)
 	{
 		fCountL++;
 
@@ -45,7 +45,7 @@ Update_Status ModulePlayGround2::Update()
 		}
 	}
 
-	if (App->player->statePlay2 == true)
+	if (App->game->statePlay2 == true)
 	{
 		StatePlay();
 	}
@@ -75,8 +75,8 @@ void ModulePlayGround2::StateLine()
 	if (line == -1 || linePositionIndex == 4)
 	{
 		linePositionIndex = 0;
-		App->player->stateLine2 = false;
-		App->player->statePlay2 = true;
+		App->game->stateLine2 = false;
+		App->game->statePlay2 = true;
 
 		for (int i = 0; i < 4; i++)
 			linePositionList[i] = -1;
@@ -88,7 +88,7 @@ void ModulePlayGround2::StateLine()
 		for (int i = line; i > 0; i--)
 		{
 			for (int j = 1; j < 11; j++)
-				App->sceneLevel_1->playground2[i][j] = App->sceneLevel_1->playground2[i - 1][j];
+				App->sceneGame->playground2[i][j] = App->sceneGame->playground2[i - 1][j];
 		}
 
 		lineColorIndex = 0;
@@ -98,7 +98,7 @@ void ModulePlayGround2::StateLine()
 	{
 		//set rainbow color
 		for (size_t j = 1; j < 11; j++)
-			App->sceneLevel_1->playground2[line][j] = lineColorList[lineColorIndex];
+			App->sceneGame->playground2[line][j] = lineColorList[lineColorIndex];
 		lineColorIndex++;
 	}
 }
@@ -187,7 +187,7 @@ void ModulePlayGround2::SaveInput()
 	if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_DOWN) { rotate = true; }
 
 	// DEBUG KEYS
-	if (App->input->keys[SDL_SCANCODE_F1] == Key_State::KEY_DOWN) { App->sceneLevel_1->levelLines = 0; }
+	if (App->input->keys[SDL_SCANCODE_F1] == Key_State::KEY_DOWN) { App->sceneGame->levelLines = 0; }
 	if (App->input->keys[SDL_SCANCODE_F2] == Key_State::KEY_DOWN) { gameOver = true; }
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) { lineLimit = !lineLimit; }
 	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) { selectBlock = !selectBlock; }
@@ -240,7 +240,7 @@ bool ModulePlayGround2::IsColliding(int x2, int y2, Block2& block)
 	{
 		for (size_t j = 0; j < 4; j++)
 		{
-			if (block.tiles[i][j] && App->sceneLevel_1->playground2[y2 + i][x2 + j] != 0)
+			if (block.tiles[i][j] && App->sceneGame->playground2[y2 + i][x2 + j] != 0)
 			{
 				height = block.y + i;
 				return true;
@@ -276,7 +276,7 @@ void ModulePlayGround2::DeathSequence()
 		{
 			if (block.tiles[i][j] != 0)
 			{
-				App->sceneLevel_1->playground2[block.y + i][block.x + j] = block.tiles[i][j];
+				App->sceneGame->playground2[block.y + i][block.x + j] = block.tiles[i][j];
 				App->audio->PlayFx(App->audio->hitFx);
 			}
 		}
@@ -287,7 +287,7 @@ bool ModulePlayGround2::GameoverCheck()
 {
 	for (size_t i = 1; i < 11; i++)
 	{
-		if (App->sceneLevel_1->playground2[1][i] != 0)
+		if (App->sceneGame->playground2[1][i] != 0)
 		{
 			return true;
 		}
@@ -307,7 +307,7 @@ void ModulePlayGround2::CheckLine()
 
 		for (size_t j = 0; j < 12; j++)
 		{
-			if (App->sceneLevel_1->playground2[i][j] != 0)
+			if (App->sceneGame->playground2[i][j] != 0)
 			{
 				count++;
 			}
@@ -320,8 +320,8 @@ void ModulePlayGround2::CheckLine()
 	}
 
 	if (lines > 0) {
-		App->player->stateLine2 = true;
-		App->player->statePlay2 = false;
+		App->game->stateLine2 = true;
+		App->game->statePlay2 = false;
 		CutTextures();
 	}
 }
@@ -331,25 +331,25 @@ void ModulePlayGround2::Score()
 	//lines
 	switch (lines)
 	{
-	case 1: App->player->scorePlayer2 += 50; break;
-	case 2: App->player->scorePlayer2 += 150; break;
-	case 3: App->player->scorePlayer2 += 400; break;
-	case 4: App->player->scorePlayer2 += 900; break;
+	case 1: App->game->scorePlayer2 += 50; break;
+	case 2: App->game->scorePlayer2 += 150; break;
+	case 3: App->game->scorePlayer2 += 400; break;
+	case 4: App->game->scorePlayer2 += 900; break;
 	default: break;
 	}
 
 	//passive
 	int gravity = 1;
-	int rainbow = App->player->rainbow;
+	int rainbow = App->game->rainbow;
 	height = (height - 21) * -1;
 
 	if (block.inputY == 20)
 		gravity = 2;
 
-	App->player->scorePlayer2 += gravity * rainbow * (rainbow + height);
+	App->game->scorePlayer2 += gravity * rainbow * (rainbow + height);
 
-	App->player->totalLinesPlayer2 += lines;
-	//App->sceneLevel_1->levelLines -= lines;
+	App->game->totalLinesPlayer2 += lines;
+	//App->sceneGame->levelLines -= lines;
 }
 
 void ModulePlayGround2::CutTextures() {
@@ -357,28 +357,28 @@ void ModulePlayGround2::CutTextures() {
 	int line_down = (linePositionList[lines - 1]) + 1;
 
 	for (size_t i = 1; i < 11; i++) {
-		switch ((App->sceneLevel_1->playground2[line_up][i]) % 15)
+		switch ((App->sceneGame->playground2[line_up][i]) % 15)
 		{
 		case 4:
-			App->sceneLevel_1->playground2[line_up][i] += 11;
+			App->sceneGame->playground2[line_up][i] += 11;
 			break;
 		case 5:
-			App->sceneLevel_1->playground2[line_up][i] += 1;
+			App->sceneGame->playground2[line_up][i] += 1;
 			break;
 		case 8:
-			App->sceneLevel_1->playground2[line_up][i] += 5;
+			App->sceneGame->playground2[line_up][i] += 5;
 			break;
 		case 9:
-			App->sceneLevel_1->playground2[line_up][i] -= 7;
+			App->sceneGame->playground2[line_up][i] -= 7;
 			break;
 		case 10:
-			App->sceneLevel_1->playground2[line_up][i] += 2;
+			App->sceneGame->playground2[line_up][i] += 2;
 			break;
 		case 11:
-			App->sceneLevel_1->playground2[line_up][i] -= 10;
+			App->sceneGame->playground2[line_up][i] -= 10;
 			break;
 		case 14:
-			App->sceneLevel_1->playground2[line_up][i] -= 11;
+			App->sceneGame->playground2[line_up][i] -= 11;
 			break;
 		default:
 			break;
@@ -387,28 +387,28 @@ void ModulePlayGround2::CutTextures() {
 
 	if (line_down < 22) {
 		for (size_t j = 1; j < 11; j++) {
-			switch ((App->sceneLevel_1->playground2[line_down][j]) % 15)
+			switch ((App->sceneGame->playground2[line_down][j]) % 15)
 			{
 			case 5:
-				App->sceneLevel_1->playground2[line_down][j] -= 1;
+				App->sceneGame->playground2[line_down][j] -= 1;
 				break;
 			case 6:
-				App->sceneLevel_1->playground2[line_down][j] += 9;
+				App->sceneGame->playground2[line_down][j] += 9;
 				break;
 			case 7:
-				App->sceneLevel_1->playground2[line_down][j] -= 5;
+				App->sceneGame->playground2[line_down][j] -= 5;
 				break;
 			case 8:
-				App->sceneLevel_1->playground2[line_down][j] += 3;
+				App->sceneGame->playground2[line_down][j] += 3;
 				break;
 			case 10:
-				App->sceneLevel_1->playground2[line_down][j] += 4;
+				App->sceneGame->playground2[line_down][j] += 4;
 				break;
 			case 12:
-				App->sceneLevel_1->playground2[line_down][j] -= 9;
+				App->sceneGame->playground2[line_down][j] -= 9;
 				break;
 			case 13:
-				App->sceneLevel_1->playground2[line_down][j] -= 12;
+				App->sceneGame->playground2[line_down][j] -= 12;
 				break;
 			default:
 				break;

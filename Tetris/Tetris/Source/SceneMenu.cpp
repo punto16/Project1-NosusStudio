@@ -6,7 +6,7 @@
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
-#include "ModulePlayer.h"
+#include "ModuleGame.h"
 #include "SceneIntro.h"
 
 
@@ -50,7 +50,7 @@ bool SceneMenu::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-	App->player->multiplayer = false;
+	App->game->multiplayer = false;
 
 	play_diff = false;
 	selection = 0;
@@ -90,13 +90,13 @@ Update_Status SceneMenu::Update()
 		switch (selection)
 		{
 		case 0: //Easy
-			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
+			App->fade->FadeToBlack(this, (Module*)App->sceneGame, 90); //Placeholder
 			break;
 		case 1: //Normal
-			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
+			App->fade->FadeToBlack(this, (Module*)App->sceneGame, 90); //Placeholder
 			break;
 		case 2: //Hard
-			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90); //Placeholder
+			App->fade->FadeToBlack(this, (Module*)App->sceneGame, 90); //Placeholder
 			break;
 		}
 	}
@@ -108,8 +108,8 @@ Update_Status SceneMenu::Update()
 			play_diff = true;
 			break;
 		case 1: //Multiplayer
-			App->player->multiplayer = true;
-			App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+			App->game->multiplayer = true;
+			App->fade->FadeToBlack(this, (Module*)App->sceneGame, 90);
 			break;
 		}
 	}	

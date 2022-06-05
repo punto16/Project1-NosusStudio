@@ -6,9 +6,9 @@
 #include "ModuleController.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
-#include "ModulePlayer.h"
+#include "ModuleGame.h"
 #include "SceneIntro.h"
-#include "SceneLevel1.h"
+#include "SceneGame.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
@@ -39,8 +39,8 @@ Application::Application()
 
 	modules[8] =	sceneIntro =	new SceneIntro(true);
 	modules[9] =	sceneMenu =		new SceneMenu(false);
-	modules[10] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
-	modules[11] =	player =		new ModulePlayer(false);	//Player starts disabled
+	modules[10] =	sceneGame =		new SceneGame(false);		//Gameplay scene starts disabled
+	modules[11] =	game =			new ModuleGame(false);		//Player starts disabled
 
 	modules[12] =	fade =			new ModuleFadeToBlack(true);
 	modules[13] =	fonts =			new ModuleFonts(true);

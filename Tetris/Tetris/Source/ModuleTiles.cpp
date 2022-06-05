@@ -3,7 +3,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleTiles.h"
-#include "SceneLevel1.h"
+#include "SceneGame.h"
 #include "ModulePlayGround.h"
 #include "ModulePlayGround2.h"
 
@@ -105,14 +105,14 @@ void ModuleTiles::BlitText(int x, int y, int font_id, uint tile, Block actual_bl
 
 		//we divide by 4 because is the width and height of the block matrix
 		if (actual_block.on_playground == true) {
-			x = (x * (tetromino->block_w / 4)) + App->sceneLevel_1->x_TileMap;
-			y = (y * (tetromino->block_h / 4)) + App->sceneLevel_1->y_TileMap;
+			x = (x * (tetromino->block_w / 4)) + App->sceneGame->x_TileMap;
+			y = (y * (tetromino->block_h / 4)) + App->sceneGame->y_TileMap;
 		}
 	}
 	else if (tile != NULL) {
 		blockText = ((int)tile) - 1;
-		x = (x * tetromino->block_w) + App->sceneLevel_1->x_TileMap;
-		y = (y * tetromino->block_h) + App->sceneLevel_1->y_TileMap;
+		x = (x * tetromino->block_w) + App->sceneGame->x_TileMap;
+		y = (y * tetromino->block_h) + App->sceneGame->y_TileMap;
 	}
 	else {
 		LOG("Unable to render text with bmp font id %d", font_id);
@@ -161,14 +161,14 @@ void ModuleTiles::BlitText2(int x, int y, int font_id, uint tile, Block2 actual_
 
 		//we divide by 4 because is the width and height of the block matrix
 		if (actual_block.on_playground == true) {
-			x = (x * (tetromino->block_w / 4)) + App->sceneLevel_1->x_TileMap2;
-			y = (y * (tetromino->block_h / 4)) + App->sceneLevel_1->y_TileMap;
+			x = (x * (tetromino->block_w / 4)) + App->sceneGame->x_TileMap2;
+			y = (y * (tetromino->block_h / 4)) + App->sceneGame->y_TileMap;
 		}
 	}
 	else if (tile != NULL) {
 		blockText = ((int)tile) - 1;
-		x = (x * tetromino->block_w) + App->sceneLevel_1->x_TileMap2;
-		y = (y * tetromino->block_h) + App->sceneLevel_1->y_TileMap;
+		x = (x * tetromino->block_w) + App->sceneGame->x_TileMap2;
+		y = (y * tetromino->block_h) + App->sceneGame->y_TileMap;
 	}
 	else {
 		LOG("Unable to render text with bmp font id %d", font_id);

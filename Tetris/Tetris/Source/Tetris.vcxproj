@@ -86,9 +86,9 @@
     <ClInclude Include="ModulePlayGround2.h" />
     <ClInclude Include="ModuleTiles.h" />
     <ClInclude Include="SceneIntro.h" />
-    <ClInclude Include="SceneLevel1.h" />
+    <ClInclude Include="SceneGame.h" />
     <ClInclude Include="ModuleInput.h" />
-    <ClInclude Include="ModulePlayer.h" />
+    <ClInclude Include="ModuleGame.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleWindow.h" />
@@ -109,9 +109,9 @@
     <ClCompile Include="ModulePlayGround2.cpp" />
     <ClCompile Include="ModuleTiles.cpp" />
     <ClCompile Include="SceneIntro.cpp" />
-    <ClCompile Include="SceneLevel1.cpp" />
+    <ClCompile Include="SceneGame.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
-    <ClCompile Include="ModulePlayer.cpp" />
+    <ClCompile Include="ModuleGame.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />

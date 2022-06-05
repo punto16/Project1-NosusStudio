@@ -55,7 +55,7 @@
     <ClInclude Include="ModuleWindow.h">
       <Filter>Source Files\Modules\Core</Filter>
     </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
+    <ClInclude Include="ModuleGame.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="ModuleFadeToBlack.h">
@@ -82,7 +82,7 @@
     <ClInclude Include="SceneMenu.h">
       <Filter>Source Files\Modules\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="SceneLevel1.h">
+    <ClInclude Include="SceneGame.h">
       <Filter>Source Files\Modules\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="SceneIntro.h">
@@ -117,7 +117,7 @@
     <ClCompile Include="ModuleWindow.cpp">
       <Filter>Source Files\Modules\Core</Filter>
     </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
+    <ClCompile Include="ModuleGame.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="ModuleFadeToBlack.cpp">
@@ -144,7 +144,7 @@
     <ClCompile Include="SceneMenu.cpp">
       <Filter>Source Files\Modules\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="SceneLevel1.cpp">
+    <ClCompile Include="SceneGame.cpp">
       <Filter>Source Files\Modules\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="SceneIntro.cpp">
