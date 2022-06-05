@@ -439,6 +439,12 @@ Update_Status SceneGame::PostUpdate()
 
 	if (App->game->multiplayer && (App->game->statePlay1 || App->game->stateLine1 || App->game->statePlay2 || App->game->stateLine2))
 	{
+
+		if (!playMusic) {
+			App->audio->PlayMusic("Assets/audio/MultiplayerOST.ogg", 1.0f);
+			playMusic = true;
+		}
+
 		//Lateral bars for player 1
 		if (App->playground->lines == 4)
 		{
