@@ -71,14 +71,14 @@ Update_Status SceneMenu::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
-	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
+	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN || App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
 	{
-		App->audio->PlayFx(App->audio->changeDiffFx);
+		//App->audio->PlayFx(App->audio->changeDiffFx);
 		selectionToLeft();
 	}
-	else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN)
+	else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN || App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
 	{
-		App->audio->PlayFx(App->audio->changeDiffFx);
+		//App->audio->PlayFx(App->audio->changeDiffFx);
 		selectionToRight();
 	}
 
@@ -223,11 +223,19 @@ void SceneMenu::selectionToRight()
 
 	if (play_diff)
 	{
-		if (selection > 2) selection = 0;
+		if (selection > 2) selection = 2;
+		else
+		{
+			App->audio->PlayFx(App->audio->changeDiffFx);
+		}
 	}
 	else
 	{
-		if (selection > 1) selection = 0;
+		if (selection > 1) selection = 1;
+		else
+		{
+			App->audio->PlayFx(App->audio->changeDiffFx);
+		}
 	}
 }
 
@@ -237,10 +245,18 @@ void SceneMenu::selectionToLeft()
 
 	if (play_diff)
 	{
-		if (selection < 0) selection = 2;
+		if (selection < 0) selection = 0;
+		else
+		{
+			App->audio->PlayFx(App->audio->changeDiffFx);
+		}
 	}
 	else
 	{
-		if (selection < 0) selection = 1;
+		if (selection < 0) selection = 0;
+		else
+		{
+			App->audio->PlayFx(App->audio->changeDiffFx);
+		}
 	}
 }
