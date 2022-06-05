@@ -30,6 +30,8 @@ public:
 	// Disables the player and the enemies
 	bool CleanUp();
 
+	void ResetLevel();
+
 public:
 
 	int levelsTotalLines[12] = { 5,10,12,10,13,16,12,15,18,12,15,18 };

@@ -196,6 +196,20 @@ bool SceneGame::Start()
 	return ret;
 }
 
+void ResetLevel()
+{
+	App->playground->fCountL = 0;
+	App->playground->fCountY = 0;
+	App->playground->fCountX = 0;
+	App->playground->fCountPress = 1;
+
+	App->playground->isAlive = true;
+	App->playground->rotate = false;
+	App->playground->gameOver = false;
+
+	App->playground->lineLimit = false;
+}
+
 Update_Status SceneGame::Update()
 {
 	if(App->game->stateLose || App->game->stateEndMultiplayer){ curtainClosing.Update(); }
