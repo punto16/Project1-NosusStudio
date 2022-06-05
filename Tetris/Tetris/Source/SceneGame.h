@@ -31,8 +31,10 @@ public:
 	bool CleanUp();
 
 public:
-	
-	int levelLines = 5;
+
+	int levelsTotalLines[12] = { 5,10,12,10,13,16,12,15,18,12,15,18 };
+	int currentLevel = 0;
+	int levelLines = levelsTotalLines[currentLevel];
 
 	bool playMusic = false;
 

@@ -39,7 +39,6 @@ Update_Status ModulePlayGround::Update()
 {
 	if (App->game->stateWin)
 	{
-		if(App->sceneGame->winDelay == 120){ App->audio->PlayFx(App->audio->bonusPointBarsFx); }
 		if (App->sceneGame->winDelay <= 120 && bonus == false && delayBonus == 0)
 		{
 			Bonus();

@@ -57,6 +57,7 @@ bool ModuleAudio::Init()
 	roundCompletedFx = App->audio->LoadFx("Assets/audio/round_completed.wav");
 	selectDiffFx = App->audio->LoadFx("Assets/audio/select_diff.wav");
 	changeDiffFx = App->audio->LoadFx("Assets/audio/change_diff.wav");
+	roundCompletedAndBonusPointBars = App->audio->LoadFx("Assets/audio/round_ended_bars.wav");
 
 	return ret;
 }

@@ -8,6 +8,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleGame.h"
 #include "SceneIntro.h"
+#include "SceneGame.h"
 
 
 SceneMenu::SceneMenu(bool startEnabled) : Module(startEnabled)
@@ -101,12 +102,15 @@ Update_Status SceneMenu::Update()
 		switch (selection)
 		{
 		case 0: //Easy
+			App->sceneGame->currentLevel = 0;
 			App->fade->FadeToBlack(this, (Module*)App->sceneGame, 90); //Placeholder
 			break;
 		case 1: //Normal
+			App->sceneGame->currentLevel = 3;
 			App->fade->FadeToBlack(this, (Module*)App->sceneGame, 90); //Placeholder
 			break;
 		case 2: //Hard
+			App->sceneGame->currentLevel = 9;
 			App->fade->FadeToBlack(this, (Module*)App->sceneGame, 90); //Placeholder
 			break;
 		}

@@ -191,7 +191,7 @@ bool SceneGame::Start()
 	App->playground->bonus = false;
 	App->playground->lastBonus = 2;
 	
-	levelLines = 5;
+	levelLines = levelsTotalLines[currentLevel];
 
 	return ret;
 }
@@ -409,7 +409,7 @@ Update_Status SceneGame::PostUpdate()
 
 		if (playMusic) {
 			App->audio->PlayMusic("", 1.0f);
-			App->audio->PlayFx(App->audio->roundCompletedFx);
+			App->audio->PlayFx(App->audio->roundCompletedAndBonusPointBars);
 			playMusic = false;
 		}
 
@@ -434,7 +434,7 @@ Update_Status SceneGame::PostUpdate()
 		if (winDelay<=-60) {
 			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		}
-		winDelay--;
+		else{ winDelay--; }
 	}
 
 	if (App->game->multiplayer && (App->game->statePlay1 || App->game->stateLine1 || App->game->statePlay2 || App->game->stateLine2))
