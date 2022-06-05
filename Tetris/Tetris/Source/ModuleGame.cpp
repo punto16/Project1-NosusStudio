@@ -78,59 +78,114 @@ Update_Status ModuleGame::PostUpdate()
 		App->data->high_score = score;
 	}
 
-	//Draw rainbow bar
+	//Draw rainbow bar Player 1
 	if (totalLines >= 36)
 	{
 		rainbow = 10;
 		App->render->Blit(rainbowBar, 8, 214);
 	}
-	else if (totalLines >= 32)
+	if (totalLines >= 32)
 	{
 		rainbow = 9;
 		rainbowBarSection = { 0,2,8,2 };
 		App->render->Blit(rainbowBar, 8, 216, &rainbowBarSection);
 	}
-	else if (totalLines >= 28)
+	if (totalLines >= 28)
 	{
 		rainbow = 8;
 		rainbowBarSection = { 0,4,8,2 };
 		App->render->Blit(rainbowBar, 8, 218, &rainbowBarSection);
 	}
-	else if (totalLines >= 24)
+	if (totalLines >= 24)
 	{
 		rainbow = 7;
 		rainbowBarSection = { 0,6,8,2 };
 		App->render->Blit(rainbowBar, 8, 220, &rainbowBarSection);
 	}
-	else if (totalLines >= 20)
+	if (totalLines >= 20)
 	{
 		rainbow = 6;
 		rainbowBarSection = { 0,8,8,2 };
 		App->render->Blit(rainbowBar, 8, 222, &rainbowBarSection);
 	}
-	else if (totalLines >= 16)
+	if (totalLines >= 16)
 	{
 		rainbow = 5;
 		rainbowBarSection = { 0,10,8,2 };
 		App->render->Blit(rainbowBar, 8, 224, &rainbowBarSection);
 	}
-	else if (totalLines >= 12)
+	if (totalLines >= 12)
 	{
 		rainbow = 4;
 		rainbowBarSection = { 0,12,8,2 };
 		App->render->Blit(rainbowBar, 8, 226, &rainbowBarSection);
 	}
-	else if (totalLines >= 8)
+	if (totalLines >= 8)
 	{
 		rainbow = 3;
 		rainbowBarSection = { 0,14,8,2 };
 		App->render->Blit(rainbowBar, 8, 228, &rainbowBarSection);
 	}
-	else if (totalLines >= 4)
+	if (totalLines >= 4)
 	{
 		rainbow = 2;
 		rainbowBarSection = {0,16,8,2};
 		App->render->Blit(rainbowBar, 8,230, &rainbowBarSection);
+	}
+
+	//Draw rainbow bar Player 2
+	if (totalLinesPlayer2 >= 36)
+	{
+		rainbow = 10;
+		App->render->Blit(rainbowBar, 320, 214);
+	}
+	if (totalLinesPlayer2 >= 32)
+	{
+		rainbow = 9;
+		rainbowBarSection = { 0,2,8,2 };
+		App->render->Blit(rainbowBar, 320, 216, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 28)
+	{
+		rainbow = 8;
+		rainbowBarSection = { 0,4,8,2 };
+		App->render->Blit(rainbowBar, 320, 218, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 24)
+	{
+		rainbow = 7;
+		rainbowBarSection = { 0,6,8,2 };
+		App->render->Blit(rainbowBar, 320, 220, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 20)
+	{
+		rainbow = 6;
+		rainbowBarSection = { 0,8,8,2 };
+		App->render->Blit(rainbowBar, 320, 222, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 16)
+	{
+		rainbow = 5;
+		rainbowBarSection = { 0,10,8,2 };
+		App->render->Blit(rainbowBar, 320, 224, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 12)
+	{
+		rainbow = 4;
+		rainbowBarSection = { 0,12,8,2 };
+		App->render->Blit(rainbowBar, 320, 226, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 8)
+	{
+		rainbow = 3;
+		rainbowBarSection = { 0,14,8,2 };
+		App->render->Blit(rainbowBar, 320, 228, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 4)
+	{
+		rainbow = 2;
+		rainbowBarSection = { 0,16,8,2 };
+		App->render->Blit(rainbowBar, 320, 230, &rainbowBarSection);
 	}
 
 
