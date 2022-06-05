@@ -36,6 +36,7 @@ Update_Status ModulePlayGround::Update()
 {
 	if (App->game->stateWin)
 	{
+		if(App->sceneGame->winDelay == 120){ App->audio->PlayFx(App->audio->bonusPointBarsFx); }
 		if (App->sceneGame->winDelay <= 120 && bonus == false && delayBonus == 0)
 		{
 			Bonus();
@@ -454,7 +455,6 @@ void ModulePlayGround::Bonus() {
 			}
 		}
 		if (bonus == false) {
-			App->audio->PlayFx(App->audio->bonusPointBarsFx);
 			for (int j = 1; j < 11; j++) {
 				if (j == 1) { App->sceneGame->playground[lastBonus][j] = 106; }
 				else if (j == 10) { App->sceneGame->playground[lastBonus][j] = 108; }
