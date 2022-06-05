@@ -64,6 +64,7 @@ public:
     int fCountL = 0;
     int fCountY = 0;
     int fCountX = 0;
+    int fCountPress = 1;
 
     Block block, nextBlock, blockCheck;
 
