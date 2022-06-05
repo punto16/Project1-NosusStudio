@@ -40,6 +40,7 @@ bool ModuleGame::Start()
 	stateLine2 = false;
 	statePlay1 = false;
 	statePlay2 = false;
+	stateEndMultiplayer = false;
 
 	//bool multiplayer = false;
 
@@ -200,7 +201,7 @@ Update_Status ModuleGame::PostUpdate()
 		App->fonts->BlitText(135, 115, Tetris_font_red, linesLeftText);
 	}
 
-	if (stateStartLevel) {
+	if (!multiplayer && stateStartLevel) {
 		if (delayStart <= 0) {
 			if (App->sceneGame->levelLines < 10) { sprintf_s(linesLeftText, 10, "0%d", App->sceneGame->levelLines); }
 			else { sprintf_s(linesLeftText, 10, "%d", App->sceneGame->levelLines); }
@@ -222,6 +223,43 @@ Update_Status ModuleGame::PostUpdate()
 				App->playground2->NextBlock();
 			}
 			delayStart = 40;
+		}
+	}
+
+	if (multiplayer && stateStartLevel) {
+		if (delayStart <= 0) {
+			if (App->sceneGame->levelLines < 10) { sprintf_s(linesLeftText, 10, "0%d", App->sceneGame->levelLines); }
+			else { sprintf_s(linesLeftText, 10, "%d", App->sceneGame->levelLines); }
+			App->fonts->BlitText(137, 106, Tetris_font_white, "complete");
+			App->fonts->BlitText(137, 121, Tetris_font_white, linesLeftText);
+			App->fonts->BlitText(161, 121, Tetris_font_white, "lines");
+			App->fonts->BlitText(137, 136, Tetris_font_white, "to go to");
+			App->fonts->BlitText(128, 153, Tetris_font_white, "next round");
+		}
+
+		delayStart--;
+
+		if (delayStart <= -80) {
+			stateStartLevel = false;
+			statePlay1 = true;
+			App->playground->NextBlock();
+			if (multiplayer) {
+				statePlay2 = true;
+				App->playground2->NextBlock();
+			}
+			delayStart = 40;
+		}
+	}
+
+	if (!multiplayer && stateWin) {
+		if (App->sceneGame->winDelay > 60) {
+			App->fonts->BlitText(152, 121, Tetris_font_white, "you");
+			App->fonts->BlitText(142, 136, Tetris_font_white, "did it");
+		}
+		else if (App->sceneGame->winDelay > 0) {
+			App->fonts->BlitText(135, 106, Tetris_font_white, "bonus for");
+			App->fonts->BlitText(151, 115, Tetris_font_white, "low");
+			App->fonts->BlitText(143, 124, Tetris_font_white, "puzzle");
 		}
 	}
 

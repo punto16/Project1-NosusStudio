@@ -183,19 +183,23 @@ bool SceneGame::Start()
 
 	App->playground->gameOver = false;
 	if (App->game->multiplayer) { App->playground2->gameOver = false; }
+
+	winDelay = 240;
+	loseDelay = 120;
+
+	App->playground->bonusPoints = 10;
+	App->playground->bonus = false;
+	App->playground->lastBonus = 2;
 	
 	levelLines = 5;
-
-	//App->game->statePlay1 = true;
-	//if (App->game->multiplayer) { App->game->statePlay2 = true; }
-	
 
 	return ret;
 }
 
 Update_Status SceneGame::Update()
 {
-	if(App->game->stateWin || App->game->stateLose){ curtainClosing.Update(); }
+	if(App->game->stateLose || App->game->stateEndMultiplayer){ curtainClosing.Update(); }
+	if (winDelay <= 0) { curtainClosing.Update(); }
 	if (App->game->stateStartLevel) { curtainOpening.Update(); }
 	lateralBarsAnim.Update();
 	lateralBarCounter++;
@@ -379,13 +383,25 @@ Update_Status SceneGame::PostUpdate()
 		//CURTAIN ANIMATION CLOSING  NOO VA :( (ahora si :))
 		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
 
+		//Draw dead blocks (player 1)
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground[i][j] != 0 && playground[i][j] != 255)
+				{
+					App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
+
+				}
+			}
+		}
 
 		App->render->Blit(goTexture, 32, 0, NULL);
 
-		if (winDelay <= 0) {
+		if (loseDelay <= 0) {
 			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		}
-		winDelay--;
+		loseDelay--;
 	}
 
 	if (App->game->stateWin == true) {
@@ -396,10 +412,25 @@ Update_Status SceneGame::PostUpdate()
 			playMusic = false;
 		}
 
-		//CURTAIN ANIMATION CLOSING  NOO VA :( (si que va :))
-		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
+		//Draw dead blocks (player 1)
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground[i][j] != 0 && playground[i][j] != 255)
+				{
+					App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
 
-		if (winDelay<=0) {
+				}
+			}
+		}
+
+		if (winDelay <= 0) {
+			//CURTAIN ANIMATION CLOSING  NOO VA :( (si que va :))
+			App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
+		}
+
+		if (winDelay<=-60) {
 			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		}
 		winDelay--;
@@ -549,25 +580,77 @@ Update_Status SceneGame::PostUpdate()
 			}
 		}
 
-		if (App->playground->gameOver == false || App->playground2->gameOver == false)
+		if (App->playground->gameOver == false)
 		{
+			//Draw alive block (player 1)
 			if (App->playground->block.id != 255)
 				App->tiles->BlitText(App->playground->block.x, App->playground->block.y, Alive_Tetromino, NULL, App->playground->block, true);
-
-			if (App->playground2->block.id != 255)
-				App->tiles->BlitText2(App->playground2->block.x, App->playground2->block.y, Alive_Tetromino, NULL, App->playground2->block, true);
-
-			if (App->playground->gameOver == true) App->game->statePlay1 = false;
-
-			if (App->playground2->gameOver == true) App->game->statePlay2 = false;
 		}
 		else
 		{
-			//End game condition (both lose)
-			App->game->stateLose = true;
+			//Game over player 1
+			App->render->Blit(goTexture, 32, 0, NULL);
 			App->game->statePlay1 = false;
-			App->game->statePlay2 = false;
+			if (App->playground2->gameOver) { App->game->stateEndMultiplayer = true; }
 		}
+
+		if (App->playground2->gameOver == false)
+		{
+			//Draw alive block (player 2)
+			if (App->playground2->block.id != 255)
+				App->tiles->BlitText2(App->playground2->block.x, App->playground2->block.y, Alive_Tetromino, NULL, App->playground2->block, true);
+		}
+		else
+		{
+			App->render->Blit(goTexture, 240, 0, NULL);
+			//Game over player 2
+			App->game->statePlay2 = false;
+			if (App->playground->gameOver) { App->game->stateEndMultiplayer = true; }
+		}
+	}
+
+	if (App->game->stateEndMultiplayer)
+	{
+		//Game Over
+
+		if (playMusic) {
+			App->audio->PlayMusic("", 1.0f);
+			playMusic = false;
+		}
+
+		//CURTAIN ANIMATION CLOSING  NOO VA :( (ahora si :))
+		App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
+
+		//Draw dead blocks (player 1)
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground[i][j] != 0 && playground[i][j] != 255)
+				{
+					App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
+
+				}
+			}
+		}
+
+		//Draw dead blocks (player 2)
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground2[i][j] != 0 && playground2[i][j] != 255)
+					App->tiles->BlitText2(j, i, Dead_Tetromino, playground2[i][j], App->playground2->block, false);
+			}
+		}
+
+		App->render->Blit(goTexture, 32, 0, NULL);
+		App->render->Blit(goTexture, 240, 0, NULL);
+
+		if (loseDelay <= 0) {
+			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		}
+		loseDelay--;
 	}
 
 	return Update_Status::UPDATE_CONTINUE;

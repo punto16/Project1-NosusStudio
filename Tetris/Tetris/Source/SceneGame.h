@@ -36,7 +36,8 @@ public:
 
 	bool playMusic = false;
 
-	int winDelay = 120;
+	int winDelay = 240;
+	int loseDelay = 120;
 
 
 	// The scene sprite sheet loaded into an SDL_Texture

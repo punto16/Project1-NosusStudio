@@ -34,6 +34,16 @@ Update_Status ModulePlayGround::PreUpdate()
 
 Update_Status ModulePlayGround::Update()
 {
+	if (App->game->stateWin)
+	{
+		if (App->sceneGame->winDelay <= 60 && bonus == false)
+		{
+			Bonus();
+		}
+
+		Blink();
+	}
+
 	if (App->game->stateLine1 == true)
 	{
 		fCountL++;
@@ -48,6 +58,11 @@ Update_Status ModulePlayGround::Update()
 	if (App->game->statePlay1 == true)
 	{
 		StatePlay();
+	}
+
+	blink++;
+	if (blink > 59) {
+		blink = 0;
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -419,6 +434,54 @@ void ModulePlayGround::CutTextures() {
 				break;
 			default:
 				break;
+			}
+		}
+	}
+}
+
+void ModulePlayGround::Bonus() {	
+	
+	if (lastBonus < 22) {
+		for (size_t j = 1; j < 11; j++)
+		{
+			if (App->sceneGame->playground[lastBonus][j] != 0)
+			{
+				bonus = true;
+			}
+		}
+		if (bonus == false) {
+			for (int j = 1; j < 11; j++) {
+				if (j == 1) { App->sceneGame->playground[lastBonus][j] = 106; }
+				else if (j == 10) { App->sceneGame->playground[lastBonus][j] = 108; }
+				else { App->sceneGame->playground[lastBonus][j] = 107; }
+			}
+			App->game->score += bonusPoints;
+			bonusPoints += 10;
+		}
+		lastBonus++;
+	}	
+}
+
+void ModulePlayGround::Blink() {
+	if(blink<30)
+	{
+		for (size_t i = 2; i < 22; i++)
+		{
+			for (int j = 1; j < 11; j++) {
+				if (j == 1 && App->sceneGame->playground[i][j] == 106) { App->sceneGame->playground[i][j] = 121; }
+				else if (j == 10 && App->sceneGame->playground[i][j] == 108) { App->sceneGame->playground[i][j] = 123; }
+				else if (App->sceneGame->playground[i][j] == 107) { App->sceneGame->playground[i][j] = 122; }
+			}
+		}
+	}
+	else
+	{
+		for (size_t i = 2; i < 22; i++)
+		{
+			for (int j = 1; j < 11; j++) {
+				if (j == 1 && App->sceneGame->playground[i][j] == 121) { App->sceneGame->playground[i][j] = 106; }
+				else if (j == 10 && App->sceneGame->playground[i][j] == 123) { App->sceneGame->playground[i][j] = 108; }
+				else if (App->sceneGame->playground[i][j] == 122) { App->sceneGame->playground[i][j] = 107; }
 			}
 		}
 	}
