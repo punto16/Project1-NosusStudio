@@ -1,7 +1,7 @@
 # NosusStudio   
 [_NosusStudio_](https://github.com/punto16/Project1-NosusStudio) is a group of students always ready to learn new things about videogames design and development.
 
-![](https://raw.githubusercontent.com/punto16/Project1-NosusStudio/webpage/Pictures/NosusStudio.png)
+[[https://raw.githubusercontent.com/punto16/Project1-NosusStudio/webpage/Pictures/NosusStudio.png | width = 300px]]
 
 # Tetris
 ![](https://raw.githubusercontent.com/punto16/Project1-NosusStudio/webpage/Pictures/Tetris.jpg)
