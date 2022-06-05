@@ -182,12 +182,12 @@ bool SceneLevel1::Start()
 	}
 
 	App->playground->gameOver = false;
-	if (App->player->multiplayer) App->playground2->gameOver = false;
+	if (App->player->multiplayer) { App->playground2->gameOver = false; }
 	
 	levelLines = 5;
 
-	App->player->statePlay1 = true;
-	if (App->player->multiplayer) App->player->statePlay2 = true;
+	//App->player->statePlay1 = true;
+	//if (App->player->multiplayer) { App->player->statePlay2 = true; }
 	
 
 	return ret;
@@ -239,7 +239,7 @@ Update_Status SceneLevel1::PostUpdate()
 			playMusic = true;
 		}
 
-		if (App->playground->lines == 4) // lateral bars for player 1
+		if (App->playground->lines == 4) // lateral bars
 		{
 			//counter to change lateral bars position
 			if (lateralBarCounter >= 60)
@@ -298,8 +298,6 @@ Update_Status SceneLevel1::PostUpdate()
 			App->render->Blit(lateralBars, 28, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
 			App->render->Blit(lateralBars, 116, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
 		}
-
-		
 
 		//draw lateral numbers (5 to 1)
 		if (levelLines == 5)
@@ -407,9 +405,9 @@ Update_Status SceneLevel1::PostUpdate()
 		winDelay--;
 	}
 
-	if (App->player->multiplayer && ((App->player->statePlay1 || App->player->stateLine1) || (App->player->statePlay2 || App->player->stateLine2)))
+	if (App->player->multiplayer && (App->player->statePlay1 || App->player->stateLine1 || App->player->statePlay2 || App->player->stateLine2))
 	{
-		//Hay que hacer lo mismo para el otro player
+		//Lateral bars for player 1
 		if (App->playground->lines == 4)
 		{
 			//counter to change lateral bars position
@@ -470,7 +468,8 @@ Update_Status SceneLevel1::PostUpdate()
 			App->render->Blit(lateralBars, 116, 65 + lateralBarsY, &(lateralBarsAnim.GetCurrentFrame()));
 		}
 
-		if (App->playground2->lines == 4) //lateral bars for player 2
+		//lateral bars for player 2
+		if (App->playground2->lines == 4)
 		{
 			//counter to change lateral bars position
 			if (lateralBarCounter >= 60)
@@ -564,7 +563,7 @@ Update_Status SceneLevel1::PostUpdate()
 		}
 		else
 		{
-			//Game Over
+			//End game condition (both lose)
 			App->player->stateLose = true;
 			App->player->statePlay1 = false;
 			App->player->statePlay2 = false;
@@ -578,7 +577,7 @@ bool SceneLevel1::CleanUp()
 {
 	App->player->Disable();
 	App->playground->Disable();
-	App->playground2->Disable();
+	if (App->player->multiplayer){ App->playground2->Disable(); }
 
 	LOG("Deleting background assets");
 

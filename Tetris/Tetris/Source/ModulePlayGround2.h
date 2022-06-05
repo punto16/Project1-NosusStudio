@@ -54,6 +54,7 @@ public:
     void Score();
     void StateLine();
     void StatePlay();
+    void CutTextures();
 
 
 public:
