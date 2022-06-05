@@ -48,6 +48,7 @@ public:
 	bool play_diff = false;
 	int selection;
 	uint timer;
+	uint controlerDelay = 0;
 	
 };
 

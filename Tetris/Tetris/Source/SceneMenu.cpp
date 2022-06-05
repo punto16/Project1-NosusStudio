@@ -55,6 +55,7 @@ bool SceneMenu::Start()
 	play_diff = false;
 	selection = 0;
 	timer = 0;
+	controlerDelay = 0;
 	lateralBarCounter = 0;
 
 	lateralBarsY = 0, lateralBarsX = 0;
@@ -71,14 +72,20 @@ Update_Status SceneMenu::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
-	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN || App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
+	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
 	{
 		//App->audio->PlayFx(App->audio->changeDiffFx);
 		selectionToLeft();
 	}
-	else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN || App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
+	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT && controlerDelay == 8) {
+		selectionToLeft();
+	}
+	else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN)
 	{
 		//App->audio->PlayFx(App->audio->changeDiffFx);
+		selectionToRight();
+	}
+	else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT && controlerDelay == 8) {
 		selectionToRight();
 	}
 
@@ -120,6 +127,9 @@ Update_Status SceneMenu::Update()
 			break;
 		}
 	}	
+
+	controlerDelay++;
+	if (controlerDelay > 8) { controlerDelay = 0; }
 
 	return Update_Status::UPDATE_CONTINUE;
 }
