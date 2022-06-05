@@ -196,18 +196,50 @@ bool SceneGame::Start()
 	return ret;
 }
 
-void ResetLevel()
+void SceneGame::ResetLevel()
 {
-	App->playground->fCountL = 0;
-	App->playground->fCountY = 0;
-	App->playground->fCountX = 0;
-	App->playground->fCountPress = 1;
-
-	App->playground->isAlive = true;
-	App->playground->rotate = false;
-	App->playground->gameOver = false;
+	App->playground->nextBlock.id = App->playground->RandomBlock();
+	
+	App->playground->lineLimit = false;
+	App->playground->selectBlock = false;
 
 	App->playground->lineLimit = false;
+
+	for (size_t i = 0; i < 23; i++)
+	{
+		for (size_t j = 0; j < 12; j++)
+		{
+			if (playground[i][j] != 255)
+				playground[i][j] = 0;
+		}
+	}
+
+	App->playground->gameOver = false;
+
+	winDelay = 240;
+	loseDelay = 120;
+
+	App->playground->bonusPoints = 10;
+	App->playground->bonus = false;
+	App->playground->lastBonus = 2;
+
+	currentLevel++;
+	levelLines = levelsTotalLines[currentLevel];
+
+	curtainClosing.Reset();
+	curtainOpening.Reset();
+
+	App->game->destroyed = false;
+	
+	App->game->stateStartLevel = true;
+	App->game->stateWin = false;
+	App->game->stateLose = false;
+
+	App->game->stateLine1 = false;
+	App->game->stateLine2 = false;
+	App->game->statePlay1 = false;
+	App->game->statePlay2 = false;
+	App->game->stateEndMultiplayer = false;
 }
 
 Update_Status SceneGame::Update()
@@ -446,7 +478,7 @@ Update_Status SceneGame::PostUpdate()
 		}
 
 		if (winDelay<=-60) {
-			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+			ResetLevel();
 		}
 		else{ winDelay--; }
 	}
