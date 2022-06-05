@@ -1,10 +1,7 @@
 # NosusStudio   
 [_NosusStudio_](https://github.com/punto16/Project1-NosusStudio) is a group of students always ready to learn new things about videogames design and development. 
-[[https://github.com/punto16/Project1-NosusStudio/blob/main/Wiki/Home/NosusStudio.png | height = 300px]]
 
 # Tetris
-[[https://github.com/punto16/Project1-NosusStudio/blob/main/Wiki/Home/Tetris.jpg | width = 300px]]
-
 ## Description
 This is our first project as videogame design and developement students at CITM. This project is a tribute to the _Tetris_ arcade game (1988).
 The game consists in different pieces falling and the objective is to make them fit in orther to clear a line.
