@@ -212,6 +212,7 @@ void ModulePlayGround::SaveInput()
 	if (App->input->keys[SDL_SCANCODE_F2] == Key_State::KEY_DOWN) { gameOver = true; }
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) { lineLimit = !lineLimit; }
 	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) { selectBlock = !selectBlock; }
+	if (App->input->keys[SDL_SCANCODE_F5] == Key_State::KEY_DOWN) { App->game->totalLines++; }
 
 	if (selectBlock == true)
 	{
