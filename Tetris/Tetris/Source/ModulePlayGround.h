@@ -86,6 +86,7 @@ public:
     int bonusPoints = 10;
     bool bonus = false;
     int lastBonus = 2;
+    int delayBonus = 5;
 
     int blink = 0;
 

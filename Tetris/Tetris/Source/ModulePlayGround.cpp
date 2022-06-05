@@ -36,10 +36,13 @@ Update_Status ModulePlayGround::Update()
 {
 	if (App->game->stateWin)
 	{
-		if (App->sceneGame->winDelay <= 60 && bonus == false)
+		if (App->sceneGame->winDelay <= 120 && bonus == false && delayBonus == 0)
 		{
 			Bonus();
 		}
+		
+		delayBonus--;
+		if (delayBonus < 0) { delayBonus = 5; }
 
 		Blink();
 	}
@@ -451,6 +454,7 @@ void ModulePlayGround::Bonus() {
 			}
 		}
 		if (bonus == false) {
+			App->audio->PlayFx(App->audio->bonusPointBarsFx);
 			for (int j = 1; j < 11; j++) {
 				if (j == 1) { App->sceneGame->playground[lastBonus][j] = 106; }
 				else if (j == 10) { App->sceneGame->playground[lastBonus][j] = 108; }

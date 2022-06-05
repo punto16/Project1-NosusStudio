@@ -409,6 +409,7 @@ Update_Status SceneGame::PostUpdate()
 
 		if (playMusic) {
 			App->audio->PlayMusic("", 1.0f);
+			App->audio->PlayFx(App->audio->roundCompletedFx);
 			playMusic = false;
 		}
 
