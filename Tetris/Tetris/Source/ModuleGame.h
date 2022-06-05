@@ -38,6 +38,7 @@ public:
 	bool stateStartLevel = true;
 	bool stateWin = false;
 	bool stateLose = false;
+	bool stateEndGame = false;
 
 	bool stateLine1 = false;
 	bool stateLine2 = false;
@@ -45,6 +46,7 @@ public:
 	bool statePlay2 = false;
 
 	bool multiplayer = false;
+	bool stateEndMultiplayer = false;
 
 	// Fonts
 	int Tetris_font_black		= -1;

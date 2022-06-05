@@ -37,6 +37,20 @@ Update_Status ModulePlayGround::PreUpdate()
 
 Update_Status ModulePlayGround::Update()
 {
+	if (App->game->stateWin)
+	{
+		if(App->sceneGame->winDelay == 120){ App->audio->PlayFx(App->audio->bonusPointBarsFx); }
+		if (App->sceneGame->winDelay <= 120 && bonus == false && delayBonus == 0)
+		{
+			Bonus();
+		}
+		
+		delayBonus--;
+		if (delayBonus < 0) { delayBonus = 5; }
+
+		Blink();
+	}
+
 	if (App->game->stateLine1 == true)
 	{
 		fCountL++;
@@ -51,6 +65,11 @@ Update_Status ModulePlayGround::Update()
 	if (App->game->statePlay1 == true)
 	{
 		StatePlay();
+	}
+
+	blink++;
+	if (blink > 59) {
+		blink = 0;
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -214,13 +233,13 @@ void ModulePlayGround::SaveInput()
 	//rotate
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN) { rotate = true; }
 
-
 	// DEBUG KEYS
 	if (App->input->keys[SDL_SCANCODE_F1] == Key_State::KEY_DOWN) { App->sceneGame->levelLines = 0; }	//win
 	if (App->input->keys[SDL_SCANCODE_F2] == Key_State::KEY_DOWN) { gameOver = true; }					//lose
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) { lineLimit = !lineLimit; }			//unlimited line mode
 	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) { selectBlock = !selectBlock; }		//lock nextblock to selection(1-7)
-	
+	if (App->input->keys[SDL_SCANCODE_F5] == Key_State::KEY_DOWN) { App->game->totalLines++; }    //Add lines to player total lines
+  
 	if (selectBlock == true)
 	{
 		if (App->input->keys[SDL_SCANCODE_1] == Key_State::KEY_DOWN) { blockSpawnID = 0; }
@@ -445,4 +464,87 @@ void ModulePlayGround::CutTextures() {
 			}
 		}
 	}
+}
+
+void ModulePlayGround::Bonus() {	
+	
+	if (lastBonus < 22) {
+		for (size_t j = 1; j < 11; j++)
+		{
+			if (App->sceneGame->playground[lastBonus][j] != 0)
+			{
+				bonus = true;
+			}
+		}
+		if (bonus == false) {
+			for (int j = 1; j < 11; j++) {
+				if (j == 1) { App->sceneGame->playground[lastBonus][j] = 106; }
+				else if (j == 10) { App->sceneGame->playground[lastBonus][j] = 108; }
+				else { App->sceneGame->playground[lastBonus][j] = 107; }
+			}
+			App->game->score += bonusPoints;
+			bonusPoints += 10;
+		}
+		lastBonus++;
+	}	
+}
+
+void ModulePlayGround::Blink() {
+	if(blink<30)
+	{
+		for (size_t i = 2; i < 22; i++)
+		{
+			for (int j = 1; j < 11; j++) {
+				if (j == 1 && App->sceneGame->playground[i][j] == 106) { App->sceneGame->playground[i][j] = 121; }
+				else if (j == 10 && App->sceneGame->playground[i][j] == 108) { App->sceneGame->playground[i][j] = 123; }
+				else if (App->sceneGame->playground[i][j] == 107) { App->sceneGame->playground[i][j] = 122; }
+			}
+		}
+	}
+	else
+	{
+		for (size_t i = 2; i < 22; i++)
+		{
+			for (int j = 1; j < 11; j++) {
+				if (j == 1 && App->sceneGame->playground[i][j] == 121) { App->sceneGame->playground[i][j] = 106; }
+				else if (j == 10 && App->sceneGame->playground[i][j] == 123) { App->sceneGame->playground[i][j] = 108; }
+				else if (App->sceneGame->playground[i][j] == 122) { App->sceneGame->playground[i][j] = 107; }
+			}
+		}
+	}
+}
+
+void ModulePlayGround::RandomBlockSpawn() {
+
+	int SpawnX = (rand() % 11) + 1;
+	for (int i = 0; i < 22; i++) {
+		if (App->sceneGame->playground[i + 1][SpawnX] > 0) {
+			App->sceneGame->playground[i][SpawnX] = 120;
+			break;
+		}
+	}
+}
+
+void ModulePlayGround::GarbageSpawn() {
+
+	for (int i = 0; i < 22; i++) {
+		int counter = 0;
+		for (int j = 1; j < 11; j++) {
+			if (i != 21) {
+				App->sceneGame->playground[i][j] = App->sceneGame->playground[i + 1][j];
+			}
+			else if (i == 21) {
+				if (j == 10 && counter == 9) {
+					App->sceneGame->playground[i][j] = 0;
+				}
+				else {
+					App->sceneGame->playground[i][j] = ((rand() % 9) * 15) - 15;
+					if (App->sceneGame->playground[i][j] != 0) {
+						counter++;
+					}
+				}
+			}
+		}
+	}
+
 }

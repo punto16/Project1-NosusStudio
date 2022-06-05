@@ -55,6 +55,7 @@ bool SceneMenu::Start()
 	play_diff = false;
 	selection = 0;
 	timer = 0;
+	controlerDelay = 0;
 	lateralBarCounter = 0;
 
 	lateralBarsY = 0, lateralBarsX = 0;
@@ -73,10 +74,18 @@ Update_Status SceneMenu::Update()
 	}
 	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
 	{
+		//App->audio->PlayFx(App->audio->changeDiffFx);
+		selectionToLeft();
+	}
+	else if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT && controlerDelay == 8) {
 		selectionToLeft();
 	}
 	else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN)
 	{
+		//App->audio->PlayFx(App->audio->changeDiffFx);
+		selectionToRight();
+	}
+	else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT && controlerDelay == 8) {
 		selectionToRight();
 	}
 
@@ -87,6 +96,8 @@ Update_Status SceneMenu::Update()
 	}
 	else if (play_diff && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN && timer >= 60)
 	{
+		App->audio->PlayFx(App->audio->selectDiffFx);
+
 		switch (selection)
 		{
 		case 0: //Easy
@@ -102,6 +113,9 @@ Update_Status SceneMenu::Update()
 	}
 	else if (!play_diff && App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
+
+		App->audio->PlayFx(App->audio->selectDiffFx);
+
 		switch (selection)
 		{
 		case 0: //Singleplayer
@@ -113,6 +127,9 @@ Update_Status SceneMenu::Update()
 			break;
 		}
 	}	
+
+	controlerDelay++;
+	if (controlerDelay > 8) { controlerDelay = 0; }
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -216,11 +233,19 @@ void SceneMenu::selectionToRight()
 
 	if (play_diff)
 	{
-		if (selection > 2) selection = 0;
+		if (selection > 2) selection = 2;
+		else
+		{
+			App->audio->PlayFx(App->audio->changeDiffFx);
+		}
 	}
 	else
 	{
-		if (selection > 1) selection = 0;
+		if (selection > 1) selection = 1;
+		else
+		{
+			App->audio->PlayFx(App->audio->changeDiffFx);
+		}
 	}
 }
 
@@ -230,10 +255,18 @@ void SceneMenu::selectionToLeft()
 
 	if (play_diff)
 	{
-		if (selection < 0) selection = 2;
+		if (selection < 0) selection = 0;
+		else
+		{
+			App->audio->PlayFx(App->audio->changeDiffFx);
+		}
 	}
 	else
 	{
-		if (selection < 0) selection = 1;
+		if (selection < 0) selection = 0;
+		else
+		{
+			App->audio->PlayFx(App->audio->changeDiffFx);
+		}
 	}
 }

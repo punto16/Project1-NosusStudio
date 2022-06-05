@@ -133,13 +133,13 @@ Update_Status ModuleController::PreUpdate()
 		App->input->keys[SDL_SCANCODE_C] = Key_State::KEY_REPEAT;
 	}
 
-	if (controller_player1_B_pressed == true && App->input->keys[SDL_SCANCODE_J] == Key_State::KEY_IDLE)
+	if (controller_player1_B_pressed == true && App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_IDLE)
 	{
-		App->input->keys[SDL_SCANCODE_J] = Key_State::KEY_DOWN;
+		App->input->keys[SDL_SCANCODE_ESCAPE] = Key_State::KEY_DOWN;
 	}
 	else if (controller_player1_B_pressed == true)
 	{
-		App->input->keys[SDL_SCANCODE_J] = Key_State::KEY_REPEAT;
+		App->input->keys[SDL_SCANCODE_ESCAPE] = Key_State::KEY_REPEAT;
 	}
 
 
@@ -163,13 +163,13 @@ Update_Status ModuleController::PreUpdate()
 	}
 
 	//Check controller player 2 buttons
-	if (controller_player2_A_pressed == true && App->input->keys[SDL_SCANCODE_RCTRL] == Key_State::KEY_IDLE)
+	if (controller_player2_A_pressed == true && App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_IDLE)
 	{
-		App->input->keys[SDL_SCANCODE_RCTRL] = Key_State::KEY_DOWN;
+		App->input->keys[SDL_SCANCODE_UP] = Key_State::KEY_DOWN;
 	}
 	else if (controller_player2_A_pressed == true)
 	{
-		App->input->keys[SDL_SCANCODE_RCTRL] = Key_State::KEY_REPEAT;
+		App->input->keys[SDL_SCANCODE_UP] = Key_State::KEY_REPEAT;
 	}
 
 	if (controller_player2_Start_pressed == true && App->input->keys[SDL_SCANCODE_C] == Key_State::KEY_IDLE)

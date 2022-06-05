@@ -54,6 +54,7 @@ public:
 	uint lineFx;
 	uint roundCompletedFx;
 	uint selectDiffFx;
+	uint changeDiffFx;
 
 private:
 	// The current playing music

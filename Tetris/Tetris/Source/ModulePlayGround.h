@@ -54,6 +54,10 @@ public:
     void Score();
     void StateLine();
     void StatePlay();
+    void Bonus();
+    void Blink();
+    void RandomBlockSpawn();
+    void GarbageSpawn();
 
 
 public:
@@ -81,6 +85,13 @@ public:
     int linePositionList[4] = { -1, -1, -1, -1 };
     int lineColorIndex = 0;
     int lineColorList[6] = { 136, 137, 138, 139, 140, 141 };
+
+    int bonusPoints = 10;
+    bool bonus = false;
+    int lastBonus = 2;
+    int delayBonus = 5;
+
+    int blink = 0;
 
     uint blockList[7][4][4][4] = //color, rotation, x, y
     {

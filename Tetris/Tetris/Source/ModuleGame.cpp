@@ -40,6 +40,7 @@ bool ModuleGame::Start()
 	stateLine2 = false;
 	statePlay1 = false;
 	statePlay2 = false;
+	stateEndMultiplayer = false;
 
 	//bool multiplayer = false;
 
@@ -78,59 +79,114 @@ Update_Status ModuleGame::PostUpdate()
 		App->data->high_score = score;
 	}
 
-	//Draw rainbow bar
+	//Draw rainbow bar Player 1
 	if (totalLines >= 36)
 	{
 		rainbow = 10;
 		App->render->Blit(rainbowBar, 8, 214);
 	}
-	else if (totalLines >= 32)
+	if (totalLines >= 32)
 	{
 		rainbow = 9;
 		rainbowBarSection = { 0,2,8,2 };
 		App->render->Blit(rainbowBar, 8, 216, &rainbowBarSection);
 	}
-	else if (totalLines >= 28)
+	if (totalLines >= 28)
 	{
 		rainbow = 8;
 		rainbowBarSection = { 0,4,8,2 };
 		App->render->Blit(rainbowBar, 8, 218, &rainbowBarSection);
 	}
-	else if (totalLines >= 24)
+	if (totalLines >= 24)
 	{
 		rainbow = 7;
 		rainbowBarSection = { 0,6,8,2 };
 		App->render->Blit(rainbowBar, 8, 220, &rainbowBarSection);
 	}
-	else if (totalLines >= 20)
+	if (totalLines >= 20)
 	{
 		rainbow = 6;
 		rainbowBarSection = { 0,8,8,2 };
 		App->render->Blit(rainbowBar, 8, 222, &rainbowBarSection);
 	}
-	else if (totalLines >= 16)
+	if (totalLines >= 16)
 	{
 		rainbow = 5;
 		rainbowBarSection = { 0,10,8,2 };
 		App->render->Blit(rainbowBar, 8, 224, &rainbowBarSection);
 	}
-	else if (totalLines >= 12)
+	if (totalLines >= 12)
 	{
 		rainbow = 4;
 		rainbowBarSection = { 0,12,8,2 };
 		App->render->Blit(rainbowBar, 8, 226, &rainbowBarSection);
 	}
-	else if (totalLines >= 8)
+	if (totalLines >= 8)
 	{
 		rainbow = 3;
 		rainbowBarSection = { 0,14,8,2 };
 		App->render->Blit(rainbowBar, 8, 228, &rainbowBarSection);
 	}
-	else if (totalLines >= 4)
+	if (totalLines >= 4)
 	{
 		rainbow = 2;
 		rainbowBarSection = {0,16,8,2};
 		App->render->Blit(rainbowBar, 8,230, &rainbowBarSection);
+	}
+
+	//Draw rainbow bar Player 2
+	if (totalLinesPlayer2 >= 36)
+	{
+		rainbow = 10;
+		App->render->Blit(rainbowBar, 320, 214);
+	}
+	if (totalLinesPlayer2 >= 32)
+	{
+		rainbow = 9;
+		rainbowBarSection = { 0,2,8,2 };
+		App->render->Blit(rainbowBar, 320, 216, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 28)
+	{
+		rainbow = 8;
+		rainbowBarSection = { 0,4,8,2 };
+		App->render->Blit(rainbowBar, 320, 218, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 24)
+	{
+		rainbow = 7;
+		rainbowBarSection = { 0,6,8,2 };
+		App->render->Blit(rainbowBar, 320, 220, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 20)
+	{
+		rainbow = 6;
+		rainbowBarSection = { 0,8,8,2 };
+		App->render->Blit(rainbowBar, 320, 222, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 16)
+	{
+		rainbow = 5;
+		rainbowBarSection = { 0,10,8,2 };
+		App->render->Blit(rainbowBar, 320, 224, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 12)
+	{
+		rainbow = 4;
+		rainbowBarSection = { 0,12,8,2 };
+		App->render->Blit(rainbowBar, 320, 226, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 8)
+	{
+		rainbow = 3;
+		rainbowBarSection = { 0,14,8,2 };
+		App->render->Blit(rainbowBar, 320, 228, &rainbowBarSection);
+	}
+	if (totalLinesPlayer2 >= 4)
+	{
+		rainbow = 2;
+		rainbowBarSection = { 0,16,8,2 };
+		App->render->Blit(rainbowBar, 320, 230, &rainbowBarSection);
 	}
 
 
@@ -200,7 +256,7 @@ Update_Status ModuleGame::PostUpdate()
 		App->fonts->BlitText(135, 115, Tetris_font_red, linesLeftText);
 	}
 
-	if (stateStartLevel) {
+	if (!multiplayer && stateStartLevel) {
 		if (delayStart <= 0) {
 			if (App->sceneGame->levelLines < 10) { sprintf_s(linesLeftText, 10, "0%d", App->sceneGame->levelLines); }
 			else { sprintf_s(linesLeftText, 10, "%d", App->sceneGame->levelLines); }
@@ -222,6 +278,43 @@ Update_Status ModuleGame::PostUpdate()
 				App->playground2->NextBlock();
 			}
 			delayStart = 40;
+		}
+	}
+
+	if (multiplayer && stateStartLevel) {
+		if (delayStart <= 0) {
+			if (App->sceneGame->levelLines < 10) { sprintf_s(linesLeftText, 10, "0%d", App->sceneGame->levelLines); }
+			else { sprintf_s(linesLeftText, 10, "%d", App->sceneGame->levelLines); }
+			App->fonts->BlitText(137, 106, Tetris_font_white, "complete");
+			App->fonts->BlitText(137, 121, Tetris_font_white, linesLeftText);
+			App->fonts->BlitText(161, 121, Tetris_font_white, "lines");
+			App->fonts->BlitText(137, 136, Tetris_font_white, "to go to");
+			App->fonts->BlitText(128, 153, Tetris_font_white, "next round");
+		}
+
+		delayStart--;
+
+		if (delayStart <= -80) {
+			stateStartLevel = false;
+			statePlay1 = true;
+			App->playground->NextBlock();
+			if (multiplayer) {
+				statePlay2 = true;
+				App->playground2->NextBlock();
+			}
+			delayStart = 40;
+		}
+	}
+
+	if (!multiplayer && stateWin) {
+		if (App->sceneGame->winDelay > 60) {
+			App->fonts->BlitText(152, 121, Tetris_font_white, "you");
+			App->fonts->BlitText(142, 136, Tetris_font_white, "did it");
+		}
+		else if (App->sceneGame->winDelay > 0) {
+			App->fonts->BlitText(135, 106, Tetris_font_white, "bonus for");
+			App->fonts->BlitText(151, 115, Tetris_font_white, "low");
+			App->fonts->BlitText(143, 124, Tetris_font_white, "puzzle");
 		}
 	}
 
