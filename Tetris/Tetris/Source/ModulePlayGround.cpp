@@ -24,6 +24,9 @@ bool ModulePlayGround::Start()
 	srand(time(NULL));
 	nextBlock.id = RandomBlock();
 
+	lineLimit = false;
+	selectBlock = false;
+
 	return true;
 }
 
@@ -74,10 +77,6 @@ Update_Status ModulePlayGround::Update()
 
 Update_Status ModulePlayGround::PostUpdate()
 {
-	if (lines == 4)
-	{
-		//ACABAR LINEAS ANIMACION LLUIS SEXOO TODO
-	}
 	return Update_Status::UPDATE_CONTINUE;
 }
 
@@ -137,13 +136,15 @@ void ModulePlayGround::StatePlay()
 		CheckLine();
 		Score();
 		NextBlock();
+
+		fCountPress = 1;
 	}
 
 	SaveInput();
 
 	//Y movement
 	fCountY++;
-	if (fCountY == 40 / block.inputY)
+	if (fCountY == 20 / block.inputY)
 	{
 		if (block.inputY != 0)
 		{
@@ -155,47 +156,48 @@ void ModulePlayGround::StatePlay()
 		else if (!IsColliding(block.x, block.y + 1, block)) //block fall
 			MoveBlock(block.x, block.y + 1);
 
+		fCountPress += 2;
 		fCountY = 0;
 	}
-	else if (fCountY > 40 / block.inputY)
-		fCountY = 0;
+	else if (fCountY > 20 / block.inputY)
+		fCountY = 1;
+
 
 	//X movement
-	fCountX++;
-	if (fCountX == 20)
+	if (fCountX >= 10)
 	{
 		if (block.inputX != 0)
 		{
 			if (!IsColliding(block.x + block.inputX, block.y, block))
 				MoveBlock(block.x + block.inputX, block.y);
 		}
+		fCountX = 0;
+	}
+	block.inputX = 0;
 
-		if (rotate == true)
+
+	//Rotate
+	if (rotate == true)
+	{
+		blockCheck.id = block.id;
+		blockCheck.rotation = block.rotation + 1;
+		if (blockCheck.rotation == 4) { blockCheck.rotation = 0; }
+
+		LoadBlockMatrix(blockCheck);
+
+		if (!IsColliding(block.x, block.y, blockCheck))
 		{
-			blockCheck.id = block.id;
-			blockCheck.rotation = block.rotation + 1;
-			if (blockCheck.rotation == 4) { blockCheck.rotation = 0; }
-
-			LoadBlockMatrix(blockCheck);
-
-			if (!IsColliding(block.x, block.y, blockCheck))
+			RotateBlock();
+		}
+		else
+		{
+			if (!IsColliding(block.x - 1, block.y, blockCheck))
 			{
+				MoveBlock(block.x - 1, block.y);
 				RotateBlock();
 			}
-			else
-			{
-				if (!IsColliding(block.x - 1, block.y, blockCheck))
-				{
-					MoveBlock(block.x - 1, block.y);
-					RotateBlock();
-				}
-			}
-
-			rotate = false;
 		}
-
-		fCountX = 0;
-		block.inputX = 0;
+		rotate = false;
 	}
 }
 
@@ -204,29 +206,49 @@ void ModulePlayGround::StatePlay()
 
 void ModulePlayGround::SaveInput()
 {
-	block.inputY = 1;
+	//CONTROLS
 
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT) { block.inputX = -1; }
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT) { block.inputY = 20; }
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT) { block.inputX = 1; }
+	//Y 
+	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT) { block.inputY = fCountPress > 14 ? 14 : fCountPress; }		
+	else { fCountPress = 1; block.inputY = 1; }
+	
+	//X keydown
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN) { block.inputX = -1; fCountX = 10; }
+	else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN) { block.inputX = 1; fCountX = 10; }
+	else
+	{
+		//X repeat
+		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT ||
+			App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
+		{
+			fCountX++;
+		}
+		if (fCountX == 10)
+		{
+			if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT) { block.inputX = -1; }
+			else if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT) { block.inputX = 1; }
+		}
+	}
+	
+	//rotate
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN) { rotate = true; }
 
 	// DEBUG KEYS
-	if (App->input->keys[SDL_SCANCODE_F1] == Key_State::KEY_DOWN) { App->sceneGame->levelLines = 0; }
-	if (App->input->keys[SDL_SCANCODE_F2] == Key_State::KEY_DOWN) { gameOver = true; }
-	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) { lineLimit = !lineLimit; }
-	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) { selectBlock = !selectBlock; }
-	if (App->input->keys[SDL_SCANCODE_F5] == Key_State::KEY_DOWN) { App->game->totalLines++; }
-
+	if (App->input->keys[SDL_SCANCODE_F1] == Key_State::KEY_DOWN) { App->sceneGame->levelLines = 0; }	//win
+	if (App->input->keys[SDL_SCANCODE_F2] == Key_State::KEY_DOWN) { gameOver = true; }					//lose
+	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) { lineLimit = !lineLimit; }			//unlimited line mode
+	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) { selectBlock = !selectBlock; }		//lock nextblock to selection(1-7)
+	if (App->input->keys[SDL_SCANCODE_F5] == Key_State::KEY_DOWN) { App->game->totalLines++; }    //Add lines to player total lines
+  
 	if (selectBlock == true)
 	{
 		if (App->input->keys[SDL_SCANCODE_1] == Key_State::KEY_DOWN) { blockSpawnID = 0; }
-		if (App->input->keys[SDL_SCANCODE_2] == Key_State::KEY_DOWN) { blockSpawnID = 1; }
-		if (App->input->keys[SDL_SCANCODE_3] == Key_State::KEY_DOWN) { blockSpawnID = 2; }
-		if (App->input->keys[SDL_SCANCODE_4] == Key_State::KEY_DOWN) { blockSpawnID = 3; }
-		if (App->input->keys[SDL_SCANCODE_5] == Key_State::KEY_DOWN) { blockSpawnID = 4; }
-		if (App->input->keys[SDL_SCANCODE_6] == Key_State::KEY_DOWN) { blockSpawnID = 5; }
-		if (App->input->keys[SDL_SCANCODE_7] == Key_State::KEY_DOWN) { blockSpawnID = 6; }
+		else if (App->input->keys[SDL_SCANCODE_2] == Key_State::KEY_DOWN) { blockSpawnID = 1; }
+		else if (App->input->keys[SDL_SCANCODE_3] == Key_State::KEY_DOWN) { blockSpawnID = 2; }
+		else if (App->input->keys[SDL_SCANCODE_4] == Key_State::KEY_DOWN) { blockSpawnID = 3; }
+		else if (App->input->keys[SDL_SCANCODE_5] == Key_State::KEY_DOWN) { blockSpawnID = 4; }
+		else if (App->input->keys[SDL_SCANCODE_6] == Key_State::KEY_DOWN) { blockSpawnID = 5; }
+		else if (App->input->keys[SDL_SCANCODE_7] == Key_State::KEY_DOWN) { blockSpawnID = 6; }
 	}
 }
 
@@ -358,7 +380,7 @@ void ModulePlayGround::Score()
 	//lines
 	switch (lines)
 	{
-	case 1: App->game->score += 50; break;
+	case 1: App->game->score += 50;  break;
 	case 2: App->game->score += 150; break;
 	case 3: App->game->score += 400; break;
 	case 4: App->game->score += 900; break;
