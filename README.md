@@ -37,7 +37,7 @@ The game consists in different pieces falling and the objective is to make them 
 
 ## Game Trailer
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mhIrhcZ087c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://youtu.be/U4jjzbjH36g" title="Tetris Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Developers
 ![](https://raw.githubusercontent.com/punto16/Project1-NosusStudio/webpage/Pictures/Team_photo.jpg)
