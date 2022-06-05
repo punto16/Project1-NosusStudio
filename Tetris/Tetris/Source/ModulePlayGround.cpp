@@ -46,8 +46,6 @@ Update_Status ModulePlayGround::Update()
 		
 		delayBonus--;
 		if (delayBonus < 0) { delayBonus = 5; }
-
-		Blink();
 	}
 
 	if (App->game->stateLine1 == true)
@@ -66,10 +64,11 @@ Update_Status ModulePlayGround::Update()
 		StatePlay();
 	}
 
+	Blink();
+
 	blink++;
-	if (blink > 59) {
+	if (blink > 59)
 		blink = 0;
-	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -165,6 +164,7 @@ void ModulePlayGround::StatePlay()
 	//X movement
 	if (fCountX >= 10)
 	{
+		GarbageSpawn();
 		if (block.inputX != 0)
 		{
 			if (!IsColliding(block.x + block.inputX, block.y, block))
@@ -237,7 +237,7 @@ void ModulePlayGround::SaveInput()
 	if (App->input->keys[SDL_SCANCODE_F2] == Key_State::KEY_DOWN) { gameOver = true; }					//lose
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) { lineLimit = !lineLimit; }			//unlimited line mode
 	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) { selectBlock = !selectBlock; }		//lock nextblock to selection(1-7)
-	if (App->input->keys[SDL_SCANCODE_F5] == Key_State::KEY_DOWN) { App->game->totalLines++; }    //Add lines to player total lines
+	if (App->input->keys[SDL_SCANCODE_F5] == Key_State::KEY_DOWN) { App->game->totalLines++; }			//Add lines to player total lines
   
 	if (selectBlock == true)
 	{
@@ -397,76 +397,49 @@ void ModulePlayGround::Score()
 	App->game->score += gravity * rainbow * (rainbow + height);
 
 	App->game->totalLines += lines;
-
 }
 
-void ModulePlayGround::CutTextures() {
-	int line_up = (linePositionList[0])-1;
-	int line_down = (linePositionList[lines-1])+1;
+void ModulePlayGround::CutTextures()
+{
+	int line_up = (linePositionList[0]) - 1;
+	int line_down = (linePositionList[lines - 1]) + 1;
 
-	for (size_t i = 1; i < 11; i++) {
+	for (size_t i = 1; i < 11; i++)
+	{
 		switch ((App->sceneGame->playground[line_up][i])%15)
 		{
-		case 4:
-			App->sceneGame->playground[line_up][i] += 11;
-			break;
-		case 5:
-			App->sceneGame->playground[line_up][i] += 1;
-			break;
-		case 8:
-			App->sceneGame->playground[line_up][i] += 5;
-			break;
-		case 9:
-			App->sceneGame->playground[line_up][i] -= 7;
-			break;
-		case 10:
-			App->sceneGame->playground[line_up][i] += 2;
-			break;
-		case 11:
-			App->sceneGame->playground[line_up][i] -= 10;
-			break;
-		case 14:
-			App->sceneGame->playground[line_up][i] -= 11;
-			break;
-		default:
-			break;
+		case 4:	 App->sceneGame->playground[line_up][i] += 11;	break;
+		case 5:	 App->sceneGame->playground[line_up][i] += 1;	break;
+		case 8:	 App->sceneGame->playground[line_up][i] += 5;	break;
+		case 9:	 App->sceneGame->playground[line_up][i] -= 7;	break;
+		case 10: App->sceneGame->playground[line_up][i] += 2;	break;
+		case 11: App->sceneGame->playground[line_up][i] -= 10;	break;
+		case 14: App->sceneGame->playground[line_up][i] -= 11;	break;
+		default: break;
 		}
 	}
 
-	if (line_down<22) {
-		for (size_t j = 1; j < 11; j++) {
+	if (line_down < 22)
+	{
+		for (size_t j = 1; j < 11; j++)
+		{
 			switch ((App->sceneGame->playground[line_down][j]) % 15)
 			{
-			case 5:
-				App->sceneGame->playground[line_down][j] -= 1;
-				break;
-			case 6:
-				App->sceneGame->playground[line_down][j] += 9;
-				break;
-			case 7:
-				App->sceneGame->playground[line_down][j] -= 5;
-				break;
-			case 8:
-				App->sceneGame->playground[line_down][j] += 3;
-				break;
-			case 10:
-				App->sceneGame->playground[line_down][j] += 4;
-				break;
-			case 12:
-				App->sceneGame->playground[line_down][j] -= 9;
-				break;
-			case 13:
-				App->sceneGame->playground[line_down][j] -= 12;
-				break;
-			default:
-				break;
+			case 5:	 App->sceneGame->playground[line_down][j] -= 1;	 break;
+			case 6:	 App->sceneGame->playground[line_down][j] += 9;	 break;
+			case 7:	 App->sceneGame->playground[line_down][j] -= 5;	 break;
+			case 8:	 App->sceneGame->playground[line_down][j] += 3;	 break;
+			case 10: App->sceneGame->playground[line_down][j] += 4;	 break;
+			case 12: App->sceneGame->playground[line_down][j] -= 9;	 break;
+			case 13: App->sceneGame->playground[line_down][j] -= 12; break;
+			default: break;
 			}
 		}
 	}
 }
 
-void ModulePlayGround::Bonus() {	
-	
+void ModulePlayGround::Bonus()
+{	
 	if (lastBonus < 22) {
 		for (size_t j = 1; j < 11; j++)
 		{
@@ -488,8 +461,9 @@ void ModulePlayGround::Bonus() {
 	}	
 }
 
-void ModulePlayGround::Blink() {
-	if(blink<30)
+void ModulePlayGround::Blink()
+{
+	if (blink < 30)
 	{
 		for (size_t i = 2; i < 22; i++)
 		{
@@ -497,6 +471,7 @@ void ModulePlayGround::Blink() {
 				if (j == 1 && App->sceneGame->playground[i][j] == 106) { App->sceneGame->playground[i][j] = 121; }
 				else if (j == 10 && App->sceneGame->playground[i][j] == 108) { App->sceneGame->playground[i][j] = 123; }
 				else if (App->sceneGame->playground[i][j] == 107) { App->sceneGame->playground[i][j] = 122; }
+				else if (App->sceneGame->playground[i][j] == 120) { App->sceneGame->playground[i][j] = 135; }
 			}
 		}
 	}
@@ -508,15 +483,17 @@ void ModulePlayGround::Blink() {
 				if (j == 1 && App->sceneGame->playground[i][j] == 121) { App->sceneGame->playground[i][j] = 106; }
 				else if (j == 10 && App->sceneGame->playground[i][j] == 123) { App->sceneGame->playground[i][j] = 108; }
 				else if (App->sceneGame->playground[i][j] == 122) { App->sceneGame->playground[i][j] = 107; }
+				else if (App->sceneGame->playground[i][j] == 135) { App->sceneGame->playground[i][j] = 120; }
 			}
 		}
 	}
 }
 
-void ModulePlayGround::RandomBlockSpawn() {
-
+void ModulePlayGround::RandomBlockSpawn()
+{
 	int SpawnX = (rand() % 11) + 1;
-	for (int i = 0; i < 22; i++) {
+	for (int i = 0; i < 22; i++)
+	{
 		if (App->sceneGame->playground[i + 1][SpawnX] > 0) {
 			App->sceneGame->playground[i][SpawnX] = 120;
 			break;
@@ -524,26 +501,28 @@ void ModulePlayGround::RandomBlockSpawn() {
 	}
 }
 
-void ModulePlayGround::GarbageSpawn() {
-
-	for (int i = 0; i < 22; i++) {
+void ModulePlayGround::GarbageSpawn()
+{
+	for (int i = 0; i < 22; i++)
+	{
 		int counter = 0;
-		for (int j = 1; j < 11; j++) {
+		for (int j = 1; j < 11; j++)
+		{
 			if (i != 21) {
 				App->sceneGame->playground[i][j] = App->sceneGame->playground[i + 1][j];
 			}
-			else if (i == 21) {
+			else if (i == 21)
+			{
 				if (j == 10 && counter == 9) {
 					App->sceneGame->playground[i][j] = 0;
 				}
-				else {
+				else
+				{
 					App->sceneGame->playground[i][j] = ((rand() % 9) * 15) - 15;
-					if (App->sceneGame->playground[i][j] != 0) {
+					if (App->sceneGame->playground[i][j] != 0)
 						counter++;
-					}
 				}
 			}
 		}
 	}
-
 }
