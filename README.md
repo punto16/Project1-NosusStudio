@@ -1,13 +1,10 @@
 # NosusStudio   
-[_NosusStudio_](https://github.com/punto16/Project1-NosusStudio) is a group of students always ready to learn new things about videogames design and development. 
+[_NosusStudio_](https://github.com/punto16/Project1-NosusStudio) is a group of students always ready to learn new things about videogames design and development.
+
 ![](https://raw.githubusercontent.com/punto16/Project1-NosusStudio/webpage/Pictures/NosusStudio.png)
 
 # Tetris
-![](https://github.com/punto16/Project1-NosusStudio/blob/main/Wiki/Home/Tetris.jpg)
-
-
-![](https://ichef.bbci.co.uk/news/640/cpsprodpb/126AC/production/_87563457_231fe8a0-020e-4b60-84b7-0fca26a1623c.jpg)
-
+![](https://raw.githubusercontent.com/punto16/Project1-NosusStudio/webpage/Pictures/Tetris.jpg)
 
 ## Description
 This is our first project as videogame design and developement students at CITM. This project is a tribute to the _Tetris_ arcade game (1988).
@@ -38,7 +35,7 @@ The game consists in different pieces falling and the objective is to make them 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mhIrhcZ087c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Developers
-![](https://github.com/punto16/Project1-NosusStudio/blob/main/Wiki/Home/Team_photo.jpg)
+![](https://raw.githubusercontent.com/punto16/Project1-NosusStudio/webpage/Pictures/Team_photo.jpg)
 
  - Lluís González - _Design & Art_ - [_punto16_](https://github.com/punto16)
  - Xavi Alcañiz - _Art_ - [_StarvinXarvin_](https://github.com/StarvinXarvin)
