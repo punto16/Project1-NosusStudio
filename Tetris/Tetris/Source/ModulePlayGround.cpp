@@ -26,6 +26,7 @@ bool ModulePlayGround::Start()
 
 	lineLimit = false;
 	selectBlock = false;
+	//jmpNextDiff = false;
 
 	return true;
 }
@@ -267,9 +268,12 @@ void ModulePlayGround::SaveInput()
 	if (App->input->keys[SDL_SCANCODE_F1] == Key_State::KEY_DOWN) { App->sceneGame->levelLines = 0; }	//win
 	if (App->input->keys[SDL_SCANCODE_F2] == Key_State::KEY_DOWN) { gameOver = true; }					//lose
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) { lineLimit = !lineLimit; }			//unlimited line mode
-	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) { selectBlock = !selectBlock; }		//lock nextblock to selection(1-7)
+	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) { selectBlock = !selectBlock;			//lock nextblock to selection(1-7)
+																	jmpNextDiff = false; }				
 	if (App->input->keys[SDL_SCANCODE_F5] == Key_State::KEY_DOWN) { App->game->totalLines++; }			//Add lines to player total lines
-  
+	if (App->input->keys[SDL_SCANCODE_F6] == Key_State::KEY_DOWN) { jmpNextDiff = !jmpNextDiff;			//jumps to the difficulty(1-4)
+																	selectBlock = false; }
+
 	if (selectBlock == true)
 	{
 		if (App->input->keys[SDL_SCANCODE_1] == Key_State::KEY_DOWN) { blockSpawnID = 0; }
@@ -279,6 +283,34 @@ void ModulePlayGround::SaveInput()
 		else if (App->input->keys[SDL_SCANCODE_5] == Key_State::KEY_DOWN) { blockSpawnID = 4; }
 		else if (App->input->keys[SDL_SCANCODE_6] == Key_State::KEY_DOWN) { blockSpawnID = 5; }
 		else if (App->input->keys[SDL_SCANCODE_7] == Key_State::KEY_DOWN) { blockSpawnID = 6; }
+	}
+	else if (jmpNextDiff == true)
+	{
+		if (App->input->keys[SDL_SCANCODE_1] == Key_State::KEY_DOWN) //LVL1 
+		{ 
+			App->sceneGame->currentLevel = -1;
+			App->audio->PlayMusic("",1.0f); 
+			App->sceneGame->ResetLevel(); 
+		}
+		else if (App->input->keys[SDL_SCANCODE_2] == Key_State::KEY_DOWN) //LVL4
+		{ 
+			App->sceneGame->currentLevel = 2; 
+			App->audio->PlayMusic("", 1.0f); 
+			App->sceneGame->ResetLevel(); 
+		}
+		else if (App->input->keys[SDL_SCANCODE_3] == Key_State::KEY_DOWN) //LVL7
+		{ 
+			App->sceneGame->currentLevel = 5; 
+			App->audio->PlayMusic("", 1.0f);  
+			App->sceneGame->ResetLevel(); 
+		}
+		else if (App->input->keys[SDL_SCANCODE_4] == Key_State::KEY_DOWN) //LVL12
+		{
+			App->sceneGame->currentLevel = 10;
+			App->audio->PlayMusic("", 1.0f);
+			App->sceneGame->ResetLevel();
+		}
+		
 	}
 }
 

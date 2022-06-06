@@ -81,6 +81,8 @@ public:
 
     bool lineLimit = false;
     bool selectBlock = false;
+    bool jmpNextDiff = false;
+
 
     int linePositionIndex = 0;
     int linePositionList[4] = { -1, -1, -1, -1 };

@@ -112,7 +112,7 @@ SceneGame::SceneGame(bool startEnabled) : Module(startEnabled)
 	Dance1.PushBack({ 66, 0, 33, 40 });
 	Dance1.PushBack({ 33, 0, 33, 40 });
 	Dance1.PushBack({ 0, 0, 33, 40 });
-	Dance1.loop = false;
+	Dance1.loop = true;
 	Dance1.speed = 0.1f;
 
 	//Victory animation 2
@@ -911,7 +911,7 @@ Update_Status SceneGame::PostUpdate()
 
 		if (currentLevel == 2)
 		{
-			win = -660;
+			win = -710;
 
 			if (winDelay == -60) { 
 				if (DanceReset == true)
@@ -950,6 +950,8 @@ Update_Status SceneGame::PostUpdate()
 			if (winDelay <= -60) { App->render->Blit(Russian3, 135, 50, &(Dance3.GetCurrentFrame())); }
 		}
 
+
+
 		if (winDelay <= win) {
 			if (currentLevel < 11) 
 			{
@@ -973,6 +975,18 @@ Update_Status SceneGame::PostUpdate()
 		if (playMusic) {
 			App->audio->PlayMusic("Assets/audio/WIN_HARDBASS.ogg", 1.0f);
 			playMusic = false;
+		}
+
+		if (currentLevel == 11)
+		{
+
+			if (DanceReset == true)
+			{
+				Dance1.Reset();
+				DanceReset = false;
+			}
+		
+		 App->render->Blit(Russian1, 135, 50, &(Dance1.GetCurrentFrame()));
 		}
 
 		//Draw dead blocks (player 1)
