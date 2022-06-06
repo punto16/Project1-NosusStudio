@@ -37,6 +37,7 @@ public:
 
 	bool stateStartLevel = true;
 	bool stateWin = false;
+	bool stateTePasasteElJuegoPerro = false;
 	bool stateLose = false;
 	bool stateEndGame = false;
 

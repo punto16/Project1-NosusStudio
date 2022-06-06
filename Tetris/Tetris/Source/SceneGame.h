@@ -41,6 +41,7 @@ public:
 	bool playMusic = false;
 
 	int winDelay = 240;
+	int win = -60;
 	int loseDelay = 120;
 
 	int numberBlink;

@@ -34,6 +34,7 @@ bool ModuleGame::Start()
 	
 	stateStartLevel = true;
 	stateWin = false;
+	stateTePasasteElJuegoPerro = false;
 	stateLose = false;
 
 	stateLine1 = false;
@@ -336,6 +337,13 @@ Update_Status ModuleGame::PostUpdate()
 			App->fonts->BlitText(151, 115, Tetris_font_white, "low");
 			App->fonts->BlitText(143, 124, Tetris_font_white, "puzzle");
 		}
+	}
+
+	if (!multiplayer && stateTePasasteElJuegoPerro) {
+		App->fonts->BlitText(135, 106, Tetris_font_white, "te pasaste");
+		App->fonts->BlitText(151, 115, Tetris_font_white, "el");
+		App->fonts->BlitText(143, 124, Tetris_font_white, "juego");
+		App->fonts->BlitText(143, 133, Tetris_font_white, "perrooooo");
 	}
 
 	return Update_Status::UPDATE_CONTINUE;

@@ -112,14 +112,230 @@ SceneGame::SceneGame(bool startEnabled) : Module(startEnabled)
 	Dance1.PushBack({ 66, 0, 33, 40 });
 	Dance1.PushBack({ 33, 0, 33, 40 });
 	Dance1.PushBack({ 0, 0, 33, 40 });
-
-
 	Dance1.loop = false;
 	Dance1.speed = 0.1f;
 
 	//Victory animation 2
 
+	Dance2.PushBack({ 33, 0, 33, 40 });
+	Dance2.PushBack({ 66, 0, 33, 40 });
+	Dance2.PushBack({ 99, 0, 33, 40 });
+	Dance2.PushBack({ 132, 0, 33, 40 });
+	Dance2.PushBack({ 165, 0, 33, 40 }); //Final puerta
+	Dance2.PushBack({ 0, 0, 33, 40 });
+	Dance2.PushBack({ 198, 0, 33, 40 });
+	Dance2.PushBack({ 231, 0, 33, 40 });
+	Dance2.PushBack({ 264, 0, 33, 40 });
+	Dance2.PushBack({ 297, 0, 33, 40 });
+	Dance2.PushBack({ 264, 0, 33, 40 });
+	Dance2.PushBack({ 330, 0, 33, 40 });
+	Dance2.PushBack({ 363, 0, 33, 40 });
+	Dance2.PushBack({ 396, 0, 33, 40 });
+	Dance2.PushBack({ 429, 0, 33, 40 });
+	Dance2.PushBack({ 396, 0, 33, 40 });
+	Dance2.PushBack({ 330, 0, 33, 40 });
+	Dance2.PushBack({ 363, 0, 33, 40 });
+	Dance2.PushBack({ 330, 0, 33, 40 });
+	Dance2.PushBack({ 396, 0, 33, 40 });
+	Dance2.PushBack({ 429, 0, 33, 40 });
+	Dance2.PushBack({ 264, 0, 33, 40 });
+	Dance2.PushBack({ 330, 0, 33, 40 });
+	Dance2.PushBack({ 363, 0, 33, 40 });
+	Dance2.PushBack({ 330, 0, 33, 40 });
+	Dance2.PushBack({ 396, 0, 33, 40 });
+	Dance2.PushBack({ 429, 0, 33, 40 });
+	Dance2.PushBack({ 396, 0, 33, 40 });
+	Dance2.PushBack({ 330, 0, 33, 40 });
+	Dance2.PushBack({ 363, 0, 33, 40 });
+	Dance2.PushBack({ 396, 0, 33, 40 });
+	Dance2.PushBack({ 429, 0, 33, 40 });
+	Dance2.PushBack({ 264, 0, 33, 40 });
+	Dance2.PushBack({ 462, 0, 33, 40 });
+	Dance2.PushBack({ 264, 0, 33, 40 });
+	Dance2.PushBack({ 495, 0, 33, 40 });
+	Dance2.PushBack({ 264, 0, 33, 40 });
+	Dance2.PushBack({ 462, 0, 33, 40 });
+	Dance2.PushBack({ 264, 0, 33, 40 });
+	Dance2.PushBack({ 495, 0, 33, 40 });
+	Dance2.PushBack({ 264, 0, 33, 40 });
+	Dance2.PushBack({ 462, 0, 33, 40 });
+	Dance2.PushBack({ 264, 0, 33, 40 });
+	Dance2.PushBack({ 495, 0, 33, 40 });
+	Dance2.PushBack({ 264, 0, 33, 40 });
+	Dance2.PushBack({ 462, 0, 33, 40 });
+	Dance2.PushBack({ 528, 0, 33, 40 });
+	Dance2.PushBack({ 561, 0, 33, 40 });
+	Dance2.PushBack({ 594, 0, 33, 40 });
+	Dance2.PushBack({ 627, 0, 33, 40 });
+	Dance2.PushBack({ 660, 0, 33, 40 });
+	Dance2.PushBack({ 693, 0, 33, 40 });
+	Dance2.PushBack({ 726, 0, 33, 40 });
+	Dance2.PushBack({ 759, 0, 33, 40 });
+	Dance2.PushBack({ 561, 0, 33, 40 });
+	Dance2.PushBack({ 594, 0, 33, 40 });
+	Dance2.PushBack({ 627, 0, 33, 40 });
+	Dance2.PushBack({ 660, 0, 33, 40 });
+	Dance2.PushBack({ 693, 0, 33, 40 });
+	Dance2.PushBack({ 726, 0, 33, 40 });
+	Dance2.PushBack({ 759, 0, 33, 40 });
+	Dance2.PushBack({ 561, 0, 33, 40 });
+	Dance2.PushBack({ 528, 0, 33, 40 });
+	Dance2.PushBack({ 792, 0, 33, 40 });
+	Dance2.PushBack({ 825, 0, 33, 40 });
+	Dance2.PushBack({ 858, 0, 33, 40 });
+	Dance2.PushBack({ 891, 0, 33, 40 });
+	Dance2.PushBack({ 924, 0, 33, 40 });
+	Dance2.PushBack({ 792, 0, 33, 40 });
+	Dance2.PushBack({ 957, 0, 33, 40 });
+	Dance2.PushBack({ 990, 0, 33, 40 });
+	Dance2.PushBack({ 957, 0, 33, 40 });
+	Dance2.PushBack({ 1023, 0, 33, 40 });
+	Dance2.PushBack({ 1056, 0, 33, 40 });
+	Dance2.PushBack({ 792, 0, 33, 40 });
+	Dance2.PushBack({ 264, 0, 33, 40 });
+	Dance2.PushBack({ 1089, 0, 33, 40 });
+	Dance2.PushBack({ 1122, 0, 33, 40 });
+	Dance2.PushBack({ 1089, 0, 33, 40 });
+	Dance2.PushBack({ 1155, 0, 33, 40 });
+	Dance2.PushBack({ 1089, 0, 33, 40 });
+	Dance2.PushBack({ 1122, 0, 33, 40 });
+	Dance2.PushBack({ 1089, 0, 33, 40 });
+	Dance2.PushBack({ 1155, 0, 33, 40 });
+	Dance2.PushBack({ 1089, 0, 33, 40 });
+	Dance2.PushBack({ 1122, 0, 33, 40 });
+	Dance2.PushBack({ 1089, 0, 33, 40 });
+	Dance2.PushBack({ 1155, 0, 33, 40 });
+	Dance2.PushBack({ 1089, 0, 33, 40 });
+	Dance2.PushBack({ 1122, 0, 33, 40 });
+	Dance2.PushBack({ 1089, 0, 33, 40 });
+	Dance2.PushBack({ 1155, 0, 33, 40 });
+	Dance2.PushBack({ 264, 0, 33, 40 });
+	Dance2.PushBack({ 231, 0, 33, 40 });
+	Dance2.PushBack({ 198, 0, 33, 40 });
+	Dance2.PushBack({ 0, 0, 33, 40 });
+	Dance2.PushBack({ 165, 0, 33, 40 }); //INICIO CIERRE PUERTA
+	Dance2.PushBack({ 132, 0, 33, 40 });
+	Dance2.PushBack({ 99, 0, 33, 40 });
+	Dance2.PushBack({ 66, 0, 33, 40 });
+	Dance2.PushBack({ 33, 0, 33, 40 });
+	Dance2.loop = false;
+	Dance2.speed = 0.1f;
+
+
 	//Victory animation 3
+
+	Dance3.PushBack({ 0, 0, 33, 40 });
+	Dance3.PushBack({ 33, 0, 33, 40 });
+	Dance3.PushBack({ 66, 0, 33, 40 });
+	Dance3.PushBack({ 99, 0, 33, 40 });
+	Dance3.PushBack({ 132, 0, 33, 40 });
+	Dance3.PushBack({ 165, 0, 33, 40 }); //Final puerta
+	Dance3.PushBack({ 198, 0, 33, 40 });
+	Dance3.PushBack({ 231, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 330, 0, 33, 40 });
+	Dance3.PushBack({ 363, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 396, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 429, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 462, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 429, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 396, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 396, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 396, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 396, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 396, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 363, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 363, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 363, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 495, 0, 33, 40 });
+	Dance3.PushBack({ 528, 0, 33, 40 });
+	Dance3.PushBack({ 561, 0, 33, 40 });
+	Dance3.PushBack({ 528, 0, 33, 40 });
+	Dance3.PushBack({ 561, 0, 33, 40 });
+	Dance3.PushBack({ 528, 0, 33, 40 });
+	Dance3.PushBack({ 561, 0, 33, 40 });
+	Dance3.PushBack({ 528, 0, 33, 40 });
+	Dance3.PushBack({ 561, 0, 33, 40 });
+	Dance3.PushBack({ 495, 0, 33, 40 });
+	Dance3.PushBack({ 330, 0, 33, 40 });
+	Dance3.PushBack({ 594, 0, 33, 40 });
+	Dance3.PushBack({ 627, 0, 33, 40 });
+	Dance3.PushBack({ 660, 0, 33, 40 });
+	Dance3.PushBack({ 627, 0, 33, 40 });
+	Dance3.PushBack({ 660, 0, 33, 40 });
+	Dance3.PushBack({ 627, 0, 33, 40 });
+	Dance3.PushBack({ 660, 0, 33, 40 });
+	Dance3.PushBack({ 627, 0, 33, 40 });
+	Dance3.PushBack({ 660, 0, 33, 40 });
+	Dance3.PushBack({ 594, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 693, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 726, 0, 33, 40 });
+	Dance3.PushBack({ 759, 0, 33, 40 });
+	Dance3.PushBack({ 792, 0, 33, 40 });
+	Dance3.PushBack({ 759, 0, 33, 40 });
+	Dance3.PushBack({ 825, 0, 33, 40 });
+	Dance3.PushBack({ 759, 0, 33, 40 });
+	Dance3.PushBack({ 858, 0, 33, 40 });
+	Dance3.PushBack({ 891, 0, 33, 40 });
+	Dance3.PushBack({ 924, 0, 33, 40 });
+	Dance3.PushBack({ 891, 0, 33, 40 });
+	Dance3.PushBack({ 858, 0, 33, 40 });
+	Dance3.PushBack({ 891, 0, 33, 40 });
+	Dance3.PushBack({ 264, 0, 33, 40 });
+	Dance3.PushBack({ 726, 0, 33, 40 });
+	Dance3.PushBack({ 957, 0, 33, 40 });
+	Dance3.PushBack({ 990, 0, 33, 40 });
+	Dance3.PushBack({ 1023, 0, 33, 40 });
+	Dance3.PushBack({ 1056, 0, 33, 40 });
+	Dance3.PushBack({ 1089, 0, 33, 40 });
+	Dance3.PushBack({ 1122, 0, 33, 40 });
+	Dance3.PushBack({ 1155, 0, 33, 40 });
+	Dance3.PushBack({ 1188, 0, 33, 40 });
+	Dance3.PushBack({ 1023, 0, 33, 40 });
+	Dance3.PushBack({ 990, 0, 33, 40 });
+	Dance3.PushBack({ 1023, 0, 33, 40 });
+	Dance3.PushBack({ 957, 0, 33, 40 });
+	Dance3.PushBack({ 1221, 0, 33, 40 });
+	Dance3.PushBack({ 1254, 0, 33, 40 });
+	Dance3.PushBack({ 1287, 0, 33, 40 });
+	Dance3.PushBack({ 1254, 0, 33, 40 });
+	Dance3.PushBack({ 1221, 0, 33, 40 });
+	Dance3.PushBack({ 1320, 0, 33, 40 });
+	Dance3.PushBack({ 1353, 0, 33, 40 });
+	Dance3.PushBack({ 1386, 0, 33, 40 });
+	Dance3.PushBack({ 165, 0, 33, 40 });
+	Dance3.PushBack({ 132, 0, 33, 40 });
+	Dance3.PushBack({ 99, 0, 33, 40 });
+	Dance3.PushBack({ 66, 0, 33, 40 });
+	Dance3.PushBack({ 33, 0, 33, 40 });
+	Dance3.PushBack({ 0, 0, 33, 40 });
+	Dance3.loop = false;
+	Dance3.speed = 0.1f;
 
 }
 
@@ -137,6 +353,10 @@ bool SceneGame::Start()
 
 	curtainClosing.Reset();
 	curtainOpening.Reset();
+
+	Dance1.Reset();
+	Dance2.Reset();
+	Dance3.Reset();
 
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
 	lateralNumbersTexture = App->textures->Load("Assets/Sprites/lateralNumbers_BG_1.png");
@@ -173,6 +393,34 @@ bool SceneGame::Start()
 		}
 	}
 
+	if (App->game->multiplayer == false) {
+		//Initial blocks (lvl 4-6)
+		if (currentLevel == 3)
+		{
+			for (size_t i = 0; i < 23; i++)
+			{
+				for (size_t j = 0; j < 12; j++)
+					playground[i][j] = level4[i][j];
+			}
+		}
+		else if (currentLevel == 4)
+		{
+			for (size_t i = 0; i < 23; i++)
+			{
+				for (size_t j = 0; j < 12; j++)
+					playground[i][j] = level5[i][j];
+			}
+		}
+		else if (currentLevel == 5)
+		{
+			for (size_t i = 0; i < 23; i++)
+			{
+				for (size_t j = 0; j < 12; j++)
+					playground[i][j] = level6[i][j];
+			}
+		}
+	}
+
 	for (size_t i = 0; i < 23; i++)
 	{
 		for (size_t j = 0; j < 12; j++)
@@ -186,6 +434,7 @@ bool SceneGame::Start()
 	if (App->game->multiplayer) { App->playground2->gameOver = false; }
 
 	winDelay = 240;
+	win = -60;
 	loseDelay = 120;
 
 	App->playground->bonusPoints = 10;
@@ -261,7 +510,7 @@ void SceneGame::ResetLevel()
 
 
 	//Initial blocks (lvl 4-6)
-	if (currentLevel == 4)
+	if (currentLevel == 3)
 	{
 		for (size_t i = 0; i < 23; i++)
 		{
@@ -269,7 +518,7 @@ void SceneGame::ResetLevel()
 				playground[i][j] = level4[i][j];
 		}
 	}
-	else if (currentLevel == 5)
+	else if (currentLevel == 4)
 	{
 		for (size_t i = 0; i < 23; i++)
 		{
@@ -301,6 +550,7 @@ void SceneGame::ResetLevel()
 	App->playground->gameOver = false;
 
 	winDelay = 240;
+	win = -60;
 	loseDelay = 120;
 
 	App->playground->bonusPoints = 10;
@@ -310,10 +560,15 @@ void SceneGame::ResetLevel()
 	curtainClosing.Reset();
 	curtainOpening.Reset();
 
+	Dance1.Reset();
+	Dance2.Reset();
+	Dance3.Reset();
+
 	App->game->destroyed = false;
 	
 	App->game->stateStartLevel = true;
 	App->game->stateWin = false;
+	App->game->stateTePasasteElJuegoPerro = false;
 	App->game->stateLose = false;
 
 	App->game->stateLine1 = false;
@@ -325,12 +580,26 @@ void SceneGame::ResetLevel()
 
 Update_Status SceneGame::Update()
 {
+	if (App->game->multiplayer == false && App->game->stateTePasasteElJuegoPerro == true)
+	{
+		//Te pasaste el juego perrooooo
+		if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
+		{
+			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		}
+	}
+
 	if(App->game->stateLose || App->game->stateEndMultiplayer){ curtainClosing.Update(); }
 	if (winDelay <= 0) { curtainClosing.Update(); }
 	if (App->game->stateStartLevel) { curtainOpening.Update(); }
 	lateralBarsAnim.Update();
 	lateralBarCounter++;
-	Dance1.Update();
+	if (winDelay <= -60)
+	{
+		Dance1.Update();
+		Dance2.Update();
+		Dance3.Update();
+	}
 
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == Key_State::KEY_DOWN)
 	{
@@ -359,6 +628,19 @@ Update_Status SceneGame::PostUpdate()
 	}
 	
 	if (App->game->stateStartLevel) {
+		//Draw dead blocks
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground[i][j] != 0 && playground[i][j] != 255)
+				{
+					App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
+
+				}
+			}
+		}
+
 		//CURTAIN ANIMATION OPENING
 		App->render->Blit(curtainTexture, 128, 96, &(curtainOpening.GetCurrentFrame()));
 	}
@@ -616,11 +898,67 @@ Update_Status SceneGame::PostUpdate()
 			App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
 		}
 
-		if (winDelay<=-60) {
-			if (currentLevel < 11) { ResetLevel(); }
-			else{ App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90); }
+		if (winDelay <= 0) {
+			//CURTAIN ANIMATION CLOSING  NOO VA :( (si que va :))
+			App->render->Blit(curtainTexture, 128, 96, &(curtainClosing.GetCurrentFrame()));
 		}
-		else{ winDelay--; }
+
+		if (currentLevel == 2)
+		{
+			win = -660;
+			if (winDelay == -60) { App->audio->PlayMusic("Assets/audio/Wiki_Audio_Music_Hopak_(Round_3).ogg", 1.0f); }
+			if (winDelay <= -60) { App->render->Blit(Russian1, 135, 50, &(Dance1.GetCurrentFrame())); }
+		}
+		if (currentLevel == 5)
+		{
+			win = -660;
+			if (winDelay == -60) { App->audio->PlayMusic("Assets/audio/Wiki_Audio_Music_Hopak_(Round_6).ogg", 1.0f); }
+			if (winDelay <= -60) { App->render->Blit(Russian2, 135, 50, &(Dance2.GetCurrentFrame())); }
+		}
+		if (currentLevel == 8)
+		{
+			win = -660;
+			if (winDelay == -60) { App->audio->PlayMusic("Assets/audio/Wiki_Audio_Music_Hopak_(Round_9).ogg", 1.0f); }
+			if (winDelay <= -60) { App->render->Blit(Russian3, 135, 50, &(Dance3.GetCurrentFrame())); }
+		}
+
+		if (winDelay <= win) {
+			if (currentLevel < 11) 
+			{
+				App->audio->PlayMusic("", 1.0f);
+				ResetLevel();
+			}
+			else 
+			{
+				App->game->stateWin = false;
+				playMusic = true;
+				App->game->stateTePasasteElJuegoPerro = true;
+			}
+		}
+		else { winDelay--; }
+	}
+
+	if (App->game->multiplayer == false && App->game->stateTePasasteElJuegoPerro == true)
+	{
+		//Te pasaste el juego perrooooo
+
+		if (playMusic) {
+			App->audio->PlayMusic("Assets/audio/WIN_HARDBASS.ogg", 1.0f);
+			playMusic = false;
+		}
+
+		//Draw dead blocks (player 1)
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground[i][j] != 0 && playground[i][j] != 255)
+				{
+					App->tiles->BlitText(j, i, Dead_Tetromino, playground[i][j], App->playground->block, false);
+
+				}
+			}
+		}
 	}
 
 	if (App->game->multiplayer && (App->game->statePlay1 || App->game->stateLine1 || App->game->statePlay2 || App->game->stateLine2))
