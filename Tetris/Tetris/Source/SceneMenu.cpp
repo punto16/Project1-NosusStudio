@@ -99,6 +99,8 @@ Update_Status SceneMenu::Update()
 	{
 		App->audio->PlayFx(App->audio->selectDiffFx);
 
+		App->game->multiplayer = false;
+
 		switch (selection)
 		{
 		case 0: //Easy
