@@ -56,6 +56,9 @@ public:
 	uint selectDiffFx;
 	uint changeDiffFx;
 	uint roundCompletedAndBonusPointBars;
+	uint rusoMusic1;
+	uint rusoMusic2;
+	uint rusoMusic3;
 
 private:
 	// The current playing music

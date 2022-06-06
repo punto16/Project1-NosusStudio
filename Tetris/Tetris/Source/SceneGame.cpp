@@ -941,7 +941,7 @@ Update_Status SceneGame::PostUpdate()
 					Dance1.Reset();
 					DanceReset = false;
 				}
-				App->audio->PlayMusic("Assets/audio/Wiki_Audio_Music_Hopak_(Round_3).ogg", 1.0f); 
+				App->audio->PlayFx(App->audio->rusoMusic1);
 			}
 			if (winDelay <= -60) { App->render->Blit(Russian1, 135, 50, &(Dance1.GetCurrentFrame())); }
 		}
@@ -954,7 +954,7 @@ Update_Status SceneGame::PostUpdate()
 					Dance2.Reset();
 					DanceReset = false;
 				}
-				App->audio->PlayMusic("Assets/audio/Wiki_Audio_Music_Hopak_(Round_6).ogg", 1.0f);
+				App->audio->PlayFx(App->audio->rusoMusic2);
 			}
 			if (winDelay <= -60) { App->render->Blit(Russian2, 135, 50, &(Dance2.GetCurrentFrame())); }
 		}
@@ -967,7 +967,7 @@ Update_Status SceneGame::PostUpdate()
 					Dance3.Reset();
 					DanceReset = false;
 				}
-				App->audio->PlayMusic("Assets/audio/Wiki_Audio_Music_Hopak_(Round_9).ogg", 1.0f);
+				App->audio->PlayFx(App->audio->rusoMusic3);
 			}
 			if (winDelay <= -60) { App->render->Blit(Russian3, 135, 50, &(Dance3.GetCurrentFrame())); }
 		}

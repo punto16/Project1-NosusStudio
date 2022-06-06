@@ -58,6 +58,9 @@ bool ModuleAudio::Init()
 	selectDiffFx = App->audio->LoadFx("Assets/audio/select_diff.wav");
 	changeDiffFx = App->audio->LoadFx("Assets/audio/change_diff.wav");
 	roundCompletedAndBonusPointBars = App->audio->LoadFx("Assets/audio/round_ended_bars.wav");
+	rusoMusic1 = App->audio->LoadFx("Assets/audio/Ruso1.wav");
+	rusoMusic2 = App->audio->LoadFx("Assets/audio/Ruso2.wav");
+	rusoMusic3 = App->audio->LoadFx("Assets/audio/Ruso3.wav");
 
 	return ret;
 }
