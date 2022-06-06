@@ -443,6 +443,7 @@ bool SceneGame::Start()
 	App->playground->bonus = false;
 	App->playground->lastBonus = 2;
 	playMusic = false;
+	playFx = false;
 	
 	levelLines = levelsTotalLines[currentLevel];
 
@@ -576,6 +577,7 @@ void SceneGame::ResetLevel()
 	App->game->stateTePasasteElJuegoPerro = false;
 	App->game->stateLose = false;
 	playMusic = false;
+	playFx = false;
 
 	App->game->stateLine1 = false;
 	App->game->stateLine2 = false;
@@ -597,7 +599,26 @@ Update_Status SceneGame::Update()
 
 	if(App->game->stateLose || App->game->stateEndMultiplayer){ curtainClosing.Update(); }
 	if (winDelay <= 0) { curtainClosing.Update(); }
-	if (App->game->stateStartLevel) { curtainOpening.Update(); }
+	if (App->game->stateStartLevel) 
+	{
+		curtainOpening.Update();
+
+		if (currentLevel == 3 && !playFx)
+		{
+			App->audio->PlayFx(App->audio->newLevelFx);
+			playFx = true;
+		}
+		if (currentLevel == 6 && !playFx)
+		{
+			App->audio->PlayFx(App->audio->newLevelFx);
+			playFx = true;
+		}
+		if (currentLevel == 9 && !playFx)
+		{
+			App->audio->PlayFx(App->audio->newLevelFx);
+			playFx = true;
+		}
+	}
 	lateralBarsAnim.Update();
 	lateralBarCounter++;
 	if (winDelay <= -60)
@@ -850,6 +871,7 @@ Update_Status SceneGame::PostUpdate()
 
 		if (playMusic) {
 			App->audio->PlayMusic("", 1.0f);
+			App->audio->PlayFx(App->audio->gameOverFx);
 			playMusic = false;
 		}
 
@@ -1164,7 +1186,11 @@ Update_Status SceneGame::PostUpdate()
 			//Game over player 1
 			App->render->Blit(goTexture, 32, 0, NULL);
 			App->game->statePlay1 = false;
-			if (App->playground2->gameOver) { App->game->stateEndMultiplayer = true; }
+			if (App->playground2->gameOver) 
+			{
+				App->game->stateEndMultiplayer = true;
+				App->audio->PlayFx(App->audio->gameOverFx);
+			}
 		}
 
 		if (App->playground2->gameOver == false)
@@ -1178,7 +1204,11 @@ Update_Status SceneGame::PostUpdate()
 			App->render->Blit(goTexture, 240, 0, NULL);
 			//Game over player 2
 			App->game->statePlay2 = false;
-			if (App->playground->gameOver) { App->game->stateEndMultiplayer = true; }
+			if (App->playground->gameOver) 
+			{
+				App->game->stateEndMultiplayer = true; 
+				App->audio->PlayFx(App->audio->gameOverFx);
+			}
 		}
 	}
 

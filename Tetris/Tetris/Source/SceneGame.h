@@ -39,6 +39,7 @@ public:
 	int levelLines = levelsTotalLines[currentLevel];
 
 	bool playMusic = false;
+	bool playFx = false;
 
 	int winDelay = 240;
 	int win = -60;

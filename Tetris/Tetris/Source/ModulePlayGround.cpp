@@ -70,14 +70,17 @@ Update_Status ModulePlayGround::Update()
 			if (App->sceneGame->currentLevel == 6 && countBlocksPlaced == 8)
 			{
 				GarbageBlock(); countBlocksPlaced = 0;
+				App->audio->PlayFx(App->audio->blockAppearFx);
 			}
 			else if (App->sceneGame->currentLevel == 7 && countBlocksPlaced == 5)
 			{
 				GarbageBlock(); countBlocksPlaced = 0;
+				App->audio->PlayFx(App->audio->blockAppearFx);
 			}
 			else if (App->sceneGame->currentLevel == 8 && countBlocksPlaced == 3)
 			{
 				GarbageBlock(); countBlocksPlaced = 0;
+				App->audio->PlayFx(App->audio->blockAppearFx);
 			}
 
 			//garbage row
@@ -563,6 +566,8 @@ void ModulePlayGround::GarbageBlock()
 			break;
 		}
 	}
+
+	App->audio->PlayFx(App->audio->blockAppearFx);
 }
 
 void ModulePlayGround::GarbageRow()
