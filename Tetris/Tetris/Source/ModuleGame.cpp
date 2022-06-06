@@ -55,7 +55,7 @@ bool ModuleGame::Start()
 	{
 		scorePlayer1 = 20000;
 	}
-	else if (App->sceneGame->currentLevel == 7)
+	else if (App->sceneGame->currentLevel == 6)
 	{
 		scorePlayer1 = 40000;
 	}
