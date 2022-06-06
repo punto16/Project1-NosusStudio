@@ -67,34 +67,28 @@ Update_Status ModulePlayGround::Update()
 		if (App->sceneGame->currentLevel == 6 && countBlocksPlaced == 8)
 		{
 			GarbageBlock(); countBlocksPlaced = 0;
-		}
-			
-
-		if (App->sceneGame->currentLevel == 7 && countBlocksPlaced == 5)
+		}			
+		else if (App->sceneGame->currentLevel == 7 && countBlocksPlaced == 5)
 		{
 			GarbageBlock(); countBlocksPlaced = 0;
 		}
-
-		if (App->sceneGame->currentLevel == 8 && countBlocksPlaced == 3)
+		else if (App->sceneGame->currentLevel == 8 && countBlocksPlaced == 3)
 		{
 			GarbageBlock(); countBlocksPlaced = 0;
 		}
-
 
 		//garbage row
 		if (App->sceneGame->currentLevel == 9 && countBlocksPlaced == 8)
 		{
-			GarbageBlock(); countBlocksPlaced = 0;
+			GarbageRow(); countBlocksPlaced = 0;
 		}
-
-		if (App->sceneGame->currentLevel == 10 && countBlocksPlaced == 5)
+		else if (App->sceneGame->currentLevel == 10 && countBlocksPlaced == 5)
 		{
-			GarbageBlock(); countBlocksPlaced = 0;
+			GarbageRow(); countBlocksPlaced = 0;
 		}
-
-		if (App->sceneGame->currentLevel == 11 && countBlocksPlaced == 3)
+		else if (App->sceneGame->currentLevel == 11 && countBlocksPlaced == 3)
 		{
-			GarbageBlock(); countBlocksPlaced = 0;
+			GarbageRow(); countBlocksPlaced = 0;
 		}
 	}
 
