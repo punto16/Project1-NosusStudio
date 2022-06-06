@@ -30,6 +30,7 @@ The game consists in different pieces falling and the objective is to make them 
 - F3          - Infinite lines
 - F4          - God mode (enable the keys from 1 to 7 to select the piece you want to appear, click it againt to disable)
 - F5          - It adds a line to your completed lines counter
+- F6          - Enable jumping to certain levels (1,4,7 and 12 pressing 1,2,3 or 4)
 
 ## Developers
 
