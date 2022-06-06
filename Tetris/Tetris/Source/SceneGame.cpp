@@ -440,6 +440,7 @@ bool SceneGame::Start()
 	App->playground->bonusPoints = 10;
 	App->playground->bonus = false;
 	App->playground->lastBonus = 2;
+	playMusic = false;
 	
 	levelLines = levelsTotalLines[currentLevel];
 
@@ -570,6 +571,7 @@ void SceneGame::ResetLevel()
 	App->game->stateWin = false;
 	App->game->stateTePasasteElJuegoPerro = false;
 	App->game->stateLose = false;
+	playMusic = false;
 
 	App->game->stateLine1 = false;
 	App->game->stateLine2 = false;
