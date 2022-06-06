@@ -63,32 +63,35 @@ Update_Status ModulePlayGround::Update()
 	{
 		StatePlay();
 
-		//garbage block
-		if (App->sceneGame->currentLevel == 6 && countBlocksPlaced == 8)
+		if (!App->game->multiplayer)
 		{
-			GarbageBlock(); countBlocksPlaced = 0;
-		}			
-		else if (App->sceneGame->currentLevel == 7 && countBlocksPlaced == 5)
-		{
-			GarbageBlock(); countBlocksPlaced = 0;
-		}
-		else if (App->sceneGame->currentLevel == 8 && countBlocksPlaced == 3)
-		{
-			GarbageBlock(); countBlocksPlaced = 0;
-		}
+			//garbage block
+			if (App->sceneGame->currentLevel == 6 && countBlocksPlaced == 8)
+			{
+				GarbageBlock(); countBlocksPlaced = 0;
+			}
+			else if (App->sceneGame->currentLevel == 7 && countBlocksPlaced == 5)
+			{
+				GarbageBlock(); countBlocksPlaced = 0;
+			}
+			else if (App->sceneGame->currentLevel == 8 && countBlocksPlaced == 3)
+			{
+				GarbageBlock(); countBlocksPlaced = 0;
+			}
 
-		//garbage row
-		if (App->sceneGame->currentLevel == 9 && countBlocksPlaced == 8)
-		{
-			GarbageRow(); countBlocksPlaced = 0;
-		}
-		else if (App->sceneGame->currentLevel == 10 && countBlocksPlaced == 5)
-		{
-			GarbageRow(); countBlocksPlaced = 0;
-		}
-		else if (App->sceneGame->currentLevel == 11 && countBlocksPlaced == 3)
-		{
-			GarbageRow(); countBlocksPlaced = 0;
+			//garbage row
+			if (App->sceneGame->currentLevel == 9 && countBlocksPlaced == 8)
+			{
+				GarbageRow(); countBlocksPlaced = 0;
+			}
+			else if (App->sceneGame->currentLevel == 10 && countBlocksPlaced == 5)
+			{
+				GarbageRow(); countBlocksPlaced = 0;
+			}
+			else if (App->sceneGame->currentLevel == 11 && countBlocksPlaced == 3)
+			{
+				GarbageRow(); countBlocksPlaced = 0;
+			}
 		}
 	}
 
