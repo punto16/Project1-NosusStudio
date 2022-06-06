@@ -233,12 +233,12 @@ SceneGame::SceneGame(bool startEnabled) : Module(startEnabled)
 	Dance3.PushBack({ 198, 0, 33, 40 });
 	Dance3.PushBack({ 231, 0, 33, 40 });
 	Dance3.PushBack({ 264, 0, 33, 40 });
-	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 297, 0, 33, 40 });
 	Dance3.PushBack({ 264, 0, 33, 40 });
 	Dance3.PushBack({ 330, 0, 33, 40 });
 	Dance3.PushBack({ 363, 0, 33, 40 });
 	Dance3.PushBack({ 264, 0, 33, 40 });
-	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 297, 0, 33, 40 });
 	Dance3.PushBack({ 264, 0, 33, 40 });
 	Dance3.PushBack({ 396, 0, 33, 40 });
 	Dance3.PushBack({ 264, 0, 33, 40 });
@@ -250,18 +250,18 @@ SceneGame::SceneGame(bool startEnabled) : Module(startEnabled)
 	Dance3.PushBack({ 264, 0, 33, 40 });
 	Dance3.PushBack({ 396, 0, 33, 40 });
 	Dance3.PushBack({ 264, 0, 33, 40 });
-	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 297, 0, 33, 40 });
 	Dance3.PushBack({ 264, 0, 33, 40 });
-	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 297, 0, 33, 40 });
 	Dance3.PushBack({ 396, 0, 33, 40 });
 	Dance3.PushBack({ 264, 0, 33, 40 });
-	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 297, 0, 33, 40 });
 	Dance3.PushBack({ 396, 0, 33, 40 });
 	Dance3.PushBack({ 264, 0, 33, 40 });
-	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 297, 0, 33, 40 });
 	Dance3.PushBack({ 396, 0, 33, 40 });
 	Dance3.PushBack({ 264, 0, 33, 40 });
-	Dance3.PushBack({ 293, 0, 33, 40 });
+	Dance3.PushBack({ 297, 0, 33, 40 });
 	Dance3.PushBack({ 396, 0, 33, 40 });
 	Dance3.PushBack({ 264, 0, 33, 40 });
 	Dance3.PushBack({ 363, 0, 33, 40 });
@@ -358,6 +358,8 @@ bool SceneGame::Start()
 	Dance2.Reset();
 	Dance3.Reset();
 
+	DanceReset = true;
+
 	bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
 	lateralNumbersTexture = App->textures->Load("Assets/Sprites/lateralNumbers_BG_1.png");
 	lateralNumbersBlink = App->textures->Load("Assets/Sprites/lateralNumbers_white.png");
@@ -367,9 +369,9 @@ bool SceneGame::Start()
   
 	//App->audio->PlayMusic("Assets/audio/1_Loginska.ogg", 1.0f);
   
-	Russian1 = App->textures->Load("Assets/Sprites/Dance1");
-	Russian2 = App->textures->Load("Assets/Sprites/Dance2");
-	Russian3 = App->textures->Load("Assets/Sprites/Dance3");
+	Russian1 = App->textures->Load("Assets/Sprites/Dance1.png");
+	Russian2 = App->textures->Load("Assets/Sprites/Dance2.png");
+	Russian3 = App->textures->Load("Assets/Sprites/Dance3.png");
   
 	Dead_Tetromino = App->tiles->Load("Assets/Sprites/tetromino_dead.png", 15, 10);
 	
@@ -564,6 +566,8 @@ void SceneGame::ResetLevel()
 	Dance1.Reset();
 	Dance2.Reset();
 	Dance3.Reset();
+
+	DanceReset = true;
 
 	App->game->destroyed = false;
 	
@@ -908,19 +912,41 @@ Update_Status SceneGame::PostUpdate()
 		if (currentLevel == 2)
 		{
 			win = -660;
-			if (winDelay == -60) { App->audio->PlayMusic("Assets/audio/Wiki_Audio_Music_Hopak_(Round_3).ogg", 1.0f); }
+
+			if (winDelay == -60) { 
+				if (DanceReset == true)
+				{
+					Dance1.Reset();
+					DanceReset = false;
+				}
+				App->audio->PlayMusic("Assets/audio/Wiki_Audio_Music_Hopak_(Round_3).ogg", 1.0f); 
+			}
 			if (winDelay <= -60) { App->render->Blit(Russian1, 135, 50, &(Dance1.GetCurrentFrame())); }
 		}
-		if (currentLevel == 5)
+		else if (currentLevel == 5)
 		{
-			win = -660;
-			if (winDelay == -60) { App->audio->PlayMusic("Assets/audio/Wiki_Audio_Music_Hopak_(Round_6).ogg", 1.0f); }
+			win = -1075;
+			if (winDelay == -60) {
+				if (DanceReset == true)
+				{
+					Dance2.Reset();
+					DanceReset = false;
+				}
+				App->audio->PlayMusic("Assets/audio/Wiki_Audio_Music_Hopak_(Round_6).ogg", 1.0f);
+			}
 			if (winDelay <= -60) { App->render->Blit(Russian2, 135, 50, &(Dance2.GetCurrentFrame())); }
 		}
-		if (currentLevel == 8)
+		else if (currentLevel == 8)
 		{
-			win = -660;
-			if (winDelay == -60) { App->audio->PlayMusic("Assets/audio/Wiki_Audio_Music_Hopak_(Round_9).ogg", 1.0f); }
+			win = -1200;
+			if (winDelay == -60) {
+				if (DanceReset == true)
+				{
+					Dance3.Reset();
+					DanceReset = false;
+				}
+				App->audio->PlayMusic("Assets/audio/Wiki_Audio_Music_Hopak_(Round_9).ogg", 1.0f);
+			}
 			if (winDelay <= -60) { App->render->Blit(Russian3, 135, 50, &(Dance3.GetCurrentFrame())); }
 		}
 

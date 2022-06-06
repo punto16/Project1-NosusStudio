@@ -285,6 +285,13 @@ Update_Status ModuleGame::PostUpdate()
 		App->fonts->BlitText(150, 146, Tetris_font_white, "left");
 		App->fonts->BlitText(135, 115, Tetris_font_red, linesLeftText);
 	}
+	if (multiplayer && (statePlay1 || stateLine1 || statePlay2 || stateLine2)) {
+		if (App->sceneGame->levelLines < 10) { sprintf_s(linesLeftText, 10, "0%d", App->sceneGame->levelLines); }
+		else { sprintf_s(linesLeftText, 10, "%d", App->sceneGame->levelLines); }
+		App->fonts->BlitText(155, 115, Tetris_font_white, "best");
+		App->fonts->BlitText(150, 130, Tetris_font_white, "score");
+		App->fonts->BlitText(158, 146, Tetris_font_red, "win");
+	}
 
 	if (!multiplayer && stateStartLevel) {
 		if (delayStart <= 0) {
@@ -315,11 +322,11 @@ Update_Status ModuleGame::PostUpdate()
 		if (delayStart <= 0) {
 			if (App->sceneGame->levelLines < 10) { sprintf_s(linesLeftText, 10, "0%d", App->sceneGame->levelLines); }
 			else { sprintf_s(linesLeftText, 10, "%d", App->sceneGame->levelLines); }
-			App->fonts->BlitText(137, 106, Tetris_font_white, "complete");
-			App->fonts->BlitText(137, 121, Tetris_font_white, linesLeftText);
-			App->fonts->BlitText(161, 121, Tetris_font_white, "lines");
-			App->fonts->BlitText(137, 136, Tetris_font_white, "to go to");
-			App->fonts->BlitText(128, 153, Tetris_font_white, "next round");
+			App->fonts->BlitText(137, 106, Tetris_font_white, "  3..");
+			App->fonts->BlitText(137, 121, Tetris_font_white, "2..");
+			App->fonts->BlitText(161, 121, Tetris_font_white, " 1..");
+			App->fonts->BlitText(137, 136, Tetris_font_white, " fight!");
+			//App->fonts->BlitText(128, 153, Tetris_font_white, "next round");
 		}
 
 		delayStart--;
