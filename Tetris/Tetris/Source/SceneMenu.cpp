@@ -110,7 +110,7 @@ Update_Status SceneMenu::Update()
 			App->fade->FadeToBlack(this, (Module*)App->sceneGame, 90); //Placeholder
 			break;
 		case 2: //Hard
-			App->sceneGame->currentLevel = 9;
+			App->sceneGame->currentLevel = 6;
 			App->fade->FadeToBlack(this, (Module*)App->sceneGame, 90); //Placeholder
 			break;
 		}

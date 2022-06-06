@@ -51,6 +51,15 @@ bool ModuleGame::Start()
 	totalLinesPlayer2 = 000;
 	round = 000;
 
+	if (App->sceneGame->currentLevel == 3)
+	{
+		scorePlayer1 = 20000;
+	}
+	else if (App->sceneGame->currentLevel == 7)
+	{
+		scorePlayer1 = 40000;
+	}
+
 	char lookupTable[] = { "abcdefghijklmnopqrstuvwxyz 0123456789.,;:$#'! /?%&()@ " };
 	Tetris_font_black = App->fonts->Load("Assets/Fonts/sprite_font_black.png", lookupTable, 6);
 	Tetris_font_blue = App->fonts->Load("Assets/Fonts/sprite_font_blue.png", lookupTable, 6);
