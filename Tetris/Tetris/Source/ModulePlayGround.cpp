@@ -62,6 +62,7 @@ Update_Status ModulePlayGround::Update()
 	if (App->game->statePlay1 == true)
 	{
 		StatePlay();
+
 	}
 
 	Blink();
@@ -164,7 +165,6 @@ void ModulePlayGround::StatePlay()
 	//X movement
 	if (fCountX >= 10)
 	{
-		GarbageSpawn();
 		if (block.inputX != 0)
 		{
 			if (!IsColliding(block.x + block.inputX, block.y, block))
@@ -374,6 +374,7 @@ void ModulePlayGround::CheckLine()
 	}
 }
 
+
 void ModulePlayGround::Score()
 {
 	//lines
@@ -489,7 +490,7 @@ void ModulePlayGround::Blink()
 	}
 }
 
-void ModulePlayGround::RandomBlockSpawn()
+void ModulePlayGround::GarbageBlock()
 {
 	int SpawnX = (rand() % 11) + 1;
 	for (int i = 0; i < 22; i++)
@@ -501,7 +502,7 @@ void ModulePlayGround::RandomBlockSpawn()
 	}
 }
 
-void ModulePlayGround::GarbageSpawn()
+void ModulePlayGround::GarbageRow()
 {
 	for (int i = 0; i < 22; i++)
 	{

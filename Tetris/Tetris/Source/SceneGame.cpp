@@ -234,39 +234,69 @@ void SceneGame::ResetLevel()
 
 	App->playground->lineLimit = false;
 
-	if (currentLevel >= 0 && currentLevel < 3) {
+	if (currentLevel < 3) {
 		bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
 		App->game->fontMiddle = App->game->Tetris_font_darkblue;
 		App->game->fontRight = App->game->Tetris_font_lightblue;
 		App->game->fontScore = App->game->Tetris_font_darkblue;
 	}
-	else if (currentLevel >= 3 && currentLevel < 6) {
+	else if (currentLevel < 6) {
 		bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_2.png");
 		App->game->fontMiddle = App->game->Tetris_font_purpura;
 		App->game->fontRight = App->game->Tetris_font_blue;
 		App->game->fontScore = App->game->Tetris_font_purpura;
 	}
-	else if (currentLevel >= 6 && currentLevel < 9) {
+	else if (currentLevel < 9) {
 		bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_3.png");
 		App->game->fontMiddle = App->game->Tetris_font_lightblue;
 		App->game->fontRight = App->game->Tetris_font_lightblue;
 		App->game->fontScore = App->game->Tetris_font_brown;
 	}
-	else if (currentLevel >= 9 && currentLevel < 12) {
+	else if (currentLevel < 12) {
 		bgTexture = App->textures->Load("Assets/Sprites/Tetris_BG_1.png");
 		App->game->fontMiddle = App->game->Tetris_font_darkblue;
 		App->game->fontRight = App->game->Tetris_font_lightblue;
 		App->game->fontScore = App->game->Tetris_font_darkblue;
 	}
 
-	for (size_t i = 0; i < 23; i++)
+
+	//Initial blocks (lvl 4-6)
+	if (currentLevel == 4)
 	{
-		for (size_t j = 0; j < 12; j++)
+		for (size_t i = 0; i < 23; i++)
 		{
-			if (playground[i][j] != 255)
-				playground[i][j] = 0;
+			for (size_t j = 0; j < 12; j++)
+				playground[i][j] = level4[i][j];
 		}
 	}
+	else if (currentLevel == 5)
+	{
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+				playground[i][j] = level5[i][j];
+		}
+	}
+	else if (currentLevel == 5)
+	{
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+				playground[i][j] = level6[i][j];
+		}
+	}
+	else
+	{
+		for (size_t i = 0; i < 23; i++)
+		{
+			for (size_t j = 0; j < 12; j++)
+			{
+				if (playground[i][j] != 255)
+					playground[i][j] = 0;
+			}
+		}
+	}
+
 
 	App->playground->gameOver = false;
 
