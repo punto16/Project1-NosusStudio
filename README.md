@@ -51,7 +51,7 @@ The game consists in different pieces falling and the objective is to make them 
 
 Besides the current responsibility, each team member has worked on the game's code
 
-## [Click to Download the Game!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+## [Click to Download the Game!](https://github.com/punto16/Project1-NosusStudio/releases/download/1.0/NosusStudio_Tetris_v1.0.zip)
 
 ## License
 
